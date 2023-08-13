@@ -72,6 +72,19 @@ public class PackageDao {
 
     }
 
+    
+    public void deletePackage(String package_id) {
+        String sq2 = "UPDATE product SET status = ? WHERE product_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sq2);
+            ps.setString(1, "FALSE");
+            ps.setString(2, package_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();
 //        String sql = "select c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,u.user_name from  \n" +
