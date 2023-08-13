@@ -24,10 +24,10 @@ public class DBContext {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         return DriverManager.getConnection(url, userID, password);
     }
-    private final String serverName = "localhost";
+    private final String serverName = "chickenmeal.c3rt4dajwuvc.ap-southeast-1.rds.amazonaws.com";
     private final String dbName = "swp";
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
-    private final String userID = "sa";
-    private final String password = "1";
+    private final String userID = "admin";
+    private final String password = "groupsix";
 }

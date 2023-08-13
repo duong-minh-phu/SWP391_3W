@@ -277,6 +277,9 @@ public class MainController extends HttpServlet {
             if (action.equals("outdate")){
                 url = "OutDate";
             }
+            if (action.equals("packageManage")){
+                url = "PackageManagement";
+            }  
             
 
         } catch (Exception ex) {
