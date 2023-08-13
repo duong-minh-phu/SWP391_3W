@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import DAO.PackageDao;
+import DAO.productDAO;
 @MultipartConfig()
 @WebServlet(name = "PackageManagement", urlPatterns = "/PackageManagement")
 
@@ -27,17 +28,18 @@ public class PackageManagement extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try {
-            PackageDao dao = new PackageDao();
-//                List<Product> product = dao.getProduct();
-//                request.setAttribute("ProductData", product);
-//                List<Category> category = dao.getCategory1();
-//                request.setAttribute("CategoryData", category);
+            PackageDao packageao = new PackageDao();
+            productDAO productDao = new productDAO();
+                List<Product> product = productDao.getProduct();
+                request.setAttribute("ProductData", product);
                 
                 request.getRequestDispatcher(INSERT_PACKAGE).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/404.jsp");
         }
+        
+        
                 
         
 //        try {
