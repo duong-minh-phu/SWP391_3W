@@ -19,6 +19,24 @@
         <link rel="stylesheet" type="text/css"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+
+
+
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
+
+
         <script>
             function generateId() {
                 const productIdInput = document.getElementById('product-id');
@@ -188,30 +206,36 @@
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="#">Thêm package</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Tạo mới sản phẩm</h3>
-                        <div class="tile-body">
+                        <h3 class="tile-title">Tạo mới package</h3>
+<!--                        <div class="tile-body">
                             <div class="row element-button">
                                 <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
                                             class="fas fa-folder-plus"></i> Thêm danh mục</a>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <form class="row" action="MainController?action=insertproduct" method="Post" enctype="multipart/form-data">
                                 <input type="hidden" id="product-id" name="product_id">
                                 <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category_id" class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
-                                        <c:forEach items="${CategoryData}" var="cat">
-                                            <option value="${cat.category_id}">${cat.category_name} </option>
-                                        </c:forEach>
+                                    <label for="exampleSelect1" class="control-label">Meal</label>
+                                    <!--<select name="category_id" class="form-control" id="exampleSelect1" >-->
+                                    <!--<option>-- Chọn danh mục --</option>-->
+                                    <%--<c:forEach items="${CategoryData}" var="cat">--%>
+                                        <!--<option value="${cat.category_id}">${cat.category_name} </option>-->
+                                    <%--</c:forEach>--%>
+                                    <!--</select>-->
+                                    <select class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
+                                        <option>Christmas Island</option>
+                                        <option>South Sudan</option>
+                                        <option>Jamaica</option>
+                                        <option>Kenya</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -226,23 +250,23 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="quantity" type="number"required="">
                                 </div>
-<!--                                  <div class="form-group col-md-3">
-                                    <label class="control-label">Ngày sản xuất</label>
-                                    <input class="form-control" name="createdate" type="date"required="">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label class="control-label">Hạn sử dụng</label>
-                                    <input class="form-control" name="expdate" type="date"required="">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label class="control-label">Hãng</label>
-                                    <input class="form-control" name="company" type="text"required="">
-                                </div>-->
+                                <!--                                  <div class="form-group col-md-3">
+                                                                    <label class="control-label">Ngày sản xuất</label>
+                                                                    <input class="form-control" name="createdate" type="date"required="">
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label class="control-label">Hạn sử dụng</label>
+                                                                    <input class="form-control" name="expdate" type="date"required="">
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label class="control-label">Hãng</label>
+                                                                    <input class="form-control" name="company" type="text"required="">
+                                                                </div>-->
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
                                         <input type="file" id="uploadfile" name="product_img" onchange="readURL(this);"required="" />
-                                    </div>
+                                    </div>  
                                     <div id="thumbbox">
                                         <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
                                         <a class="removeimg" href="javascript:"></a>
@@ -256,9 +280,9 @@
                                     <label class="control-label">Mô tả sản phẩm</label>
                                     <textarea class="form-control" name="describe" id="describe"></textarea>
                                 </div>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
+                                <button class="btn btn-success" type="submit">Lưu lại</button>
                                 &nbsp;
-                                <a class="btn btn-cancel" href="Productmanager">Hủy bỏ</a>
+                                <a class="btn btn-danger" href="Productmanager">Hủy bỏ</a>  
                             </form>
                         </div>
 
@@ -385,6 +409,12 @@
                     popup.style.display = "none";
                 });
             });
+            $('#multiple-select-field').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false
+            });
         </script>
 
         <script src="admin/js/jquery-3.2.1.min.js"></script>
@@ -393,25 +423,25 @@
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
         <script>
-                                            const inpFile = document.getElementById("inpFile");
-                                            const loadFile = document.getElementById("loadFile");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewImage = previewContainer.querySelector(".image-preview__image");
-                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                            const object = new ActiveXObject("Scripting.FileSystemObject");
-                                            inpFile.addEventListener("change", function () {
-                                                const file = this.files[0];
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    previewDefaultText.style.display = "none";
-                                                    previewImage.style.display = "block";
-                                                    reader.addEventListener("load", function () {
-                                                        previewImage.setAttribute("src", this.result);
-                                                    });
-                                                    reader.readAsDataURL(file);
-                                                }
-                                            });
+            const inpFile = document.getElementById("inpFile");
+            const loadFile = document.getElementById("loadFile");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewImage = previewContainer.querySelector(".image-preview__image");
+            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+            const object = new ActiveXObject("Scripting.FileSystemObject");
+            inpFile.addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    previewDefaultText.style.display = "none";
+                    previewImage.style.display = "block";
+                    reader.addEventListener("load", function () {
+                        previewImage.setAttribute("src", this.result);
+                    });
+                    reader.readAsDataURL(file);
+                }
+            });
 
 
         </script>
