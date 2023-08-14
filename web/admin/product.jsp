@@ -83,6 +83,10 @@
                                         Tạo mới sản phẩm</a>
                                 </div>
                                 <div class="col-sm-2">
+                                    <a class="btn btn-add btn-sm" href="MainController?action=packageManage" title="Thêm"><i class="fas fa-plus"></i>
+                                        Tạo mới package</a>
+                                </div>
+                                <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="MainController?action=productdelete" >Sản phẩm đã xóa</a>
                                 </div>
                                  <div class="col-sm-2">

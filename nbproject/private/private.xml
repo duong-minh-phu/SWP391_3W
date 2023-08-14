@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ROG%20STRIX/Desktop/SWP391-2707/SWP391-94bf671fd7d7a04c564d8099385202b6436015e1/web/admin/product.jsp</file>
-            <file>file:/C:/Users/ROG%20STRIX/Desktop/SWP391-2707/SWP391-94bf671fd7d7a04c564d8099385202b6436015e1/web/admin/OutDate.jsp</file>
-            <file>file:/C:/Users/ROG%20STRIX/Desktop/SWP391-2707/SWP391-94bf671fd7d7a04c564d8099385202b6436015e1/web/payment.jsp</file>
-            <file>file:/C:/Users/ROG%20STRIX/Desktop/SWP391-2707/SWP391-94bf671fd7d7a04c564d8099385202b6436015e1/web/admin/updateProduct.jsp</file>
-            <file>file:/C:/Users/ROG%20STRIX/Desktop/SWP391-2707/SWP391-94bf671fd7d7a04c564d8099385202b6436015e1/web/cart.jsp</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/MainController/PackageController/InsertPackage.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/MainController/PackageController/PackageManagement.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/MainController/MainController.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/web/admin/packageInsert.jsp</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/Entity/Blog.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/MainController/InsertProduct.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/DAO/PackageDao.java</file>
+            <file>file:/home/huybao/Documents/SWP391_3W/chickenMeal/SWP391_3W/src/java/Entity/Package.java</file>
         </group>
     </open-files>
 </project-private>
