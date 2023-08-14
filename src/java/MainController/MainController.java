@@ -278,11 +278,14 @@ public class MainController extends HttpServlet {
                 url = "OutDate";
             }
             if (action.equals("packageManage")){
-                url = "PackageManagement";
+                url = "GetDataForInsertPackage";
             }  
             if (action.equals("insertPackage")){
                 url = "InsertPackage";
-            }  
+            }
+            if (action.equals("packageManagment")){
+                url = "PackageManagement";
+            } 
             
 
         } catch (Exception ex) {

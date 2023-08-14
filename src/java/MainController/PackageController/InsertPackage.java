@@ -9,7 +9,7 @@ import DAO.productDAO;
 import Entity.Blog;
 import Entity.Category;
 import Entity.Product;
-import Entity.Package;
+import Entity.MealPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -42,17 +42,35 @@ public class InsertPackage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        productDAO productDAO = new productDAO();
+
+        String package_name = request.getParameter("package_name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String describe = request.getParameter("describe");
+        int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
+        String[] productIds = request.getParameterValues("product_id_list");
+
         try {
-            String package_name = request.getParameter("package_name");
-            int price = Integer.parseInt(request.getParameter("price"));
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            String describe = request.getParameter("describe");
-            int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
-            String[] productIds = request.getParameterValues("product_id_list");
+            for (String productId : productIds) {
+                Product checkProduct = productDAO.getProductByID(productId);
+                if (checkProduct == null) {
+                    request.getSession().setAttribute("errorMessage", "Meal không hợp ");
+                    request.getRequestDispatcher("MainController?action=packageManage").forward(request, response);
+                    return;
+                } else {
+                    if (checkProduct.getQuantity() - quantity < 0) {
+                        request.getSession().setAttribute("errorMessage", "Số lượng meal " + checkProduct.getProduct_name() + " không đủ để tạo package");
+                        request.getRequestDispatcher("MainController?action=packageManage").forward(request, response);
+                        return;
+                    };
+                }
+            }
+
 //            String product_name=new String(product_name1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
 //            String product_describe=new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             // Chuyển đổi java.util.Date thành java.sql.Date
-
             Part filePart = request.getPart("package_img");
             System.out.println(filePart);
             String realPath = request.getServletContext().getRealPath("/images/");
@@ -69,17 +87,14 @@ public class InsertPackage extends HttpServlet {
                 String imagePath = "images/" + fileName;
                 System.out.println(imagePath);
 
-//                Product product = new Product(cate, productId, product_name, price, product_describe, quantity, imagePath);
-
                 PackageDao packageDao = new PackageDao();
-                Package newPackage = new Package(describe, package_name, price, quantity, imagePath, 1, delivery_date);
+                MealPackage newPackage = new MealPackage(describe, package_name, price, quantity, imagePath, 1, delivery_date);
 
                 packageDao.insertPackage(newPackage, productIds);
-                
+
                 request.getSession().setAttribute("successMessage", "Đã thêm package thành công");
                 request.getRequestDispatcher("MainController?action=packageManage").forward(request, response);
 
-                
             }
             if (fileName == null) {
                 response.sendRedirect("404.jsp");

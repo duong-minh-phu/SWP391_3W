@@ -222,7 +222,7 @@
                                                     </div>-->
 
                         <form class="row" action="MainController?action=insertPackage" method="Post" enctype="multipart/form-data">
-<!--                            <input type="hidden" id="product-id" name="product_id">-->
+                            <!--                            <input type="hidden" id="product-id" name="product_id">-->
                             <div class="form-group col-md-3">
                                 <label for="exampleSelect1" class="control-label">Meal</label>
                                 <!--<select name="category_id" class="form-control" id="exampleSelect1" >-->
@@ -249,7 +249,7 @@
                                 <label class="control-label">Số lượng</label>
                                 <input class="form-control" name="quantity" type="number"required="">
                             </div>
-                                <div class="form-group  col-md-3">
+                            <div class="form-group  col-md-3">
                                 <label class="control-label">Số ngày giao</label>
                                 <input class="form-control" name="delivery_date" type="number">
                             </div>
@@ -342,7 +342,17 @@
         </div>
     </div>
     <% session.removeAttribute("successMessage"); %>
-    <% }%>
+    <% } else if (session.getAttribute("errorMessage") != null) { %>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <div class="alert alert-danger">
+                <% out.println(session.getAttribute("errorMessage")); %>
+            </div>
+        </div>
+    </div>
+    <% session.removeAttribute("errorMessage"); %>
+    <%}%>
     <style>
         .popup {
             display: none;

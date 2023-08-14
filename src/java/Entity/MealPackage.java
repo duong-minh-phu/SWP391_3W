@@ -8,8 +8,8 @@ package Entity;
  *
  * @author huybao
  */
-public class Package {
-    private int Id;
+public class MealPackage {
+    private int id;
     private String description;
     private String name;
     private int price;
@@ -18,10 +18,10 @@ public class Package {
     private int status;
     private int delivery_date;
     
-    public Package() {   
+    public MealPackage() {   
     }
 
-    public Package(String description, String name, int price, int quantity, String img, int status, int delivery_date) {
+    public MealPackage(String description, String name, int price, int quantity, String img, int status, int delivery_date) {
         this.description = description;
         this.name = name;
         this.price = price;
@@ -31,8 +31,25 @@ public class Package {
         this.delivery_date = delivery_date;
     }
 
+    public MealPackage(int Id, String description, String name, int price, int quantity, String img, int status, int delivery_date) {
+        this.id = Id;
+        this.description = description;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.img = img;
+        this.status = status;
+        this.delivery_date = delivery_date;
+    }
+
+    
+
     public int getId() {
-        return Id;
+        return id;
+    }
+    
+    public void setId(int Id) {
+        this.id = Id;
     }
 
     public String getDescription() {
