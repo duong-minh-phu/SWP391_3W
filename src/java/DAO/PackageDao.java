@@ -56,16 +56,31 @@ public class PackageDao {
             ps.setInt(7, insertPackage.getDelivery_date());
 
             int affectedRows = ps.executeUpdate();
+            
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        for (String productId : productIds) {
+                            String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
+                            ps = conn.prepareStatement(insertProductToPackageSql, Statement.RETURN_GENERATED_KEYS);
+                            ps.setString(1, productId);
+                            ps.setInt(2, generatedKeys.getInt(1));
+                            
+                            int Result = ps.executeUpdate();
 
-            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    for (String productId : productIds) {
-                        String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
-                        ps.setString(1, productId);
-                        ps.setInt(2, generatedKeys.getInt(1));
+                            if (Result > 0) {
+                                String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
+                                ps = conn.prepareStatement(updateQuantitySqlString, Statement.RETURN_GENERATED_KEYS);
+                                ps.setInt(1, insertPackage.getQuantity());
+                                ps.setString(2, productId);
+                                
+                                ps.executeUpdate();
+                            }
+
+                        }
+                    } else {
+                        throw new SQLException("Creating user failed, no ID obtained.");
                     }
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
 
@@ -75,7 +90,7 @@ public class PackageDao {
         }
         return true;
     }
-    
+
 //    public Boolean getPackages() throws SQLException {
 //        try {
 //            String sql = "INSERT INTO dbo.Package(description, name, price, quantity, img, status, delivery_date) values (?,?,?,?,?,?,?)";
@@ -110,9 +125,6 @@ public class PackageDao {
 //        }
 //        return true;
 //    }
-    
-    
-
 //    public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();
 //        String sql = "select c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,u.user_name from  \n" +
@@ -890,5 +902,4 @@ public class PackageDao {
 //        }
 //        return null;
 //    }
-
-    }
+}

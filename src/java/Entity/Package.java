@@ -21,8 +21,7 @@ public class Package {
     public Package() {   
     }
 
-    public Package(int Id, String description, String name, int price, int quantity, String img, int status, int delivery_date) {
-        this.Id = Id;
+    public Package(String description, String name, int price, int quantity, String img, int status, int delivery_date) {
         this.description = description;
         this.name = name;
         this.price = price;
@@ -34,10 +33,6 @@ public class Package {
 
     public int getId() {
         return Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
     }
 
     public String getDescription() {

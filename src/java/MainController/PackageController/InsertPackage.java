@@ -53,7 +53,7 @@ public class InsertPackage extends HttpServlet {
 //            String product_describe=new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             // Chuyển đổi java.util.Date thành java.sql.Date
 
-            Part filePart = request.getPart("product_img");
+            Part filePart = request.getPart("package_img");
             System.out.println(filePart);
             String realPath = request.getServletContext().getRealPath("/images/");
             System.out.println(realPath);
@@ -72,7 +72,7 @@ public class InsertPackage extends HttpServlet {
 //                Product product = new Product(cate, productId, product_name, price, product_describe, quantity, imagePath);
 
                 PackageDao packageDao = new PackageDao();
-                Package newPackage = new Package(price, describe, package_name, price, quantity, imagePath, 1, delivery_date);
+                Package newPackage = new Package(describe, package_name, price, quantity, imagePath, 1, delivery_date);
 
                 packageDao.insertPackage(newPackage, productIds);
                 
