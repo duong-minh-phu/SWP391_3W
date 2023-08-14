@@ -105,7 +105,7 @@ public class productDAO {
     }
 
     public void insertProduct(Product product) {
-        String sql = "insert dbo.product(product_id,category_id,product_name,product_price,product_describe,quantity,img,status) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert dbo.product(product_id,category_id,product_name,product_price,product_describe,quantity,img,status,company,size,expiry) values(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -117,6 +117,9 @@ public class productDAO {
             ps.setInt(6, product.getQuantity());
             ps.setString(7, product.getImg());
             ps.setString(8, "TRUE");
+            ps.setString(9, product.getCompany());
+            ps.setString(10, product.getSize());
+            ps.setString(11, product.getExpiry());
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -168,7 +171,7 @@ public class productDAO {
     }
 
     public void updateProduct(Product product) {
-        String sq3 = "update product set category_id=? ,product_name=?,product_price=? ,product_describe=? ,quantity=? ,img=? where product_id=? and status='TRUE'";
+        String sq3 = "update product set category_id=? ,product_name=?,product_price=? ,product_describe=? ,quantity=? ,img=?,company=?,size=?,expiry=? where product_id=? and status='TRUE'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sq3);
@@ -178,14 +181,17 @@ public class productDAO {
             ps.setString(4, product.getProduct_describe());
             ps.setInt(5, product.getQuantity());
             ps.setString(6, product.getImg());
-            ps.setString(7, product.getProduct_id());
+            ps.setString(7, product.getCompany());
+            ps.setString(8, product.getSize());
+            ps.setString(9, product.getExpiry());
+            ps.setString(10, product.getProduct_id());
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
 
     public void updateProduct2(Product product) {
-        String sq = "update product set category_id=? ,product_name=?,product_price=? ,product_describe=? ,quantity=?  where product_id=? and status='TRUE'";
+        String sq = "update product set category_id=? ,product_name=?,product_price=? ,product_describe=? ,quantity=?,company=?,size=?,expiry=?  where product_id=? and status='TRUE'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sq);
@@ -195,7 +201,10 @@ public class productDAO {
             ps.setFloat(3, product.getProduct_price());
             ps.setString(4, product.getProduct_describe());
             ps.setInt(5, product.getQuantity());
-            ps.setString(6, product.getProduct_id());
+            ps.setString(6, product.getCompany());
+            ps.setString(7, product.getSize());
+            ps.setString(8, product.getExpiry());
+            ps.setString(9, product.getProduct_id());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -385,7 +394,7 @@ public class productDAO {
 
     public Product getProductByID(String product_id) {
         List<Product> list = new ArrayList<>();
-        String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img from product p inner join category c on p.category_id = c.category_id WHERE p.product_id=? and p.status='TRUE'";
+        String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,p.company,p.expiry,p.size from product p inner join category c on p.category_id = c.category_id WHERE p.product_id=? and p.status='TRUE'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -393,7 +402,7 @@ public class productDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Category c = new Category(rs.getInt(1), rs.getString(2));
-                return (new Product(c, rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6), rs.getInt(7), rs.getString(8)));
+                return (new Product(c, rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6), rs.getInt(7), rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
             }
         } catch (Exception e) {
             System.out.println(e);
