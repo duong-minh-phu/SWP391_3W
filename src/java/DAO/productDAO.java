@@ -538,7 +538,7 @@ public class productDAO {
 
     public List<Product> getTrendProduct() {
         List<Product> list = new ArrayList<>();
-        String sql = "SELECT TOP 5 p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img FROM product p inner join bill_detail bd on p.product_id = bd.product_id\n"
+        String sql = "SELECT TOP 5 p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img FROM product p inner join bill_detail bd on p.product_id = bd.product_id and p.status='TRUE' \n"
                 + "ORDER BY bd.quantity DESC";
         try {
             conn = new DBContext().getConnection();

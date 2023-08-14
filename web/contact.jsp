@@ -58,8 +58,8 @@
                             <h3>Liên hệ</h3>
                             <ul>
                                 <li><i class="fa fa-fax"></i>  Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000, Việt Nam</li>
-                                <li><i class="fa fa-phone"></i> <a href="mailto:phumap942002@gmail.com">phumap942002@gmail.com</a></li>
-                                <li><i class="fa fa-envelope-o"></i>  0786999528</li>
+                                <li><i class="fa fa-envelope-o "></i> <a href="mailto:phumap942002@gmail.com">phumap942002@gmail.com</a></li>
+                                <li><i class="fa fa-phone"></i>  0786999528</li>
                             </ul>             
                         </div> 
                     </div>

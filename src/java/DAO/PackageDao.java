@@ -85,6 +85,23 @@ public class PackageDao {
             System.out.println(e);
         }
     }
+    
+    public void updateProduct(Product product) {
+        String sq3 = "update package set category_id=? ,product_name=?,product_price=? ,product_describe=? ,quantity=? ,img=? where product_id=? and status='TRUE'";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sq3);
+            ps.setInt(1, product.getCate().getCategory_id());
+            ps.setString(2, product.getProduct_name());            
+            ps.setFloat(3, product.getProduct_price());
+            ps.setString(4, product.getProduct_describe());
+            ps.setInt(5, product.getQuantity());
+            ps.setString(6, product.getImg());
+            ps.setString(7, product.getProduct_id());
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
     public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();
 //        String sql = "select c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,u.user_name from  \n" +
