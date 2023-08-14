@@ -251,7 +251,12 @@
                             </div>
                             <div class="form-group  col-md-3">
                                 <label class="control-label">Số ngày giao</label>
-                                <input class="form-control" name="delivery_date" type="number">
+                                <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div id="resultAlert" style="display: none;"></div>
+                                </div>
                             </div>
                             <!--                                  <div class="form-group col-md-3">
                                                                 <label class="control-label">Ngày sản xuất</label>
@@ -427,6 +432,30 @@
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
             closeOnSelect: false
+        });
+        $(document).ready(function() {
+            $("#inputNumber").on("input", function() {
+                var inputNumber = parseInt($(this).val());
+                var resultAlert = $("#resultAlert");
+
+                resultAlert.empty();
+
+                if (inputNumber >= 1 && inputNumber <= 7) {
+                    resultAlert.html(`
+                        <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
+                            <span class="fs-6">Số hợp lệ.</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>`);
+                } else {
+                    resultAlert.html(`
+                        <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
+                            <span class="fs-6">Số không hợp lệ.</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>`);
+                }
+
+                resultAlert.css("display", "block");
+            });
         });
     </script>
 
