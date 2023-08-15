@@ -50,7 +50,8 @@
                     </ul>
                 </li> 
             </ul>
-        </div> 
+        </div>
+        
         <div class="search_bar">
             <form action="MainController?action=search" method="POST">
                 <input name="text" placeholder="Tìm kiếm..." type="text">
@@ -156,10 +157,12 @@
         <div class="container-fluid">
             <div class="middel_inner">
                 <div class="row align-items-center">
-                    
                     <div class="col-lg-3">
-                        <div class="logo">
-                            <a  href="home"><img class="imglogo" src="https://taodo.com.vn/wp-content/uploads/2016/06/img-2.png" alt=""></a>
+                        <div class="logo" style="display: flex; align-items: center">
+                            <a href="home"><img 
+                                    style ="border-radius: 50%; border: 10px solid dark; margin-right: 10px "
+                                    class="imglogo" src="https://top10tphcm.com/wp-content/uploads/2023/02/ga-dep-nhat-17.jpg" alt="logo"></a>
+                                    <h3 href="home" style="font-weight: bold">Fhicken Shop</h3>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -182,9 +185,9 @@
             <div class="horizontal_menu">
                 <div class="left_menu">
                     <div class="main_menu"> 
-                        <nav>  
-                            <ul>
-                                <li><a href="home">Trang chủ<i class="fa"></i></a>
+                        <nav >  
+                            <ul >
+                                <li ><a  href="home">Trang chủ<i class="fa"></i></a>
                                 </li>
                                 <li class="mega_items"><a href="shop_category.jsp">Sản phẩm</a>
                                 </li>

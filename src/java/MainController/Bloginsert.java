@@ -34,7 +34,7 @@ public class Bloginsert extends HttpServlet {
               System.out.println(name);
                 String blog_describe1 = request.getParameter("describe");
                 
-                String blog_describe=new String(blog_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+                String blog_describe = new String(blog_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
 //        Part img = request.getPart("img");
 //            System.out.println(img);
 //        String fileimg = img.getSubmittedFileName();
