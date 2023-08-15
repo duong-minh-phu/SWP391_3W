@@ -119,16 +119,16 @@
                                 <ul class="dropdown_links">
                                     <c:if test="${sessionScope.user != null}">
                                         <li><a href="MainController?action=myaccount">Tài khoản của tôi</a></li>
-<!--                                        <form action="MainController">
-                                            <input type="submit" name="action" value="myaccount"></input>
-                                        </form>-->
-                                        
-                                        </c:if>
+                                        <!--                                        <form action="MainController">
+                                                                                    <input type="submit" name="action" value="myaccount"></input>
+                                                                                </form>-->
+
+                                    </c:if>
 
                                     <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'ADMIN'}">
                                         <li><a href="MainController?action=dashboard">Quản lý ADMIN</a></li>
                                         </c:if>
-                                    <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'STAFF'}">
+                                        <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'STAFF'}">
                                         <li><a href="MainController?action=dashboard">Quản lý STAFF</a></li>
                                         </c:if>
 
@@ -139,8 +139,6 @@
                                     <c:if test="${sessionScope.user != null}">
                                         <li><a href="MainController?action=logout">Đăng xuất</a></li>
                                         </c:if>
-
-
                                 </ul>
                             </li> 
                         </ul>
@@ -156,7 +154,7 @@
         <div class="container-fluid">
             <div class="middel_inner">
                 <div class="row align-items-center">
-                    
+
                     <div class="col-lg-3">
                         <div class="logo">
                             <a  href="home"><img class="imglogo" src="https://taodo.com.vn/wp-content/uploads/2016/06/img-2.png" alt=""></a>
@@ -188,6 +186,7 @@
                                 </li>
                                 <li class="mega_items"><a href="shop_category.jsp">Sản phẩm</a>
                                 </li>
+                                <!--<li class="mega_items"><a href="shop_package.jsp">Package</a></li>-->
                             </ul> 
                         </nav> 
                     </div>
@@ -199,7 +198,7 @@
                                 <li><a href="MainController?action=blog">Blog</a></li>
                                 <li><a href="about">Chúng tôi</a></li>
                                 <li><a href="contact">Liên hệ</a></li>
-                                
+
                             </ul> 
                         </nav> 
                     </div>
@@ -220,10 +219,11 @@
                                 <ul>
                                     <li class="active"><a href="home">Trang chủ</a></li>
                                     <li><a href="MainController?action=productall">Sản phẩm</a></li>
+                                    <li><a href="MainController?action=packageall">Package</a></li>
                                     <li><a href="MainController?action=blog">Blog</a></li>
                                     <li><a href="about">Chúng tôi</a></li>
                                     <li><a href="contact">Liên hệ</a></li>
-                                    
+
                                 </ul>   
                             </nav> 
                         </div>

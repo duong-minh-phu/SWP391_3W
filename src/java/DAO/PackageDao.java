@@ -49,7 +49,7 @@ public class PackageDao {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, insertPackage.getDescription());
             ps.setString(2, insertPackage.getName());
-            ps.setInt(3, insertPackage.getPrice());
+            ps.setFloat(3, insertPackage.getPrice());
             ps.setInt(4, insertPackage.getQuantity());
             ps.setString(5, insertPackage.getImg());
             ps.setInt(6, insertPackage.getStatus());
@@ -91,7 +91,14 @@ public class PackageDao {
         }
         return true;
     }
-
+    public List<MealPackage> getListByPage(List<MealPackage> list,
+            int start, int end) {
+        ArrayList<MealPackage> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
     public  List<MealPackage> getPackages() throws SQLException {
         List<MealPackage> listPackage = new ArrayList<MealPackage>();
         try {
@@ -103,7 +110,7 @@ public class PackageDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8)));
+                listPackage.add(new MealPackage(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8)));
             }
 
         } catch (Exception ex) {
@@ -112,7 +119,24 @@ public class PackageDao {
         }
         return  listPackage;
     }
-    
+    public MealPackage getMealPackageByID(String package_id) {
+//        List<Product> list = new ArrayList<>();
+        String sql = "select *from Package Where package_id=? ";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, package_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+//                Category c = new Category(rs.getInt(1), rs.getString(2));
+//                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+                    return(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9),rs.getString(10), rs.getString(11)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     
 //    public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();

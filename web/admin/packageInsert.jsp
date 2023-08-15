@@ -253,8 +253,20 @@
                                 <label class="control-label">Số ngày giao</label>
                                 <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
                             </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Hãng</label>
+                                <input class="form-control" name="manufacturer">
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Thời gian bảo quản</label>
+                                <input class="form-control" name="storage_time">
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Khối lượng</label>
+                                <input class="form-control" name="weight">
+                            </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div id="resultAlert" style="display: none;"></div>
                                 </div>
                             </div>
@@ -433,24 +445,20 @@
             placeholder: $(this).data('placeholder'),
             closeOnSelect: false
         });
-        $(document).ready(function() {
-            $("#inputNumber").on("input", function() {
-                var inputNumber = parseInt($(this).val());
+        $(document).ready(function () {
+            $("#validateButton").click(function () {
+                var inputNumber = parseInt($("#inputNumber").val());
                 var resultAlert = $("#resultAlert");
-
-                resultAlert.empty();
 
                 if (inputNumber >= 1 && inputNumber <= 7) {
                     resultAlert.html(`
-                        <div class="alert alert-success alert-sm alert-dismissible fade show" role="alert">
-                            <span class="fs-6">Số hợp lệ.</span>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="alert alert-success fs-6" role="alert">
+                            Số hợp lệ.
                         </div>`);
                 } else {
                     resultAlert.html(`
-                        <div class="alert alert-danger alert-sm alert-dismissible fade show" role="alert">
-                            <span class="fs-6">Số không hợp lệ.</span>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="alert alert-danger fs-6" role="alert">
+                            Số không hợp lệ.
                         </div>`);
                 }
 
