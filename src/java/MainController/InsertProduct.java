@@ -33,7 +33,12 @@ public class InsertProduct extends HttpServlet {
             String product_name=new String(product_name1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             String product_describe=new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             // Chuyển đổi java.util.Date thành java.sql.Date
-            
+            String company1 = request.getParameter("company");
+            String expiry1 = request.getParameter("expiry");
+            String size1 = request.getParameter("size");
+            String company=new String(company1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+            String expiry=new String(expiry1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+            String size=new String(size1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             int quantity = Integer.parseInt(product_quantity);
             Float price = Float.parseFloat(product_price);
             int cid = Integer.parseInt(category_id);
@@ -56,7 +61,7 @@ public class InsertProduct extends HttpServlet {
                 String imagePath = "images/" + fileName;
                 System.out.println(imagePath);
 
-               Product product = new Product(cate, productId, product_name, price, product_describe, quantity, imagePath);
+               Product product = new Product(cate, productId, product_name, price, product_describe, quantity, imagePath,company,expiry,size);
 
                 dao.insertProduct(product);
 
