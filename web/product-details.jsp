@@ -100,6 +100,12 @@
                                     <p>${ProductData.product_describe}</p>
                                 </div>
                                 <div class="product_desc">
+                                    <p>nhà cung cấp :${ProductData.company}</p>  
+                                    <p>khối lượng: ${ProductData.size}</p> 
+                                    <p>thời gian sử dụng: ${ProductData.expiry}</p> 
+                                    <p>thuộc dạng sản phẩm: ${ProductData.cate.category_name}</p> 
+                                </div>                                
+                                <div class="product_desc">
                                     <p> số lượng hàng còn lại:${ProductData.quantity}</p>
                                 </div>
                                 <div class="product_desc">

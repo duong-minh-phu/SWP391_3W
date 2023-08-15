@@ -24,9 +24,36 @@ public class Product {
     Date create_date;
     Date exp_date;
     String company;
+    String expiry;
+    String size;
+
+    public Product(Category cate, String product_id, String product_name, Float product_price, String product_describe, int quantity, String img, String company, String expiry, String size) {
+        this.cate = cate;
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.product_price = product_price;
+        this.product_describe = product_describe;
+        this.quantity = quantity;
+        this.img = img;
+        this.company = company;
+        this.expiry = expiry;
+        this.size = size;
+    }
     long count;
 
     public Product() {
+    }
+
+    public Product(Category cate, String product_id, String product_name, Float product_price, String product_describe, int quantity, String company, String expiry, String size) {
+        this.cate = cate;
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.product_price = product_price;
+        this.product_describe = product_describe;
+        this.quantity = quantity;
+        this.company = company;
+        this.expiry = expiry;
+        this.size = size;
     }
 
     public Product(String product_name, Float product_price, String product_describe, int quantity, String img) {
@@ -249,6 +276,22 @@ public class Product {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
 }

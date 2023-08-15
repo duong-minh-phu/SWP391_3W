@@ -216,7 +216,7 @@ public class MainController extends HttpServlet {
             if (action.equals("updateProduct")){
                 String productId = request.getParameter("product_id");
                 productDAO c = new productDAO();
-                Product product = c.getProductByID2(productId);
+                Product product = c.getProductByID(productId);
                 request.setAttribute("ProductIDDATA", product);
                 List<Category> category = c.getCategory();
                 request.setAttribute("CategoryData", category);

@@ -227,10 +227,19 @@
                                     <label class="control-label">Hạn sử dụng</label>
                                     <input class="form-control" value="${ProductIDDATA.exp_date}" readonly>
                                 </div>-->
-<!--                                <div class="form-group  col-md-3">
+                                <div class="form-group  col-md-3">
                                     <label class="control-label">Hãng</label>
                                     <input class="form-control" name="update_company" type="text" value="${ProductIDDATA.company}">
-                                </div>-->
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">thời gian bảo quản</label>
+                                    <input class="form-control" name="expiry" type="text"required="" value="${ProductIDDATA.expiry}">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">khối lượng</label>
+                                    <input class="form-control" name="size" type="text"required="" value="${ProductIDDATA.size}">
+                                </div>
+                                
                                 <td><img src="${ProductIDDATA.img}" alt="" width="100px;"></td>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>

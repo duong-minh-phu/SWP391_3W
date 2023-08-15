@@ -230,18 +230,26 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="quantity" type="number"required="">
                                 </div>
-                                <!--                                  <div class="form-group col-md-3">
-                                                                    <label class="control-label">Ngày sản xuất</label>
-                                                                    <input class="form-control" name="createdate" type="date"required="">
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label class="control-label">Hạn sử dụng</label>
-                                                                    <input class="form-control" name="expdate" type="date"required="">
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label class="control-label">Hãng</label>
-                                                                    <input class="form-control" name="company" type="text"required="">
-                                                                </div>-->
+<!--                                  <div class="form-group col-md-3">
+                                    <label class="control-label">Ngày sản xuất</label>
+                                    <input class="form-control" name="createdate" type="date"required="">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Hạn sử dụng</label>
+                                    <input class="form-control" name="expdate" type="date"required="">
+                                </div>
+-->                                <div class="form-group col-md-3">
+                                    <label class="control-label">Hãng</label>
+                                    <input class="form-control" name="company" type="text"required="">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">thời gian bảo quản</label>
+                                    <input class="form-control" name="expiry" type="text"required="">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">khối lượng</label>
+                                    <input class="form-control" name="size" type="text"required="">
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">

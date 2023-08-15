@@ -36,7 +36,12 @@ public class UpdateProduct extends HttpServlet {
             String product_price = request.getParameter("update_price");
             String product_quantity = request.getParameter("update_quantity");
             String product_describe1 = request.getParameter("update_describe");
-            String company = request.getParameter("update_company");
+            String company1 = request.getParameter("update_company");
+            String expiry1 = request.getParameter("expiry");
+            String size1 = request.getParameter("size");
+            String company=new String(company1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+            String expiry=new String(expiry1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+            String size=new String(size1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
             String product_describe = new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
             int quantity = Integer.parseInt(product_quantity);
             Float price = Float.parseFloat(product_price);
@@ -55,7 +60,7 @@ public class UpdateProduct extends HttpServlet {
                 request.getRequestDispatcher("MainController?action=productmanager").forward(request, response);
             }else{
             if (fileName == "") {
-                Product product = new Product(cate, productId, product_name,price, product_describe, quantity);
+                Product product = new Product(cate, productId, product_name,price, product_describe, quantity,company,expiry,size);
                 dao.updateProduct2(product);
                 // Chuyển hướng người dùng đến trang danh sách sản phẩm
                 request.getSession().setAttribute("successMessage", "Đã chỉnh sửa sản phẩm thành công");
@@ -69,7 +74,7 @@ public class UpdateProduct extends HttpServlet {
                 String imagePath = "images/" + fileName;
                 System.out.println(imagePath);
 
-                Product product = new Product(cate, productId, product_name,price, product_describe, quantity, imagePath);
+                Product product = new Product(cate, productId, product_name,price, product_describe, quantity, imagePath,company,expiry,size);
 
                 dao.updateProduct(product);
 

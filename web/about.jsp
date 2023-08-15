@@ -53,19 +53,19 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="about_content">
-                        <h1>Chào mừng bạn đến với FPT shop!</h1>
-                        <p> Chào mừng bạn đến với trang web bán đồ ăn cho chim của chúng tôi! Đây là nơi tuyệt vời để bạn có thể tìm kiếm các loại thức ăn và món đồ chơi đa dạng cho các loài chim cảnh của mình.</p>
-                        <p>Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp thực phẩm cho các loài chim, chúng tôi tự hào mang đến cho khách hàng một bộ sưu tập đa dạng và phong phú các sản phẩm tốt nhất cho các loài chim cảnh của bạn, đảm bảo chúng được bổ sung các chất dinh dưỡng cần thiết để phát triển và duy trì sức khỏe.</p>
-                        <p>Các sản phẩm của chúng tôi bao gồm các loại hạt giống tươi ngon, thức ăn hỗn hợp, các loại rau và quả tươi, bơ và sản phẩm mát-xa, hay các loại đồ chơi giúp các loại chim của bạn vui chơi, giảm stress và phát triển cả về thể chất lẫn tinh thần.</p>
+                        <h1>Chào mừng bạn đến với Fhicken Shop!</h1>
+                        <p> Chào mừng bạn đến với trang web bán đồ ăn cho gà chọi của chúng tôi! Đây là nơi tuyệt vời để bạn có thể tìm kiếm các loại thức ăn và món đồ chơi đa dạng cho gà chọi của mình.</p>
+                        <p>Với nhiều năm kinh nghiệm trong lĩnh vực cung cấp thực phẩm cho các loại gà, chúng tôi tự hào mang đến cho khách hàng một bộ sưu tập đa dạng và phong phú các sản phẩm tốt nhất cho các loại gà chọi của bạn, đảm bảo chúng được bổ sung các chất dinh dưỡng cần thiết để phát triển và duy trì sức khỏe.</p>
+                        <p>Các sản phẩm của chúng tôi bao gồm các loại hạt giống tươi ngon, thức ăn hỗn hợp, các loại rau và quả tươi, hay các loại đồ chơi giúp cho gà của bạn vui chơi, giảm stress và phát triển cả về thể chất lẫn tinh thần.</p>
 
                         <p>    Đặc biệt, chúng tôi có những chính sách ưu đãi hấp dẫn, giúp bạn có thể mua các sản phẩm với giá ưu đãi, hỗ trợ giao hàng tận nhà nhanh chóng và miễn phí vận chuyển cho đơn hàng từ một mức giá nhất định.</p>
 
-                        <p>Chúng tôi luôn đặt khách hàng làm trung tâm và đảm bảo mang đến cho bạn sản phẩm chất lượng, giá cả hợp lý và dịch vụ tận tâm nhất. Hãy truy cập trang web của chúng tôi và cho chúng tôi cơ hội phục vụ các loài chim của bạn.</p>
+                        <p>Chúng tôi luôn đặt khách hàng làm trung tâm và đảm bảo mang đến cho bạn sản phẩm chất lượng, giá cả hợp lý và dịch vụ tận tâm nhất. Hãy truy cập trang web của chúng tôi và cho chúng tôi cơ hội phục vụ "chiến kê" của bạn.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <div class="about_thumb">
-                        <img src="assets/img/about/about.jpg" alt="">
+                    <div style="display: flex; justify-content: space-around">
+                        <img  height="400px" width=400px" src="images/about.jpg" alt="">
                     </div>
                 </div>
             </div>
