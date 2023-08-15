@@ -285,7 +285,16 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("packageManagment")){
                 url = "PackageManagement";
-            } 
+            }
+            if (action.equals("packageall")){
+                url = "PackageAll";
+            }
+            if (action.equals("package")) {
+                url = "PagePackage";
+            }
+            if (action.equals("packagedetail")) {
+                url = "Packagedetail";
+            }
             
 
         } catch (Exception ex) {

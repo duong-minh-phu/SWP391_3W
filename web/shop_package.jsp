@@ -1,3 +1,9 @@
+<%-- 
+    Document   : shop_package
+    Created on : Aug 14, 2023, 10:37:37 PM
+    Author     : HoangPhatNguyen
+--%>
+
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -7,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Shop category</title>
+        <title>Shop package</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -41,7 +47,7 @@
                             <ul>
                                 <li><a href="home">Trang chủ</a></li>
                                 <li>/</li>
-                                <li>Cửa hàng</li>
+                                <li>Package</li>
                             </ul>
                         </div>
                     </div>
@@ -61,11 +67,11 @@
                                 <div class="widget_list widget_categories">
                                     <h2>Danh mục</h2>
                                     <ul>
-                                        <li><a href="MainController?action=productall">TẤT CẢ</a></li>
-                                        <c:forEach items="${CategoryData}" var="c">
-                                            <li><a href="MainController?action=listByCategory&category_id=${c.category_id}">${c.category_name}</a></li>
+                                        <li><a href="MainController?action=packageall">TẤT CẢ</a></li>
+                                        <c:forEach items="${ProductData}" var="c">
+                                            <li><a href="MainController?action=listByProduct&product_id=${c.product_id}">${c.product_name}</a></li>
                                             </c:forEach>
-                                            <!--<li><a href="MainController?action=packageall">Package</a></li>-->
+                                            <li><a href="MainController?action=packagetall">Package</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -90,20 +96,20 @@
                                 </div>
                             </div>
                             <div class="row shop_wrapper">
-                                <c:forEach items="${ProductData}" var="p">
+                                <c:forEach items="${PackageData}" var="p">
                                     <div class="col-lg-4 col-md-4 col-12 ">
                                         <div class="single_product">
                                             <div class="product_thumb" style=" height: 260px; width: 100%;">
-                                                <a class="primary_img" href="MainController?action=productdetail&product_id=${p.product_id}" style="width: 100%;height: 100%; display: block"><img src="${p.img}"  style="height: 100%;width: 100%; object-fit: fill"alt=""></a>
+                                                <a class="primary_img" href="MainController?action=packagedetail&package_id=${p.id}" style="width: 100%;height: 100%; display: block"><img src="${p.img}"  package_idstyle="height: 100%;width: 100%; object-fit: fill"alt=""></a>
 
                                                 <div class="quick_button">
-                                                    <a href="MainController?action=productdetail&product_id=${p.product_id}"title="quick_view">Xem sản phẩm</a>
+                                                    <a href="MainController?action=packagedetail&package_id=${p.id}"title="quick_view">Xem sản phẩm</a>
                                                 </div>
                                             </div>
 
                                             <div class="product_content grid_content">
-                                                <h3><a href="MainController?action=productdetail&product_id=${p.product_id}">${p.product_name}</a></h3>
-                                                <span class="current_price">${p.product_price} VNĐ</span>
+                                                <h3><a href="MainController?action=packagedetail&package_id=${p.id}">${p.name}</a></h3>
+                                                <span class="current_price">${p.price} VNĐ</span>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +121,7 @@
                                 <div class="pagination">
                                     <ul>
                                         <c:forEach begin="${1}" end="${num}" var="i">
-                                            <li class="${i==page?"current":""}"><a href="MainController?action=product&page=${i}">${i}</a></li>
+                                            <li class="${i==page?"current":""}"><a href="MainController?action=package&page=${i}">${i}</a></li>
                                             </c:forEach>
 
                                     </ul>

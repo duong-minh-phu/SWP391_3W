@@ -12,16 +12,19 @@ public class MealPackage {
     private int id;
     private String description;
     private String name;
-    private int price;
+    private Float price;
     private int quantity;
     private String img;
     private int status;
     private int delivery_date;
+    private String company;
+    private String size;
+    private  String expiry;
     
     public MealPackage() {   
     }
 
-    public MealPackage(String description, String name, int price, int quantity, String img, int status, int delivery_date) {
+    public MealPackage(String description, String name, Float price, int quantity, String img, int status, int delivery_date) {
         this.description = description;
         this.name = name;
         this.price = price;
@@ -31,7 +34,7 @@ public class MealPackage {
         this.delivery_date = delivery_date;
     }
 
-    public MealPackage(int Id, String description, String name, int price, int quantity, String img, int status, int delivery_date) {
+    public MealPackage(int Id, String description, String name, Float price, int quantity, String img, int status, int delivery_date) {
         this.id = Id;
         this.description = description;
         this.name = name;
@@ -41,6 +44,23 @@ public class MealPackage {
         this.status = status;
         this.delivery_date = delivery_date;
     }
+
+    public MealPackage(int id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, String size, String expiry) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.img = img;
+        this.status = status;
+        this.delivery_date = delivery_date;
+        this.company = company;
+        this.size = size;
+        this.expiry = expiry;
+    }
+
+    
+    
 
     
 
@@ -68,11 +88,11 @@ public class MealPackage {
         this.name = name;
     }
 
-    public int getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -107,6 +127,31 @@ public class MealPackage {
     public void setDelivery_date(int delivery_date) {
         this.delivery_date = delivery_date;
     }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
+    
     
     
 }

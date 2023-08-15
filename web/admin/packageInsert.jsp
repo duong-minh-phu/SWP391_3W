@@ -251,7 +251,24 @@
                             </div>
                             <div class="form-group  col-md-3">
                                 <label class="control-label">Số ngày giao</label>
-                                <input class="form-control" name="delivery_date" type="number">
+                                <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Hãng</label>
+                                <input class="form-control" name="manufacturer">
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Thời gian bảo quản</label>
+                                <input class="form-control" name="storage_time">
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label class="control-label">Khối lượng</label>
+                                <input class="form-control" name="weight">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div id="resultAlert" style="display: none;"></div>
+                                </div>
                             </div>
                             <!--                                  <div class="form-group col-md-3">
                                                                 <label class="control-label">Ngày sản xuất</label>
@@ -427,6 +444,26 @@
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
             closeOnSelect: false
+        });
+        $(document).ready(function () {
+            $("#validateButton").click(function () {
+                var inputNumber = parseInt($("#inputNumber").val());
+                var resultAlert = $("#resultAlert");
+
+                if (inputNumber >= 1 && inputNumber <= 7) {
+                    resultAlert.html(`
+                        <div class="alert alert-success fs-6" role="alert">
+                            Số hợp lệ.
+                        </div>`);
+                } else {
+                    resultAlert.html(`
+                        <div class="alert alert-danger fs-6" role="alert">
+                            Số không hợp lệ.
+                        </div>`);
+                }
+
+                resultAlert.css("display", "block");
+            });
         });
     </script>
 
