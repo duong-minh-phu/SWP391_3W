@@ -44,6 +44,9 @@ public class AddToCart extends HttpServlet {
             URL += id;
             
             Product product = new productDAO().getProductByID(id);
+//            if (product==null){
+//                product=productDAO().
+//            }
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
             User user = (User) session.getAttribute("user");            

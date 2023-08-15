@@ -40,12 +40,12 @@ public class ListByCategory extends HttpServlet {
             String category_id = request.getParameter("category_id");
             int category_id1 = Integer.parseInt(category_id);
             productDAO c = new productDAO();
-            List<Entity.Product> productList;
-            if (category_id1 == 19) {
-                productList = c.getProductByCategory2(category_id1);
-            } else {
-                productList = c.getProductByCategory1(category_id1);
-            }
+            List<Entity.Product> productList = c.getProductByCategory(category_id1);
+//            if (category_id1 == 19) {
+//                productList = c.getProductByCategory2(category_id1);
+//            } else {
+//                productList = c.getProductByCategory1(category_id1);
+//            }
             List<Category> category = c.getCategoryTrue();
             int page, numperpage = 9;
             int size = productList.size();

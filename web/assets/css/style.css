@@ -1539,7 +1539,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     display: block;
     padding: 15px 25px;
     color: #242424;
-    font-size: 13px;
+    font-size: 20px;
     line-height: 26px;
     text-transform: capitalize;
     font-weight: 500;
@@ -4181,6 +4181,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     background-attachment: scroll;
     background-position: center center;
     background-size: cover;
+    margin: 10px 30px;
 }
 @media only screen and (max-width: 767px) {
     .single_slider {
@@ -7122,6 +7123,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .footer_widgets {
         padding: 0 30px;
+        margin-bottom: 20px;
     }
 }
 

@@ -28,40 +28,45 @@
         <jsp:include page="layout/menu.jsp"/>
         <!--slider area start-->
         <div class="slider_area slider_style home_three_slider owl-carousel">
-            <div class="single_slider" data-bgimg="https://wall.vn/wp-content/uploads/2020/02/hinh-anh-chim-en-23.jpg">
-                <div class="container">
+            <div class="single_slider" data-bgimg="https://antimatter.vn/wp-content/uploads/2022/06/anh-ga-choi-2.jpg">
+                <div class="container">                  
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="slider_content content_one">
-                                <img src="assets/img/slider/content4.png" alt="">
-                                <p>chào mừng đến với shop</p>
-                                <a href="shop_category.jsp">Discover Now</a>
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                    margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
+                                    ">Welcome to Fhicken Shop</h2>
+                                <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
                     </div>
                 </div>    
             </div>
-            <div class="single_slider" data-bgimg="https://sudospaces.com/gaocung-com/2021/01/chim-vang-anh-an-gi-1.jpg">
+            <div class="single_slider" data-bgimg="https://img1.kienthucvui.vn/uploads/2020/08/26/hinh-anh-ga-choi-dep_025731539.jpg">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="slider_content content_two">
-                                <img src="assets/img/slider/content4.png" alt="">
-                                <p>chào mừng đến với shop</p>
-                                <a href="shop_category.jsp">Discover Now</a>
+
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                    margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
+                                    ">Welcome to Fhicken Shop</h2>
+                                <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single_slider" data-bgimg="https://kienthuc1805.com/wp-content/uploads/2018/07/top-20-hinh-anh-chim-chao-mao-dep-nhat-dong-vat.jpg">
+            <div class="single_slider" data-bgimg="https://antimatter.vn/wp-content/uploads/2022/05/anh-ga-choi-cuc-chien.jpg">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="slider_content content_three">
-                                <img src="assets/img/slider/content5.png" alt="">
-                                <p>chào mừng đến với shop</p>
-                                <a href="shop_category.jsp">Discover Now</a>
+
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                    margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
+                                    ">Welcome to Fhicken Shop</h2>
+                                <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
                     </div>
@@ -71,7 +76,7 @@
         <!--slider area end-->
 
         <!--banner area start-->
-       <section class="product_section womens_product bottom">
+        <section class="product_section womens_product bottom">
             <div class="container">
                 <div class="row">   
                     <div class="col-12">
@@ -107,7 +112,7 @@
         </section>
 
         <!--product section area start-->
-       
+
         <!--product section area end-->
         <section class="product_section womens_product bottom">
             <div class="container">
@@ -123,7 +128,7 @@
                     <div class="row">
                         <div class="product_carousel product_three_column4 owl-carousel">
                             <c:forEach items="${topTrend}" var="td">
-                            <div class="col-lg-3">
+                                <div class="col-lg-3">
                                     <div class="single_product">
                                         <div class="product_thumb" style=" height: 260px; width: 100%;">
                                             <a class="primary_img" href="MainController?action=productdetail&product_id=${td.product_id}" style="width: 100%;height: 100%; display: block"><img src="${td.img}" style="height: 100%;width: 100%; object-fit: fill"alt=""></a>

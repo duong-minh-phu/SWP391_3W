@@ -394,7 +394,13 @@ public class productDAO {
 
     public Product getProductByID(String product_id) {
         List<Product> list = new ArrayList<>();
+
         String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,p.company,p.expiry,p.size from product p inner join category c on p.category_id = c.category_id WHERE p.product_id=? and p.status='TRUE'";
+
+        String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, "
+                + "p.quantity,p.img from product p inner join category c on p.category_id = c.category_id "
+                + "WHERE p.product_id=? and p.status='TRUE'";
+
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -409,6 +415,26 @@ public class productDAO {
         }
         return null;
     }
+    
+//    public Package getPackageID(String package_id){
+//        List<Package> list = new ArrayList<>();
+//        String sql = "select p.package_id,  p.name, p.price, p.quantity, p.img"
+//                + "from Package p"
+//                + "WHERE p.package_id=? and p.status='TRUE'";
+//        try {
+//            conn = new DBContext().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            ps.setString(1, package_id);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//    
+//                return (new Package());
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
 
     public Product getProductByID2(String product_id) {
         String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img from product p inner join category c on p.category_id = c.category_id WHERE p.product_id=? and p.status='TRUE'";
