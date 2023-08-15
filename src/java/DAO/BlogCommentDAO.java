@@ -10,7 +10,6 @@ import Entity.BlogComment;
 import Entity.Category;
 import Entity.Product;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

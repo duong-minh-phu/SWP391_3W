@@ -2,8 +2,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<footer class="footer_widgets">
-    <div class="footer_top">
+<footer style="margin-bottom: 20px" class="footer_widgets">
+    <div class="footer_down" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">

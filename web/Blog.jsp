@@ -60,30 +60,30 @@
             <div class="container">
                 <div class="shop_inner_area">
                     <div class="row">
-                        <div class="col-lg-3 col-md-12">
+                        <div class="col-lg-2 col-md-12">
                             <!--sidebar widget start-->
                             
                             <!--sidebar widget end-->
                         </div>
-                        <div class="col-lg-9 col-md-12">
+                        <div class="col-lg-10 col-md-12">
                             <!--shop wrapper start-->
                             <!--shop toolbar start-->
                             
                             <c:forEach items="${BlogData}" var="b">
-                            <div class="blog-entry d-flex blog-entry-search-item">
-                                <a href="MainController?action=blogdetails&blog_id=${b.blog_id}" class="img-link me-4">
-                                    <img src="${b.img}" alt="Image" width="200px;" height="200px;" class="img-fluid">
+                                <div class="" style="display: flex">
+                                    <a href="MainController?action=blogdetails&blog_id=${b.blog_id}" class="" style="margin: 10px 50px 20px 0px">
+                                    <img  src="${b.img}" alt="Image" width="200px;" height="200px;" class="img-fluid">
                                 </a>
+                                
                                 <div>
-                                  <span class="date">${b.date} &bullet; <a href="#">${b.user}</a></span>
-                                  <h2><a href="MainController?action=blogdetails&blog_id=${b.blog_id}">${b.blog_name}</a></h2>
-<!--                                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>-->
-                                  <p><a href="MainController?action=blogdetails&blog_id=${b.blog_id}" class="btn btn-sm btn-outline-primary">Read More</a></p>
+                                    <div>${b.date} &bullet; <a href="#">${b.user}</a></div>
+                                    <h3> <a href="MainController?action=blogdetails&blog_id=${b.blog_id}">${b.blog_name}</a></h3>
+                                    <p><a href="MainController?action=blogdetails&blog_id=${b.blog_id}" class="btn btn-sm btn-outline-primary">Read More</a></p>
                                 </div>
                               </div>
                              </c:forEach>
 <!--                            <div class="row shop_wrapper">
-                                <c:forEach items="${BlogData}" var="b">
+                              <c:forEach items="${BlogData}" var="b">
                                     <div class="col-lg-4 col-md-4 col-12 ">
                                         <div class="single_product">
                                             <div class="product_thumb">
