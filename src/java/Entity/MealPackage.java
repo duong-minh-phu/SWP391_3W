@@ -4,6 +4,8 @@
  */
 package Entity;
 
+import java.util.logging.Logger;
+
 /**
  *
  * @author huybao
@@ -18,8 +20,17 @@ public class MealPackage {
     private int status;
     private int delivery_date;
     private String company;
-    private String size;
+    private float size;
     private  String expiry;
+    private int promotion;
+
+    public int getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(int promotion) {
+        this.promotion = promotion;
+    }
     
     public MealPackage() {   
     }
@@ -45,7 +56,7 @@ public class MealPackage {
         this.delivery_date = delivery_date;
     }
 
-    public MealPackage(int id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, String size, String expiry) {
+    public MealPackage(int id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, float size, String expiry) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -59,6 +70,30 @@ public class MealPackage {
         this.expiry = expiry;
     }
 
+    public MealPackage(String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, float size, String expiry) {
+        this.description = description;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.img = img;
+        this.status = status;
+        this.delivery_date = delivery_date;
+        this.company = company;
+        this.size = size;
+        this.expiry = expiry;
+    }
+
+    public MealPackage(String description, String name, int quantity, String img, int status, int delivery_date, float size, int promotion) {
+        this.description = description;
+        this.name = name;
+        this.quantity = quantity;
+        this.img = img;
+        this.status = status;
+        this.delivery_date = delivery_date;
+        this.size = size;
+        this.promotion = promotion;
+    }
+    
     
     
 
@@ -136,11 +171,11 @@ public class MealPackage {
         this.company = company;
     }
 
-    public String getSize() {
+    public float getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(float size) {
         this.size = size;
     }
 

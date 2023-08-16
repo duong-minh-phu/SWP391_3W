@@ -44,14 +44,19 @@ public class InsertPackage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         productDAO productDAO = new productDAO();
+        
+//    private String company;
+//    private String size;
+//    private  String expiry;
 
         String package_name = request.getParameter("package_name");
-        int price = Integer.parseInt(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String describe = request.getParameter("describe");
         int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
         String[] productIds = request.getParameterValues("product_id_list");
-
+        float size = Float.parseFloat(request.getParameter("weight"));
+        int promotion = Integer.parseInt(request.getParameter("promotion"));
+        
         try {
             for (String productId : productIds) {
                 Product checkProduct = productDAO.getProductByID(productId);
@@ -88,7 +93,7 @@ public class InsertPackage extends HttpServlet {
                 System.out.println(imagePath);
 
                 PackageDao packageDao = new PackageDao();
-                MealPackage newPackage = new MealPackage(describe, package_name, price, quantity, imagePath, 1, delivery_date);
+                MealPackage newPackage = new MealPackage(describe, package_name, quantity, imagePath, 1, delivery_date,  size, promotion);
 
                 packageDao.insertPackage(newPackage, productIds);
 

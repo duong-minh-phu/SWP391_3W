@@ -295,6 +295,15 @@ public class MainController extends HttpServlet {
             if (action.equals("packagedetail")) {
                 url = "Packagedetail";
             }
+            if (action.equals("deletePackage")) {
+                url = "DeletePackage";
+            }
+            if (action.equals("recoveryPackage")) {
+                url = "RecoveryPackage";
+            }
+            if (action.equals("getDeletePackage")) {
+                url = "RecoveryPackage";
+            }
             
 
         } catch (Exception ex) {

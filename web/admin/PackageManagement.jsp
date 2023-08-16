@@ -96,6 +96,9 @@
                                 <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="MainController?action=categorydelete" >Danh mục đã xóa</a>
                                 </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-add btn-sm" href="MainController?action=categorydelete" >Package đã xóa</a>
+                                </div>
                             </div>
                             <form action="MainController?action=updateproduct" method="POST" enctype="multipart/form-data">
                                 <table class="table table-hover table-bordered" id="sampleTable">
@@ -121,11 +124,27 @@
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
                                                 <td>${p.delivery_date}</td>
-                                                
+
                                                 <td>
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.id}"><i
                                                             class="fas fa-trash-alt"></i>
                                                     </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        <c:forEach items="${DeletePackageData}" var="p">
+                                            <tr>
+                                                <td>${p.id}</td>
+                                                <td>${p.name}</td>
+                                                <td>${p.quantity}</td>
+                                                <td>${p.price}</td>
+                                                <td>${p.description}</td>
+                                                <td><img src="${p.img}" alt="" width="100px;"></td>
+                                                <td>${p.delivery_date}</td>
+
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Phục hồi" value="${p.id}"><i class="fa-solid fa-recycle"></i>
+                                                    </button> 
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -305,12 +324,12 @@
                 jQuery(".trash").click(function () {
                     swal({
                         title: "Cảnh báo",
-                        text: "Bạn có chắc chắn là muốn xóa danh mục cùng với các sản phẩm liên quan ?",
+                        text: "Bạn có chắc chắn là muốn xóa package này ?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    window.location = "MainController?action=deletecategory&category_id=" + $(this).attr("value");
+                                    window.location = "MainController?action=deletePackage&package_id=" + $(this).attr("value");
                                     swal("Đã xóa thành công !!!!", {
                                     });
                                 }
@@ -324,12 +343,12 @@
                 $('button[title="Phục hồi"]').click(function () {
                     swal({
                         title: "Cảnh báo",
-                        text: "Bạn có chắc chắn là muốn phục hồi danh mục cùng với các sản phẩm liên quan này?",
+                        text: "Bạn có chắc chắn là muốn phục hồi package ?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {
-                                if (willDelete) {
-                                    window.location = "MainController?action=recovercategory&category_id=" + $(this).attr("value");
+                                if (willDelete) {này
+                                    window.location = "MainController?action=recoveryPackage&package_id=" + $(this).attr("value");
                                     swal("Đã Phục hồi thành công !", {
                                     });
                                 }

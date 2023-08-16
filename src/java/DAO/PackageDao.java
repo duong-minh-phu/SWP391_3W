@@ -26,15 +26,6 @@ import java.util.logging.Logger;
  *
  * @author ROG STRIX
  */
-//private int Id;
-//    private String description;
-//    private int categoryId;
-//    private String packageName;
-//    private String packagePrice;
-//    private int quantity;
-//    private String img;
-//    private String status;
-//    private int date;
 public class PackageDao {
 
     Connection conn = null;
@@ -43,20 +34,30 @@ public class PackageDao {
 
     public Boolean insertPackage(MealPackage insertPackage, String[] productIds) throws SQLException {
         try {
-            String sql = "INSERT INTO dbo.Package(description, name, price, quantity, img, status, delivery_date) values (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO dbo.Package(description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?)";
+
+            float price = 0;
+
+            productDAO proDAO = new productDAO();
+            for (String productId : productIds) {
+                Product addProduct = proDAO.getProductByID(productId);
+                price = price + addProduct.getProduct_price();
+            }
 
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, insertPackage.getDescription());
             ps.setString(2, insertPackage.getName());
-            ps.setFloat(3, insertPackage.getPrice());
+            ps.setFloat(3, price);
             ps.setInt(4, insertPackage.getQuantity());
             ps.setString(5, insertPackage.getImg());
             ps.setInt(6, insertPackage.getStatus());
             ps.setInt(7, insertPackage.getDelivery_date());
+            ps.setFloat(8, insertPackage.getSize());
+            ps.setInt(9, insertPackage.getPromotion());
 
             int affectedRows = ps.executeUpdate();
-            
+
             if (affectedRows > 0) {
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -65,16 +66,16 @@ public class PackageDao {
                             ps = conn.prepareStatement(insertProductToPackageSql, Statement.RETURN_GENERATED_KEYS);
                             ps.setString(1, productId);
                             ps.setInt(2, generatedKeys.getInt(1));
-                            
+
                             int Result = ps.executeUpdate();
 
                             if (Result > 0) {
-                                
+
                                 String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
                                 ps = conn.prepareStatement(updateQuantitySqlString, Statement.RETURN_GENERATED_KEYS);
                                 ps.setInt(1, insertPackage.getQuantity());
                                 ps.setString(2, productId);
-                                
+
                                 ps.executeUpdate();
                             }
 
@@ -87,10 +88,11 @@ public class PackageDao {
 
         } catch (Exception ex) {
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "InsertPackage sql Fail", ex);
-            throw new SQLException("InsertPackage sql fail");
+            throw new SQLException("InsertPackage sql fail:" + ex.getMessage());
         }
         return true;
     }
+
     public List<MealPackage> getListByPage(List<MealPackage> list,
             int start, int end) {
         ArrayList<MealPackage> arr = new ArrayList<>();
@@ -99,7 +101,8 @@ public class PackageDao {
         }
         return arr;
     }
-    public  List<MealPackage> getPackages() throws SQLException {
+
+    public List<MealPackage> getPackages() throws SQLException {
         List<MealPackage> listPackage = new ArrayList<MealPackage>();
         try {
             String sql = "SELECT * FROM dbo.Package WHERE Status = 1";
@@ -110,34 +113,69 @@ public class PackageDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8)));
+                listPackage.add(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
             }
 
         } catch (Exception ex) {
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
-            throw new SQLException("get package sql Fail");
+            throw new SQLException("get package sql Fail" + ex.getMessage());
         }
-        return  listPackage;
+        return listPackage;
     }
-    public MealPackage getMealPackageByID(String package_id) {
+
+    public MealPackage getMealPackageByID(int package_id) {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, package_id);
+            ps.setInt(1, package_id);
             rs = ps.executeQuery();
             while (rs.next()) {
 //                Category c = new Category(rs.getInt(1), rs.getString(2));
 //                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-                    return(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9),rs.getString(10), rs.getString(11)));
+                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getFloat(10), rs.getString(11)));
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
-    
+
+    public void deletePackage(int packageId) throws Exception {
+        String sql = "UPDATE package SET status = 0 WHERE package_id = ?";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, packageId);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            try {
+                conn.rollback(); // Nếu có lỗi, rollback các thay đổi trước đó
+            } catch (SQLException e) {
+                System.out.println("Error rolling back changes: " + ex.getMessage());
+            }
+            Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
+            throw new Exception("delete package Fail" + ex.getMessage());
+        }
+
+    }
+
+    public void RecoveryPackage(int package_id) throws Exception {
+        String sq = "update package set status=1 where product_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sq);
+            ps.setInt(1, package_id);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
+            throw new Exception("delete package Fail" + ex.getMessage());
+        }
+
+    }
+
 //    public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();
 //        String sql = "select c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,u.user_name from  \n" +

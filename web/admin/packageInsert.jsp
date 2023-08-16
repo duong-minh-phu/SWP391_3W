@@ -242,10 +242,6 @@
                                 <input class="form-control" name="package_name" type="text" required="">
                             </div>
                             <div class="form-group  col-md-3">
-                                <label class="control-label">Giá bán</label>
-                                <input class="form-control" name="price" type="number"required="">
-                            </div>
-                            <div class="form-group  col-md-3">
                                 <label class="control-label">Số lượng</label>
                                 <input class="form-control" name="quantity" type="number"required="">
                             </div>
@@ -254,16 +250,12 @@
                                 <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
                             </div>
                             <div class="form-group  col-md-3">
-                                <label class="control-label">Hãng</label>
-                                <input class="form-control" name="manufacturer">
-                            </div>
-                            <div class="form-group  col-md-3">
-                                <label class="control-label">Thời gian bảo quản</label>
-                                <input class="form-control" name="storage_time">
-                            </div>
-                            <div class="form-group  col-md-3">
                                 <label class="control-label">Khối lượng</label>
-                                <input class="form-control" name="weight">
+                                <input class="form-control" name="weight"required="">
+                            </div>
+                                <div class="form-group  col-md-3">
+                                <label class="control-label">Khuyến mãi</label>
+                                <input class="form-control" name="promotion"required="">
                             </div>
                             <div class="row">
                                 <div class="col-md-3">

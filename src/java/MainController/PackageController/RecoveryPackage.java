@@ -1,27 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package MainController;
+package MainController.PackageController;
 
 import DAO.PackageDao;
-import DAO.productDAO;
-import DAO.ratingDAO;
-import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author HoangPhatNguyen
+ * @author huybao
  */
-public class Packagedetail extends HttpServlet {
+@WebServlet(name = "RecoveryPackage", urlPatterns = {"/RecoveryPackage"})
+public class RecoveryPackage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,39 +34,13 @@ public class Packagedetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            int package_id = Integer.parseInt(request.getParameter("package_id"));
-            ratingDAO rate = new ratingDAO();
-            productDAO c = new productDAO();
+        try (PrintWriter out = response.getWriter()) {
+            int product_id = Integer.parseInt(request.getParameter("product_id"));
             PackageDao dao = new PackageDao();
-//            List<Rating> rating = rate.getRatingsByProductID(product_id);
-//            double rating_ave = rate.calculateAverageRating(product_id);
-//            int rating_count = rate.countRatingsByProductId(product_id);
-//            Entity.Product product = c.getProductByID(product_id);
-//            if(product==null){
-//                response.sendRedirect("404.jsp");
-//            }
-//            int category_id = product.getCate().getCategory_id();
-//            if(product.getQuantity()==0){
-//                 request.setAttribute("detail", "Mặt hàng này đã hết xin chọn loại khác!!!");
-//            }
-//            List<Entity.Product> productByCategory = c.getProductByCategory(category_id);
-//            request.setAttribute("RatingAV", rating_ave);
-//            request.setAttribute("RatingCount", rating_count);
-//            request.setAttribute("ReviewData", rating);
-//            request.setAttribute("ProductData", product);
-//            request.setAttribute("ProductByCategory", productByCategory);
-//            request.getRequestDispatcher("product-details.jsp").forward(request, response);
-
-            Entity.MealPackage mealPackages = dao.getMealPackageByID(package_id);
-            if (mealPackages == null) {
-                response.sendRedirect("404.jsp");
-            }
-            request.setAttribute("MealPackageData", mealPackages);
-            request.getRequestDispatcher("package_detail.jsp").forward(request, response);
-
+            dao.RecoveryPackage(product_id);
+            request.getRequestDispatcher("MainController?action=productdelete").forward(request, response);
         } catch (Exception ex) {
-
+            Logger.getLogger(RecoveryPackage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
