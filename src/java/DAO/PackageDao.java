@@ -34,7 +34,7 @@ public class PackageDao {
 
     public Boolean insertPackage(MealPackage insertPackage, String[] productIds) throws SQLException {
         try {
-            String sql = "INSERT INTO dbo.Package(description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO dbo.Package(id,description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?)";
 
             float price = 0;
 
@@ -43,47 +43,45 @@ public class PackageDao {
                 Product addProduct = proDAO.getProductByID(productId);
                 price = price + addProduct.getProduct_price();
             }
+            String packageId = UUID.randomUUID().toString();
 
             conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, insertPackage.getDescription());
-            ps.setString(2, insertPackage.getName());
-            ps.setFloat(3, price);
-            ps.setInt(4, insertPackage.getQuantity());
-            ps.setString(5, insertPackage.getImg());
-            ps.setInt(6, insertPackage.getStatus());
-            ps.setInt(7, insertPackage.getDelivery_date());
-            ps.setFloat(8, insertPackage.getSize());
-            ps.setInt(9, insertPackage.getPromotion());
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, packageId);
+            ps.setString(2, insertPackage.getDescription());
+            ps.setString(3, insertPackage.getName());
+            ps.setFloat(4, price);
+            ps.setInt(5, insertPackage.getQuantity());
+            ps.setString(6, insertPackage.getImg());
+            ps.setInt(7, insertPackage.getStatus());
+            ps.setInt(8, insertPackage.getDelivery_date());
+            ps.setFloat(9, insertPackage.getSize());
+            ps.setInt(10, insertPackage.getPromotion());
 
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows > 0) {
-                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        for (String productId : productIds) {
-                            String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
-                            ps = conn.prepareStatement(insertProductToPackageSql, Statement.RETURN_GENERATED_KEYS);
-                            ps.setString(1, productId);
-                            ps.setInt(2, generatedKeys.getInt(1));
+                for (String productId : productIds) {
+                    String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
+                    ps = conn.prepareStatement(insertProductToPackageSql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, productId);
+                    ps.setString(2, packageId);
 
-                            int Result = ps.executeUpdate();
+                    int Result = ps.executeUpdate();
 
-                            if (Result > 0) {
+                    if (Result > 0) {
 
-                                String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
-                                ps = conn.prepareStatement(updateQuantitySqlString, Statement.RETURN_GENERATED_KEYS);
-                                ps.setInt(1, insertPackage.getQuantity());
-                                ps.setString(2, productId);
+                        String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
+                        ps = conn.prepareStatement(updateQuantitySqlString, Statement.RETURN_GENERATED_KEYS);
+                        ps.setInt(1, insertPackage.getQuantity());
+                        ps.setString(2, productId);
 
-                                ps.executeUpdate();
-                            }
-
-                        }
-                    } else {
-                        throw new SQLException("Creating user failed, no ID obtained.");
+                        ps.executeUpdate();
                     }
+
                 }
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
             }
 
         } catch (Exception ex) {
@@ -113,7 +111,7 @@ public class PackageDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                listPackage.add(new MealPackage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
 
         } catch (Exception ex) {
@@ -134,7 +132,7 @@ public class PackageDao {
             while (rs.next()) {
 //                Category c = new Category(rs.getInt(1), rs.getString(2));
 //                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
         } catch (Exception e) {
             System.out.println(e);
