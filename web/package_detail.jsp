@@ -87,70 +87,71 @@
 
                     <div class="col-lg-7 col-md-7">
                         <div class="product_d_right">
-                            <h1>${MealPackageData.name}</h1>
-                            <div class="product_price">
-                                <del class="old_price">${PriceAllMeals} VNĐ</del>
-                                <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
-                            </div> 
-                            <div class="product_desc">
-                                <p>${MealPackageData.description}</p>
-                            </div>
-                            <div class="product_desc">
-                                <h4>Nội dung:</h4>
-                                <ul class="list-unstyled">
-                                    <c:forEach items="${MealsByPackage}" var="n">
-                                        <li><i class="fa fa-check"></i> ${n.describe}</li>
-                                        </c:forEach>
-                                </ul>
-                            </div>
-
-                            <div class="product_desc">
-                                <p>Số lượng hàng còn lại: ${MealPackageData.quantity}</p>
-                            </div>
-                            <div class="product_desc">
-                                <h4>Loại hàng trong combo</h4>
-                                <div class="row">
-                                    <c:forEach items="${MealsByPackage}" var="m">
-                                        <div class="col-lg-4 col-md-4 col-6"> <!-- Sử dụng col-6 để hiển thị 2 sản phẩm trên mỗi hàng -->
-                                            <div class="single_product">
-                                                <div class="product_thumb">
-                                                    <a class="primary_img" href="MainController?action=productdetail&product_id=${m.id}">
-                                                        <div class="img-wrapper">
-                                                            <img src="${m.img}" alt="${m.productName}" class="img-fluid img-thumbnail">
-                                                        </div>
-                                                    </a>
-                                                    <div class="quick_button">
-                                                        <a href="MainController?action=productdetail&product_id=${m.id}" title="quick_view">Xem sản phẩm</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product_content grid_content">
-                                                    <h1>${m.productName}: ${m.categoryName}</h1>
-                                                    <span class="current_price">${m.productPrice} VNĐ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </div>
+                            <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
+                                <h1>${MealPackageData.name}</h1>
                                 <div class="product_price">
-                                    <span class="current_price">${MealPackageData.price} VNĐ</span>
-                                </div>
+                                    <del class="old_price">${PriceAllMeals} VNĐ</del>
+                                    <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
+                                </div> 
                                 <div class="product_desc">
                                     <p>${MealPackageData.description}</p>
                                 </div>
                                 <div class="product_desc">
-                                    <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
+                                    <h4>Nội dung:</h4>
+                                    <ul class="list-unstyled">
+                                        <c:forEach items="${MealsByPackage}" var="n">
+                                            <li><i class="fa fa-check"></i> ${n.describe}</li>
+                                            </c:forEach>
+                                    </ul>
+                                </div>
+
+                                <div class="product_desc">
+                                    <p>Số lượng hàng còn lại: ${MealPackageData.quantity}</p>
                                 </div>
                                 <div class="product_desc">
-                                    <p style="color: red; align-content: center;">
-                                        ${requestScope.detail}
-                                    </p>
-                                </div>
-                                <c:if test="${(MealPackageData.quantity) != 0}">                                                                        
-                                    <div class="product_variant quantity">
-                                        <label>Số lượng</label>
-                                        <input min="1" max="${MealPackageData.quantity}" name="quantity" type="number" value="1">
-                                        <button class="button" type="submit">Thêm vào giỏ hàng</button>  
+                                    <h4>Loại hàng trong combo</h4>
+                                    <div class="row">
+                                        <c:forEach items="${MealsByPackage}" var="m">
+                                            <div class="col-lg-4 col-md-4 col-6"> <!-- Sử dụng col-6 để hiển thị 2 sản phẩm trên mỗi hàng -->
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a class="primary_img" href="MainController?action=productdetail&product_id=${m.id}">
+                                                            <div class="img-wrapper">
+                                                                <img src="${m.img}" alt="${m.productName}" class="img-fluid img-thumbnail">
+                                                            </div>
+                                                        </a>
+                                                        <div class="quick_button">
+                                                            <a href="MainController?action=productdetail&product_id=${m.id}" title="quick_view">Xem sản phẩm</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content grid_content">
+                                                        <h1>${m.productName}: ${m.categoryName}</h1>
+                                                        <span class="current_price">${m.productPrice} VNĐ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
                                     </div>
+                                    <div class="product_price">
+                                        <span class="current_price">${MealPackageData.price} VNĐ</span>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p>${MealPackageData.description}</p>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p style="color: red; align-content: center;">
+                                            ${requestScope.detail}
+                                        </p>
+                                    </div>
+                                    <c:if test="${(MealPackageData.quantity) != 0}">                                                                        
+                                        <div class="product_variant quantity">
+                                            <label>Số lượng</label>
+                                            <input min="1" max="${MealPackageData.quantity}" name="quantity" type="number" value="1">
+                                            <button class="button" type="submit">Thêm vào giỏ hàng</button>  
+                                        </div>
                                 </form>
                             </c:if>
                         </div>
