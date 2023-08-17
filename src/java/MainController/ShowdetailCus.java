@@ -38,11 +38,13 @@ public class ShowdetailCus extends HttpServlet {
            Date date2 = (Date) dao.getChoLayHang(id);
            Date date4 = (Date) dao.getHoanThanh(id);
            List<BillDetail> detail = dao.getDetail(id);
+           List<BillDetail> detail_package = dao.getDetailpackage(id);
            request.setAttribute("Date3", date3);
            request.setAttribute("Date4", date4);
            request.setAttribute("Date2", date2);
            request.setAttribute("Date1", date1);
            request.setAttribute("Detail", detail);
+           request.setAttribute("Detail_package", detail_package);
            request.setAttribute("BillNew", billnew);
            System.out.println(detail);
            request.getRequestDispatcher("billdetail.jsp").forward(request, response);

@@ -131,9 +131,21 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-                            </div>
-                            <c:if test="${MealPackageData.quantity != 0}">
-                                <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
+                                <div class="product_price">
+                                    <span class="current_price">${MealPackageData.price} VNĐ</span>
+                                </div>
+                                <div class="product_desc">
+                                    <p>${MealPackageData.description}</p>
+                                </div>
+                                <div class="product_desc">
+                                    <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
+                                </div>
+                                <div class="product_desc">
+                                    <p style="color: red; align-content: center;">
+                                        ${requestScope.detail}
+                                    </p>
+                                </div>
+                                <c:if test="${(MealPackageData.quantity) != 0}">                                                                        
                                     <div class="product_variant quantity">
                                         <label>Số lượng</label>
                                         <input min="1" max="${MealPackageData.quantity}" name="quantity" type="number" value="1">

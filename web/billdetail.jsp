@@ -72,6 +72,15 @@
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
                                                 </tr>
                                             </c:forEach>
+                                                <c:forEach items="${Detail_package}" var="p">
+                                                <tr>
+                                                    <td><img src="${p.img}" alt="" width="100px;"></td>
+                                                    <td>${p.product_name}</td>                                            
+                                                    <td>${p.quantity}</td>
+                                                    <td>${p.price}</td>
+                                                    <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
+                                                </tr>
+                                            </c:forEach>
                                                 <tr>
                                         <th></th>
                                         <th></th>

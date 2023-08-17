@@ -34,7 +34,9 @@ public class Showdetail extends HttpServlet {
            int id=Integer.parseInt(billid);
            billDAO dao=new billDAO();
            List<BillDetail> detail = dao.getDetail(id);
+           List<BillDetail> detail_package = dao.getDetailpackage(id);
            request.setAttribute("Detail", detail);
+           request.setAttribute("Detail_package", detail_package);
            System.out.println(detail);
            request.getRequestDispatcher("admin/orderdetail.jsp").forward(request, response);
         }catch(Exception ex){
