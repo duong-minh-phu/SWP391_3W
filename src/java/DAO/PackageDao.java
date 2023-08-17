@@ -44,13 +44,13 @@ public class PackageDao {
                 price = price + addProduct.getProduct_price();
             }
             String packageId = UUID.randomUUID().toString();
-
+            float pricePromotion = price*insertPackage.getPromotion()/100;
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, packageId);
             ps.setString(2, insertPackage.getDescription());
             ps.setString(3, insertPackage.getName());
-            ps.setFloat(4, price);
+            ps.setFloat(4, pricePromotion);
             ps.setInt(5, insertPackage.getQuantity());
             ps.setString(6, insertPackage.getImg());
             ps.setInt(7, insertPackage.getStatus());
