@@ -64,16 +64,7 @@
                         <div class="col-lg-3 col-md-12">
                             <!--sidebar widget start-->
                             <div class="sidebar_widget">
-                                <div class="widget_list widget_categories">
-                                    <h2>Danh mục</h2>
-                                    <ul>
-                                        <li><a href="MainController?action=packageall">TẤT CẢ</a></li>
-                                        <c:forEach items="${ProductData}" var="c">
-                                            <li><a href="MainController?action=listByProduct&product_id=${c.product_id}">${c.product_name}</a></li>
-                                            </c:forEach>
-                                            <li><a href="MainController?action=packagetall">Package</a></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <!--sidebar widget end-->
                         </div>

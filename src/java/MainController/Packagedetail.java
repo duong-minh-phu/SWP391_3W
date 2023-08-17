@@ -37,8 +37,6 @@ public class Packagedetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int package_id = Integer.parseInt(request.getParameter("package_id"));
-            ratingDAO rate = new ratingDAO();
-            productDAO c = new productDAO();
             PackageDao dao = new PackageDao();
 //            List<Rating> rating = rate.getRatingsByProductID(product_id);
 //            double rating_ave = rate.calculateAverageRating(product_id);

@@ -113,7 +113,7 @@ public class PackageDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+                listPackage.add(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
 
         } catch (Exception ex) {
@@ -134,7 +134,7 @@ public class PackageDao {
             while (rs.next()) {
 //                Category c = new Category(rs.getInt(1), rs.getString(2));
 //                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getFloat(10), rs.getString(11)));
+                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
         } catch (Exception e) {
             System.out.println(e);
