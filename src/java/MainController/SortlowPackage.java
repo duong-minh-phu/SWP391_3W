@@ -36,11 +36,11 @@ public class SortlowPackage extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 //            productDAO c = new productDAO();
             PackageDao dao =new PackageDao();
-            
+            List<Entity.MealPackage> packageList=dao.getPackageLow();
 //            List<Entity.Product> productList = c.getProductLow();
 //            List<Category> category = c.getCategory();
             int page, numperpage = 9;
-            int size = productList.size();
+            int size = packageList.size();
             int num = (size % 9 == 0 ? (size / 9) : ((size / 9)) + 1);//so trang
             String xpage = request.getParameter("page");
             if (xpage == null) {
@@ -51,11 +51,11 @@ public class SortlowPackage extends HttpServlet {
             int start, end;
             start = (page - 1) * numperpage;
             end = Math.min(page * numperpage, size);
-            List<Entity.Product> product = c.getListByPage(productList, start, end);
+            List<Entity.MealPackage> mealPackage = dao.getListByPage(packageList, start, end);
             request.setAttribute("page", page);
             request.setAttribute("num", num);
-            request.setAttribute("CategoryData", category);
-            request.setAttribute("ProductData", product);
+//            request.setAttribute("CategoryData", category);
+            request.setAttribute("PackageData", mealPackage);
             request.getRequestDispatcher("shop_package.jsp").forward(request, response);
         }
     }

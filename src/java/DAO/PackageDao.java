@@ -197,6 +197,90 @@ public class PackageDao {
         }
 
     }
+    
+    public List<MealPackage> getPackageLow() {
+        List<MealPackage> list = new ArrayList<>();
+        String sql = "select *from Package Where status='True' ORDER BY price ASC";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                MealPackage pk = new MealPackage();
+                
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                list.add(pk);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<MealPackage> getPackageHigh() {
+        List<MealPackage> list = new ArrayList<>();
+        String sql = "select *from Package Where status='True' ORDER BY price DESC";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                MealPackage pk = new MealPackage();
+                
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                list.add(pk);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<MealPackage> getPackageAZ() {
+        List<MealPackage> list = new ArrayList<>();
+        String sql = "select *from Package Where status='True' ORDER BY name";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                MealPackage pk = new MealPackage();
+                
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                list.add(pk);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
 //    public List<Product> getProduct1() {
 //        List<Product> list = new ArrayList<>();

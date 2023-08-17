@@ -24,6 +24,7 @@
         ========================= -->
         <link rel="stylesheet" href="styleproduct.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Plugins CSS -->
         <link rel="stylesheet" href="assets/css/plugins.css">
@@ -68,17 +69,18 @@
                             <div id="img-1" class="zoomWrapper single-zoom">
                                 <a href="#">
                                     <img id="zoom1" src="${MealPackageData.img}" data-zoom-image="${MealPackageData.img}" alt="product">
+                                    <span class="badge badge-danger discount-badge">-20%</span>
                                 </a>
                             </div>
                             <div class="small-images">
                                 <a href="#" class="small-img-link">
-                                    <img src="link_to_small_image_1.jpg" alt="small-image-1">
+                                    <img src="" alt="small-image-1">
                                 </a>
                                 <a href="#" class="small-img-link">
-                                    <img src="link_to_small_image_2.jpg" alt="small-image-2">
+                                    <img src="" alt="small-image-2">
                                 </a>
                                 <a href="#" class="small-img-link">
-                                    <img src="link_to_small_image_3.jpg" alt="small-image-3">
+                                    <img src="" alt="small-image-3">
                                 </a>
                             </div>
                         </div>
@@ -88,10 +90,6 @@
                         <div class="product_d_right">
                             <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
                                 <h1>${MealPackageData.name}</h1>
-
-                                <div class="product_desc">
-                                    <p>${MealPackageData.company}</p>
-                                </div>
                                 <div class="product_price">
                                     <span class="current_price">${MealPackageData.price} VNĐ</span>
                                 </div>

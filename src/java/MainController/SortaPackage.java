@@ -4,8 +4,10 @@
  */
 package MainController;
 
+import DAO.PackageDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,16 +32,29 @@ public class SortaPackage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SortaPackage</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SortaPackage at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            //            productDAO c = new productDAO();
+            PackageDao dao =new PackageDao();
+            List<Entity.MealPackage> packageList=dao.getPackageAZ();
+//            List<Entity.Product> productList = c.getProductLow();
+//            List<Category> category = c.getCategory();
+            int page, numperpage = 9;
+            int size = packageList.size();
+            int num = (size % 9 == 0 ? (size / 9) : ((size / 9)) + 1);//so trang
+            String xpage = request.getParameter("page");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * numperpage;
+            end = Math.min(page * numperpage, size);
+            List<Entity.MealPackage> mealPackage = dao.getListByPage(packageList, start, end);
+            request.setAttribute("page", page);
+            request.setAttribute("num", num);
+//            request.setAttribute("CategoryData", category);
+            request.setAttribute("PackageData", mealPackage);
+            request.getRequestDispatcher("shop_package.jsp").forward(request, response);
         }
     }
 
