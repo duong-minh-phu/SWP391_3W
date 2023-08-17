@@ -72,9 +72,12 @@ public class Packagedetail extends HttpServlet {
 
             request.setAttribute("PackageByList", packageByList);
             float price=0;
+            int promotion=0;
             for (MealsByPackage el : mealsByPackage) {
                 price+=el.getProductPrice();
+                promotion=el.getPromotion();
             }
+            request.setAttribute("promotion", promotion);
             request.setAttribute("PriceAllMeals", price);
             
             request.setAttribute("MealsByPackage", mealsByPackage);

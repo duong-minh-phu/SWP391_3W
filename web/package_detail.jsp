@@ -69,7 +69,6 @@
                             <div id="img-1" class="zoomWrapper single-zoom">
                                 <a href="#">
                                     <img id="zoom1" src="${MealPackageData.img}" data-zoom-image="${MealPackageData.img}" alt="product">
-                                    <span class="badge badge-danger discount-badge">-20%</span>
                                 </a>
                             </div>
                             <!--                            <div class="small-images">
@@ -91,30 +90,41 @@
                             <h1>${MealPackageData.name}</h1>
                             <div class="product_price">
                                 <del class="old_price">${PriceAllMeals} VNĐ</del>
-                                <span class="current_price">${MealPackageData.price} VNĐ</span>
+                                <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
                             </div>
                             <div class="product_desc">
                                 <p>${MealPackageData.description}</p>
                             </div>
                             <div class="product_desc">
+                                <h4>Nội dung:</h4>
+                                <ul class="list-unstyled">
+                                    <c:forEach items="${MealsByPackage}" var="n">
+                                        <li><i class="fa fa-check"></i> ${n.describe}</li>
+                                        </c:forEach>
+                                </ul>
+                            </div>
+
+                            <div class="product_desc">
                                 <p>Số lượng hàng còn lại: ${MealPackageData.quantity}</p>
                             </div>
                             <div class="product_desc">
-                                <h3>Loại hàng trong combo</h3>
+                                <h4>Loại hàng trong combo</h4>
                                 <div class="row">
                                     <c:forEach items="${MealsByPackage}" var="m">
-                                        <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="col-lg-4 col-md-4 col-6"> <!-- Sử dụng col-6 để hiển thị 2 sản phẩm trên mỗi hàng -->
                                             <div class="single_product">
                                                 <div class="product_thumb">
                                                     <a class="primary_img" href="MainController?action=productdetail&product_id=${m.id}">
-                                                        <img src="${m.img}" alt="${m.productName}">
+                                                        <div class="img-wrapper">
+                                                            <img src="${m.img}" alt="${m.productName}" class="img-fluid img-thumbnail">
+                                                        </div>
                                                     </a>
                                                     <div class="quick_button">
                                                         <a href="MainController?action=productdetail&product_id=${m.id}" title="quick_view">Xem sản phẩm</a>
                                                     </div>
                                                 </div>
                                                 <div class="product_content grid_content">
-                                                    <h3>${m.productName}: ${m.categoryName}</h3>
+                                                    <h1>${m.productName}: ${m.categoryName}</h1>
                                                     <span class="current_price">${m.productPrice} VNĐ</span>
                                                 </div>
                                             </div>
@@ -153,7 +163,7 @@
                 <div class="row">
                     <div class="product_carousel product_three_column4 owl-carousel">
                         <c:forEach items="${PackageByList}" var="pc">
-                            <div class="col-lg-3">
+                            <div class="col-lg-12">
                                 <div class="single_product">
                                     <div class="product_thumb"style=" height: 260px; width: 100%;">
                                         <a class="primary_img" href="MainController?action=packagedetail&package_id=${pc.id}"style="width: 100%;height: 100%; display: block"><img src="${pc.img}" style="height: 100%;width: 100%; object-fit: fill"alt=""></a>

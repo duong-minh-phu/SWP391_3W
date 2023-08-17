@@ -16,11 +16,12 @@ public class MealsByPackage {
     private String img;
     private String categoryName;
     private String productName;
+    private int promotion;
 
     public MealsByPackage() {
     }
 
-    public MealsByPackage(String id, String describe, float productPrice, float price, String img, String categoryName, String productName) {
+    public MealsByPackage(String id, String describe, float productPrice, float price, String img, String categoryName, String productName, int promotion) {
         this.id = id;
         this.describe = describe;
         this.productPrice = productPrice;
@@ -28,7 +29,10 @@ public class MealsByPackage {
         this.img = img;
         this.categoryName = categoryName;
         this.productName = productName;
+        this.promotion = promotion;
     }
+
+    
 
     
 
@@ -86,6 +90,14 @@ public class MealsByPackage {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public int getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(int promotion) {
+        this.promotion = promotion;
     }
     
     
