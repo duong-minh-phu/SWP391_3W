@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PackageManagement", urlPatterns = {"/PackageManagement"})
 public class PackageManagement extends HttpServlet {
     String PACKAGE_MANAGEMENT = "admin/PackageManagement.jsp";
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,7 +40,7 @@ public class PackageManagement extends HttpServlet {
         try {
             PackageDao p = new PackageDao();
             List<MealPackage> packageList = p.getPackages();            
-            request.setAttribute("PackageData", packageList);
+            request.setAttribute("PackageData", packageList);           
             request.getRequestDispatcher(PACKAGE_MANAGEMENT).forward(request, response);
         } catch (Exception e) {
             response.sendRedirect("404.jsp");

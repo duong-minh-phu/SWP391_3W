@@ -156,27 +156,6 @@
                 </div>
             </div>
         </main>
-        <% if (session.getAttribute("successMessage") != null) { %>
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close-button">&times;</span>
-                <div class="alert alert-success">
-                    <% out.println(session.getAttribute("successMessage")); %>
-                </div>
-            </div>
-        </div>
-        <% session.removeAttribute("successMessage"); %>
-        <% } else if (session.getAttribute("failMessage") != null) { %>
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close-button">&times;</span>
-                <div class="alert alert-danger">
-                    <% out.println(session.getAttribute("failMessage")); %>
-                </div>
-            </div>
-        </div>
-        <% session.removeAttribute("failMessage"); %>
-        <% }%>
         <style>
             .popup {
                 display: none;
@@ -347,7 +326,8 @@
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {
-                                if (willDelete) {này
+                                if (willDelete) {
+                                    này
                                     window.location = "MainController?action=recoveryPackage&package_id=" + $(this).attr("value");
                                     swal("Đã Phục hồi thành công !", {
                                     });
