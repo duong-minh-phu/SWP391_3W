@@ -34,7 +34,7 @@ public class PackageDao {
 
     public Boolean insertPackage(MealPackage insertPackage, String[] productIds) throws SQLException {
         try {
-            String sql = "INSERT INTO dbo.Package(id,description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO dbo.Package(package_id,description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?,?)";
 
             float price = 0;
 
@@ -110,43 +110,65 @@ public class PackageDao {
 
             rs = ps.executeQuery();
 
+//            ArrayList<MealPackage> pkList = new ArrayList();
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                MealPackage pk = new MealPackage();
+                
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                listPackage.add(pk);
             }
-
+            return listPackage;
         } catch (Exception ex) {
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
             throw new SQLException("get package sql Fail" + ex.getMessage());
         }
-        return listPackage;
+//        return null;
     }
 
-    public MealPackage getMealPackageByID(int package_id) {
+    public MealPackage getMealPackageByID(String package_id) throws SQLException {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, package_id);
+            ps.setString(1, package_id);
             rs = ps.executeQuery();
+            MealPackage pk = new MealPackage();
             while (rs.next()) {
-//                Category c = new Category(rs.getInt(1), rs.getString(2));
-//                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
             }
+            return pk;
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
 
-    public void deletePackage(int packageId) throws Exception {
+    public void deletePackage(String packageId) throws Exception {
         String sql = "UPDATE package SET status = 0 WHERE package_id = ?";
 
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, packageId);
+            ps.setString(1, packageId);
             ps.executeUpdate();
         } catch (Exception ex) {
             try {

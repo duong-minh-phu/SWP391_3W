@@ -304,6 +304,15 @@ public class MainController extends HttpServlet {
             if (action.equals("getDeletePackage")) {
                 url = "RecoveryPackage";
             }
+            if (action.equals("sortlowPackage")) {
+                url = "SortlowPackage";
+            }
+            if (action.equals("sorthighPackage")) {
+                url = "SorthighPackage";
+            }
+            if (action.equals("sortaPackage")) {
+                url = "SortaPackage";
+            }
             
 
         } catch (Exception ex) {

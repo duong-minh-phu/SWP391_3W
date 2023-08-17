@@ -2,26 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package MainController.PackageController;
+package MainController;
 
-import DAO.PackageDao;
-import DAO.productDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author huybao
+ * @author HoangPhatNguyen
  */
-@WebServlet(name = "DeletePackage", urlPatterns = {"/DeletePackage"})
-public class DeletePackage extends HttpServlet {
+public class SortaPackage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +30,16 @@ public class DeletePackage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String package_id =request.getParameter("package_id");
-            PackageDao dao = new PackageDao();
-            dao.deletePackage(package_id);
-            request.getRequestDispatcher("Productmanager").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(DeletePackage.class.getName()).log(Level.SEVERE, null, ex);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SortaPackage</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SortaPackage at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

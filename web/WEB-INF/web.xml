@@ -188,6 +188,18 @@
         <servlet-name>Packagedetail</servlet-name>
         <servlet-class>MainController.Packagedetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortlowPackage</servlet-name>
+        <servlet-class>MainController.SortlowPackage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SorthighPackage</servlet-name>
+        <servlet-class>MainController.SorthighPackage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortaPackage</servlet-name>
+        <servlet-class>MainController.SortaPackage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -383,6 +395,18 @@
     <servlet-mapping>
         <servlet-name>Packagedetail</servlet-name>
         <url-pattern>/Packagedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortlowPackage</servlet-name>
+        <url-pattern>/SortlowPackage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SorthighPackage</servlet-name>
+        <url-pattern>/SorthighPackage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortaPackage</servlet-name>
+        <url-pattern>/SortaPackage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
