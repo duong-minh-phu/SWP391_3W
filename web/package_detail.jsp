@@ -91,7 +91,7 @@
                             <div class="product_price">
                                 <del class="old_price">${PriceAllMeals} VNĐ</del>
                                 <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
-                            </div>
+                            </div> 
                             <div class="product_desc">
                                 <p>${MealPackageData.description}</p>
                             </div>
@@ -183,7 +183,6 @@
     <!--product section area end-->
     <div class="customer_reviews">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title">
