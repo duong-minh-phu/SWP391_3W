@@ -36,7 +36,7 @@ public class DeletePackage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int package_id = Integer.parseInt(request.getParameter("package_id"));
+            String package_id =request.getParameter("package_id");
             PackageDao dao = new PackageDao();
             dao.deletePackage(package_id);
             request.getRequestDispatcher("Productmanager").forward(request, response);

@@ -72,247 +72,268 @@
                                     <span class="badge badge-danger discount-badge">-20%</span>
                                 </a>
                             </div>
-                            <div class="small-images">
-                                <a href="#" class="small-img-link">
-                                    <img src="" alt="small-image-1">
-                                </a>
-                                <a href="#" class="small-img-link">
-                                    <img src="" alt="small-image-2">
-                                </a>
-                                <a href="#" class="small-img-link">
-                                    <img src="" alt="small-image-3">
-                                </a>
-                            </div>
+                            <!--                            <div class="small-images">
+                                                            <a href="#" class="small-img-link">
+                                                                <img src="" alt="small-image-1">
+                                                            </a>
+                                                            <a href="#" class="small-img-link">
+                                                                <img src="" alt="small-image-2">
+                                                            </a>
+                                                            <a href="#" class="small-img-link">
+                                                                <img src="" alt="small-image-3">
+                                                            </a>
+                                                        </div>-->
                         </div>
                     </div>
 
                     <div class="col-lg-7 col-md-7">
                         <div class="product_d_right">
-                            <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
-                                <h1>${MealPackageData.name}</h1>
-                                <div class="product_price">
-                                    <span class="current_price">${MealPackageData.price} VNĐ</span>
+                            <h1>${MealPackageData.name}</h1>
+                            <div class="product_price">
+                                <del class="old_price">${PriceAllMeals} VNĐ</del>
+                                <span class="current_price">${MealPackageData.price} VNĐ</span>
+                            </div>
+                            <div class="product_desc">
+                                <p>${MealPackageData.description}</p>
+                            </div>
+                            <div class="product_desc">
+                                <p>Số lượng hàng còn lại: ${MealPackageData.quantity}</p>
+                            </div>
+                            <div class="product_desc">
+                                <h3>Loại hàng trong combo</h3>
+                                <div class="row">
+                                    <c:forEach items="${MealsByPackage}" var="m">
+                                        <div class="col-lg-4 col-md-4 col-12">
+                                            <div class="single_product">
+                                                <div class="product_thumb">
+                                                    <a class="primary_img" href="MainController?action=productdetail&product_id=${m.id}">
+                                                        <img src="${m.img}" alt="${m.productName}">
+                                                    </a>
+                                                    <div class="quick_button">
+                                                        <a href="MainController?action=productdetail&product_id=${m.id}" title="quick_view">Xem sản phẩm</a>
+                                                    </div>
+                                                </div>
+                                                <div class="product_content grid_content">
+                                                    <h3>${m.productName}: ${m.categoryName}</h3>
+                                                    <span class="current_price">${m.productPrice} VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                 </div>
-                                <div class="product_desc">
-                                    <p>${MealPackageData.description}</p>
-                                </div>
-                                <div class="product_desc">
-                                    <p> số lượng hàng còn lại:${MealPackageData.quantity}</p>
-                                </div>
-                                <div class="product_desc">
-                                    <p style="color: red; align-content: center;">
-                                        ${requestScope.detail}
-                                    </p>
-                                </div>
-                                <c:if test="${(MealPackageData.quantity) != 0}">                                                                        
+                            </div>
+                            <c:if test="${MealPackageData.quantity != 0}">
+                                <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
                                     <div class="product_variant quantity">
-                                        <label>quantity</label>
+                                        <label>Số lượng</label>
                                         <input min="1" max="${MealPackageData.quantity}" name="quantity" type="number" value="1">
-                                        <button class="button" type="submit">Thêm vào giở hàng</button>  
+                                        <button class="button" type="submit">Thêm vào giỏ hàng</button>  
                                     </div>
-                                </c:if>
-                            </form>
+                                </form>
+                            </c:if>
                         </div>
                     </div>
-                </div>
-            </div>    
-        </div>
-        <!--product details end-->
-        <!--product section area start-->
-        <section class="product_section related_product">
-            <div class="container">
-                <div class="row">   
-                    <div class="col-12">
-                        <div class="section_title">
-                            <h2>Sản phẩm tương tự</h2>
-                        </div>
-                    </div> 
-                </div>    
-                <div class="product_area"> 
-                    <div class="row">
-                        <div class="product_carousel product_three_column4 owl-carousel">
-                            <c:forEach items="${ProductByCategory}" var="pc">
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb"style=" height: 260px; width: 100%;">
-                                            <a class="primary_img" href="MainController?action=packagedetail&package_id=${pc.product_id}"style="width: 100%;height: 100%; display: block"><img src="${pc.img}" style="height: 100%;width: 100%; object-fit: fill"alt=""></a>
-                                        </div>
-                                        <div class="product_content">
-                                            <h3><a href="MainController?action=packagedetail&package_id=${pc.product_id}">${pc.product_name}</a></h3>
-                                            <span class="current_price">${pc.product_price}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-        </section>
-        <!--product section area end-->
-        <div class="customer_reviews">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section_title">
-                            <h2>Đánh giá khách hàng</h2>
-                        </div>
+        </div>    
+    </div>
+    <!--product details end-->
+    <!--product section area start-->
+    <section class="product_section related_product">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="section_title">
+                        <h2>Sản phẩm tương tự</h2>
                     </div>
-                </div>
-
-                <div class="customer_review_list">
-                    <div class="row">
-                        <c:forEach items="${ReviewData}" var="ron">
-                            <div class="col-lg-6">
-                                <div class="customer_review_item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">${ron.user_name}</h5>
-                                            <p>${ron.comment}</p>
-                                            <div class="rating">
-                                                <c:forEach begin="1" end="${ron.rate}">
-                                                    <i class="fa fa-star"></i>
-                                                </c:forEach>
-                                            </div>
-                                            <div class ="datetime">
-                                                <p>${ron.date}</p>
-                                            </div>
-                                        </div>
+                </div> 
+            </div>    
+            <div class="product_area"> 
+                <div class="row">
+                    <div class="product_carousel product_three_column4 owl-carousel">
+                        <c:forEach items="${PackageByList}" var="pc">
+                            <div class="col-lg-3">
+                                <div class="single_product">
+                                    <div class="product_thumb"style=" height: 260px; width: 100%;">
+                                        <a class="primary_img" href="MainController?action=packagedetail&package_id=${pc.id}"style="width: 100%;height: 100%; display: block"><img src="${pc.img}" style="height: 100%;width: 100%; object-fit: fill"alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <h3><a href="MainController?action=packagedetail&package_id=${pc.id}">${pc.name}</a></h3>
+                                        <span class="current_price">${pc.price}</span>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
                 </div>
-
             </div>
         </div>
-        <!--product info end-->
+    </section>
+    <!--product section area end-->
+    <div class="customer_reviews">
+        <div class="container">
 
-        <!--footer area start-->
-        <jsp:include page="layout/footer.jsp"/>
-        <!--footer area end-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title">
+                        <h2>Đánh giá khách hàng</h2>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Plugins JS -->
-        <script src="assets/js/plugins.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <div class="customer_review_list">
+                <div class="row">
+                    <c:forEach items="${ReviewData}" var="ron">
+                        <div class="col-lg-6">
+                            <div class="customer_review_item">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">${ron.user_name}</h5>
+                                        <p>${ron.comment}</p>
+                                        <div class="rating">
+                                            <c:forEach begin="1" end="${ron.rate}">
+                                                <i class="fa fa-star"></i>
+                                            </c:forEach>
+                                        </div>
+                                        <div class ="datetime">
+                                            <p>${ron.date}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
 
-        <!-- Main JS -->
-        <script src="assets/js/main.js"></script>
-        <% if (request.getParameter("success") != null) { %>
-        <script>
-            alert("Đã đăng tải thành công!");
-        </script>
-        <% }%>
-        <script>
-            //            $("#submit").click(function()){
-            //            swal({
-            //            title: "Thanks for Contacting us..!",
-            //                    text: "We Will Contact You Soon...",
-            //                    icon: "success",
-            //            })
-            //            }
-        </script>
-        <script>
-            function validateForm() {
-                var userId = document.getElementsByName("user_id")[0].value;
-                if (userId === "") {
-                    // Hiển thị thông báo
-                    var message = document.createElement("div");
-                    message.innerHTML = "Bạn cần phải đăng nhập để thực hiện đánh giá";
-                    message.style.color = "red";
-                    document.body.appendChild(message);
-                    // Chuyển hướng trang sau 5 giây
-                    setTimeout(function () {
-                        window.location.href = "login.jsp";
-                    }, 5000);
-                    return false;
-                }
-                return true;
-            }
-        </script>
-        <style>
-            .list-unstyled {
-                padding-left: 0;
-                list-style: none;
-            }
+        </div>
+    </div>
+    <!--product info end-->
 
-            .customer_review_item {
-                border: 1px solid #ccc;
-                padding: 20px;
-                margin-bottom: 30px;
-                position: relative;
-                overflow: hidden;
-            }
+    <!--footer area start-->
+    <jsp:include page="layout/footer.jsp"/>
+    <!--footer area end-->
 
-            .customer_review_item:before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.7);
-                z-index: 1;
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
+    <!-- Plugins JS -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-            .customer_review_item:hover:before {
-                opacity: 1;
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    <% if (request.getParameter("success") != null) { %>
+    <script>
+        alert("Đã đăng tải thành công!");
+    </script>
+    <% }%>
+    <script>
+        //            $("#submit").click(function()){
+        //            swal({
+        //            title: "Thanks for Contacting us..!",
+        //                    text: "We Will Contact You Soon...",
+        //                    icon: "success",
+        //            })
+        //            }
+    </script>
+    <script>
+        function validateForm() {
+            var userId = document.getElementsByName("user_id")[0].value;
+            if (userId === "") {
+                // Hiển thị thông báo
+                var message = document.createElement("div");
+                message.innerHTML = "Bạn cần phải đăng nhập để thực hiện đánh giá";
+                message.style.color = "red";
+                document.body.appendChild(message);
+                // Chuyển hướng trang sau 5 giây
+                setTimeout(function () {
+                    window.location.href = "login.jsp";
+                }, 5000);
+                return false;
             }
+            return true;
+        }
+    </script>
+    <style>
+        .list-unstyled {
+            padding-left: 0;
+            list-style: none;
+        }
 
-            .customer_review_item h5 {
-                font-size: 18px;
-                color: #333;
-                margin-bottom: 10px;
-            }
+        .customer_review_item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
 
-            .customer_review_item p {
-                font-size: 16px;
-                color: #666;
-                margin-bottom: 20px;
-            }
+        .customer_review_item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
 
-            .rating {
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
+        .customer_review_item:hover:before {
+            opacity: 1;
+        }
 
-            .datetime {
-                position: absolute;
-                bottom: 0px;
-                right: 20px;
-            }
+        .customer_review_item h5 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .customer_review_item p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .rating {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .datetime {
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+        }
 
 
-            .fa-star {
-                color: gold;
-                font-size: 20px;
-            }
-            .fa-star-half-o{
-                color: gold;
-                font-size: 20px;
-            }
-            .rating_number{
-                font-size: 18px;
-            }
+        .fa-star {
+            color: gold;
+            font-size: 20px;
+        }
+        .fa-star-half-o{
+            color: gold;
+            font-size: 20px;
+        }
+        .rating_number{
+            font-size: 18px;
+        }
 
-        </style>
-        <script>
-            function calculateMonthLeft() {
-                var createDateStr = "${ProductData.create_date}";
-                var expDateStr = "${ProductData.exp_date}";
-                var createDate = new Date(createDateStr);
-                var expDate = new Date(expDateStr);
-                var timeDiff = expDate.getTime() - createDate.getTime();
-                var monthDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
-                document.getElementById("monthLeft").innerHTML = monthDiff;
-            }
-            calculateMonthLeft();
-        </script>
-    </body>
+    </style>
+    <script>
+        function calculateMonthLeft() {
+            var createDateStr = "${ProductData.create_date}";
+            var expDateStr = "${ProductData.exp_date}";
+            var createDate = new Date(createDateStr);
+            var expDate = new Date(expDateStr);
+            var timeDiff = expDate.getTime() - createDate.getTime();
+            var monthDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+            document.getElementById("monthLeft").innerHTML = monthDiff;
+        }
+        calculateMonthLeft();
+    </script>
+</body>
 
 </html>
