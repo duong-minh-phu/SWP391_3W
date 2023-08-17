@@ -65,10 +65,20 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-5">
                         <div class="product-details-tab">
-
                             <div id="img-1" class="zoomWrapper single-zoom">
                                 <a href="#">
                                     <img id="zoom1" src="${MealPackageData.img}" data-zoom-image="${MealPackageData.img}" alt="product">
+                                </a>
+                            </div>
+                            <div class="small-images">
+                                <a href="#" class="small-img-link">
+                                    <img src="link_to_small_image_1.jpg" alt="small-image-1">
+                                </a>
+                                <a href="#" class="small-img-link">
+                                    <img src="link_to_small_image_2.jpg" alt="small-image-2">
+                                </a>
+                                <a href="#" class="small-img-link">
+                                    <img src="link_to_small_image_3.jpg" alt="small-image-3">
                                 </a>
                             </div>
                         </div>
@@ -78,7 +88,7 @@
                         <div class="product_d_right">
                             <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
                                 <h1>${MealPackageData.name}</h1>
-                                                                
+
                                 <div class="product_desc">
                                     <p>${MealPackageData.company}</p>
                                 </div>

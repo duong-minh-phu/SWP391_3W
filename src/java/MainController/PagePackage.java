@@ -59,7 +59,7 @@ public class PagePackage extends HttpServlet {
             request.setAttribute("page", page);
             request.setAttribute("num", num);
             request.setAttribute("CategoryData", category);
-            request.setAttribute("ProductData", packages);
+            request.setAttribute("PackageData", packages);
             request.getRequestDispatcher("shop_package.jsp").forward(request, response);
         } catch (Exception ex) {
             log("Error at: MainController" + ex.toString());

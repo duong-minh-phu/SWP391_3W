@@ -58,6 +58,9 @@ public class Packagedetail extends HttpServlet {
 //            request.getRequestDispatcher("product-details.jsp").forward(request, response);
 
             Entity.MealPackage mealPackages = dao.getMealPackageByID(package_id);
+            if(mealPackages.getQuantity()==0){
+                 request.setAttribute("detail", "Mặt hàng này đã hết xin chọn loại khác!!!");
+            }
             if (mealPackages == null) {
                 response.sendRedirect("404.jsp");
             }
