@@ -80,9 +80,9 @@
                                         Bộ lọc
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="MainController?action=sortlow">Giá từ thấp đến cao</a>
-                                        <a class="dropdown-item" href="MainController?action=sorthigh">Giá từ cao xuống thấp</a>
-                                        <a class="dropdown-item" href="MainController?action=sorta">A-Z</a>
+                                        <a class="dropdown-item" href="MainController?action=sortlowPackage">Giá từ thấp đến cao</a>
+                                        <a class="dropdown-item" href="MainController?action=sorthighPackage">Giá từ cao xuống thấp</a>
+                                        <a class="dropdown-item" href="MainController?action=sortaPackage">A-Z</a>
                                     </div>
                                 </div>
                             </div>

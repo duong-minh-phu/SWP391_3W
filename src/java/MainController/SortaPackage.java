@@ -2,30 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package MainController.PackageController;
+package MainController;
 
 import DAO.PackageDao;
-import DAO.productDAO;
-import Entity.Category;
-import Entity.MealPackage;
-import Entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author huybao
+ * @author HoangPhatNguyen
  */
-@WebServlet(name = "PackageManagement", urlPatterns = {"/PackageManagement"})
-public class PackageManagement extends HttpServlet {
-    String PACKAGE_MANAGEMENT = "admin/PackageManagement.jsp";
-    
+public class SortaPackage extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,13 +30,31 @@ public class PackageManagement extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            PackageDao p = new PackageDao();
-            List<MealPackage> packageList = p.getPackages();            
-            request.setAttribute("PackageData", packageList);           
-            request.getRequestDispatcher(PACKAGE_MANAGEMENT).forward(request, response);
-        } catch (Exception e) {
-            response.sendRedirect("404.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            //            productDAO c = new productDAO();
+            PackageDao dao =new PackageDao();
+            List<Entity.MealPackage> packageList=dao.getPackageAZ();
+//            List<Entity.Product> productList = c.getProductLow();
+//            List<Category> category = c.getCategory();
+            int page, numperpage = 9;
+            int size = packageList.size();
+            int num = (size % 9 == 0 ? (size / 9) : ((size / 9)) + 1);//so trang
+            String xpage = request.getParameter("page");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * numperpage;
+            end = Math.min(page * numperpage, size);
+            List<Entity.MealPackage> mealPackage = dao.getListByPage(packageList, start, end);
+            request.setAttribute("page", page);
+            request.setAttribute("num", num);
+//            request.setAttribute("CategoryData", category);
+            request.setAttribute("PackageData", mealPackage);
+            request.getRequestDispatcher("shop_package.jsp").forward(request, response);
         }
     }
 

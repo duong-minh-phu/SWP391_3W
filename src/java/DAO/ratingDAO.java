@@ -47,7 +47,6 @@ public class ratingDAO {
                 int rate = rs.getInt("rate");
                 String comment = rs.getString("comment");
                 Date date = rs.getDate("date");
-
                 Rating rating = new Rating(userName, productName, rate, comment, date);
                 list.add(rating);
 

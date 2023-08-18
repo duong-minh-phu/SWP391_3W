@@ -341,26 +341,26 @@
             </div>
         </div>
     </div>
-    <% if (session.getAttribute("successMessage") != null) { %>
+    <% if (request.getAttribute("successMessage") != null) { %>
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-button">&times;</span>
             <div class="alert alert-success">
-                <% out.println(session.getAttribute("successMessage")); %>
+                <% out.println(request.getAttribute("successMessage")); %>
             </div>
         </div>
     </div>
-    <% session.removeAttribute("successMessage"); %>
-    <% } else if (session.getAttribute("errorMessage") != null) { %>
+    <% request.removeAttribute("successMessage"); %>
+    <% } else if (request.getAttribute("failMessage") != null) { %>
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-button">&times;</span>
             <div class="alert alert-danger">
-                <% out.println(session.getAttribute("errorMessage")); %>
+                <% out.println(request.getAttribute("failMessage")); %>
             </div>
         </div>
     </div>
-    <% session.removeAttribute("errorMessage"); %>
+    <% request.removeAttribute("failMessage"); %>
     <%}%>
     <style>
         .popup {

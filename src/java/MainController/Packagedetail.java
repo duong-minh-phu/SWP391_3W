@@ -11,11 +11,13 @@ import DAO.ratingDAO;
 import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
+import dto.MealsByPackage;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -56,12 +58,31 @@ public class Packagedetail extends HttpServlet {
 //            request.setAttribute("ProductData", product);
 //            request.setAttribute("ProductByCategory", productByCategory);
 //            request.getRequestDispatcher("product-details.jsp").forward(request, response);
-
+                
+            List<Entity.MealPackage> packageByList = dao.getPackageByList(package_id);
+            List<MealsByPackage> mealsByPackage = dao.getMealByPackage(package_id);
             Entity.MealPackage mealPackages = dao.getMealPackageByID(package_id);
+            if (mealPackages.getQuantity() == 0) {
+                request.setAttribute("detail", "Mặt hàng này đã hết xin chọn loại khác!!!");
+            }
             if (mealPackages == null) {
                 response.sendRedirect("404.jsp");
             }
             request.setAttribute("MealPackageData", mealPackages);
+
+            request.setAttribute("PackageByList", packageByList);
+            float price=0;
+            int promotion=0;
+            for (MealsByPackage el : mealsByPackage) {
+                price+=el.getProductPrice();
+                promotion=el.getPromotion();
+            }
+            request.setAttribute("promotion", promotion);
+            request.setAttribute("PriceAllMeals", price);
+            
+            request.setAttribute("MealsByPackage", mealsByPackage);
+            
+            
             request.getRequestDispatcher("package_detail.jsp").forward(request, response);
 
         } catch (Exception ex) {
