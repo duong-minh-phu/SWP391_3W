@@ -90,6 +90,22 @@
                             <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
                                 <h1>${MealPackageData.name}</h1>
                                 <div class="product_price">
+                                    <label>Chất lượng : </label>
+                                    <% double rating = (double) request.getAttribute("RatingAV"); %>
+                                    <% int integerPart = (int) rating; %>
+                                    <% double decimalPart = rating - integerPart; %>
+                                    <% int roundedDecimalPart = (int) Math.round(decimalPart * 10); %>
+                                    <% for (int i = 0; i < integerPart; i++) { %>
+                                    <i class="fa fa-star"></i>
+                                    <% } %>
+                                    <% if (roundedDecimalPart > 0) {%>
+                                    <i class="fa fa-star-half-o"></i>
+                                    <span class="rating_number">( <%= String.format("%.1f", rating)%>)/ ${RatingCount} đánh giá </span>
+                                    <% } else {%>
+                                    <span class="rating_number">( <%= integerPart%>)/ ${RatingCount} đánh giá </span>
+                                    <% } %>
+                                </div>
+                                <div class="product_price">
                                     <del class="old_price">${PriceAllMeals} VNĐ</del>
                                     <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
                                 </div> 

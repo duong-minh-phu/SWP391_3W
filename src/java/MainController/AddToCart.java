@@ -69,7 +69,6 @@ public class AddToCart extends HttpServlet {
             } else {
                 request.setAttribute("error", "Vui lòng Login trước khi mua hàng!!!!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-
             }
 
             System.out.println(a);

@@ -1,6 +1,8 @@
 package MainController;
 
+import DAO.productDAO;
 import DAO.ratingDAO;
+import Entity.Product;
 import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +25,8 @@ public class InsertReview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String productId = request.getParameter("product_review_id");
+        Product product = new productDAO().getProductByID(productId);
+
         if (productId == null || productId.isEmpty()) {
             // handle the error condition here
             throw new ServletException("Invalid product ID.");
@@ -46,9 +50,13 @@ public class InsertReview extends HttpServlet {
         ratingDAO r = new ratingDAO();
         Rating rating = new Rating(userId, dateString, productId, rate, reviewText, sqlReviewDate, billId);
         r.insertRating(rating);
+        if (product == null) {
+            response.sendRedirect("MainController?action=packagedetail&package_id=" + productId + "&success=true");
+        } else {
+            response.sendRedirect("MainController?action=productdetail&product_id=" + productId + "&success=true");
+        }
 
-       response.sendRedirect("MainController?action=productdetail&product_id=" + productId + "&success=true");
-
+//        response.sendRedirect("MainController?action=packagedetail&package_id=" + productId + "&success=true");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,10 +5,7 @@
  */
 package Entity;
 
-/**
- *
- * @author ROG STRIX
- */
+
 public class BillDetail {
         int detail_id;
         int bill_id;
