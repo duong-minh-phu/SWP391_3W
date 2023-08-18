@@ -52,6 +52,9 @@ public class UpdateItemsInCart extends HttpServlet {
                
             }
             Product product =  new productDAO().getProductByID(id);
+            if (product == null) {                
+                product = new productDAO().getpackageByID(id);
+            }
             if(qua>product.getQuantity()){
                 qua=product.getQuantity();
             }

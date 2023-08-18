@@ -113,7 +113,7 @@ public class PackageDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                listPackage.add(new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                listPackage.add(new MealPackage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
 
         } catch (Exception ex) {
@@ -123,18 +123,18 @@ public class PackageDao {
         return listPackage;
     }
 
-    public MealPackage getMealPackageByID(int package_id) {
+    public MealPackage getMealPackageByID(String package_id) {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, package_id);
+            ps.setString(1, package_id);
             rs = ps.executeQuery();
             while (rs.next()) {
 //                Category c = new Category(rs.getInt(1), rs.getString(2));
 //                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11)));
-                return (new MealPackage(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
+                return (new MealPackage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6),rs.getInt(7), rs.getInt(8), rs.getFloat(9), rs.getInt(10)));
             }
         } catch (Exception e) {
             System.out.println(e);

@@ -89,7 +89,7 @@
                                     <p>${MealPackageData.description}</p>
                                 </div>
                                 <div class="product_desc">
-                                    <p> số lượng hàng còn lại:${MealPackageData.quantity}</p>
+                                    <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
                                 </div>
                                 <div class="product_desc">
                                     <p style="color: red; align-content: center;">
@@ -100,7 +100,7 @@
                                     <div class="product_variant quantity">
                                         <label>quantity</label>
                                         <input min="1" max="${MealPackageData.quantity}" name="quantity" type="number" value="1">
-                                        <button class="button" type="submit">Thêm vào giở hàng</button>  
+                                        <button class="button" type="submit">Thêm vào giỏ hàng</button>  
                                     </div>
                                 </c:if>
                             </form>

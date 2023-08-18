@@ -30,7 +30,7 @@
         <header class="app-header">
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <ul class="app-nav">
-                <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li><a class="app-nav__item" href="MainController?action=dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
                 </li>
             </ul>
         </header>
@@ -82,7 +82,7 @@
                                 <thead>
                                     <tr>
                                         <th>Ảnh</th>
-                                        <th>Mã sản phẩm</th>
+<!--                                        <th>Mã sản phẩm</th>-->
                                         <th>Tên sản phẩm</th>                                        
                                         <th>Số lượng</th>
                                         <th>Đơn giá</th>
@@ -93,15 +93,23 @@
                                     <c:forEach items="${Detail}" var="d">
                                         <tr>
                                             <td><img src="${d.img}" alt="" width="100px;"></td>
-                                            <td>${d.product_id}</td>
+<!--                                            <td>${d.product_id}</td>-->
                                             <td>${d.product_name}</td>                                            
                                             <td>${d.quantity}</td>
                                             <td>${d.price}</td>                                          
                                         </tr>
                                     </c:forEach>
+                                        <c:forEach items="${Detail_package}" var="p">
+                                        <tr>
+                                            <td><img src="${p.img}" alt="" width="100px;"></td>
+<!--                                            <td>${p.product_id}</td>-->
+                                            <td>${p.product_name}</td>                                            
+                                            <td>${p.quantity}</td>
+                                            <td>${p.price}</td>                                          
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
-                                <tr>
-                                        <th></th>
+                                <tr>                                        
                                         <th></th>
                                         <th>Phí ship</th>
                                         <th></th>

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author huybao
  */
 public class MealPackage {
-    private int id;
+    private String id;
     private String description;
     private String name;
     private Float price;
@@ -45,7 +45,7 @@ public class MealPackage {
         this.delivery_date = delivery_date;
     }
 
-    public MealPackage(int Id, String description, String name, Float price, int quantity, String img, int status, int delivery_date) {
+    public MealPackage(String Id, String description, String name, Float price, int quantity, String img, int status, int delivery_date) {
         this.id = Id;
         this.description = description;
         this.name = name;
@@ -56,7 +56,7 @@ public class MealPackage {
         this.delivery_date = delivery_date;
     }
 
-    public MealPackage(int id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, float size, String expiry) {
+    public MealPackage(String id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, String company, float size, String expiry) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -94,7 +94,7 @@ public class MealPackage {
         this.promotion = promotion;
     }
 
-    public MealPackage(int id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, float size, int promotion) {
+    public MealPackage(String id, String description, String name, Float price, int quantity, String img, int status, int delivery_date, float size, int promotion) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -112,11 +112,11 @@ public class MealPackage {
 
     
 
-    public int getId() {
+    public String getId() {
         return id;
     }
     
-    public void setId(int Id) {
+    public void setId(String Id) {
         this.id = Id;
     }
 
