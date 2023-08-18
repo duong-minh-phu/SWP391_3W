@@ -1,6 +1,8 @@
 package MainController;
 
+import DAO.productDAO;
 import DAO.ratingDAO;
+import Entity.Product;
 import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +23,7 @@ public class InsertReview extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+try{
         String productId = request.getParameter("product_review_id");
         if (productId == null || productId.isEmpty()) {
             // handle the error condition here
@@ -46,9 +48,14 @@ public class InsertReview extends HttpServlet {
         ratingDAO r = new ratingDAO();
         Rating rating = new Rating(userId, dateString, productId, rate, reviewText, sqlReviewDate, billId);
         r.insertRating(rating);
-
-       response.sendRedirect("MainController?action=productdetail&product_id=" + productId + "&success=true");
-
+        Product product = new productDAO().getProductByID(productId);
+            if (product == null) {                
+                response.sendRedirect("MainController?action=packagedetail&package_id=" + productId + "&success=true");
+            }else{
+       response.sendRedirect("MainController?action=productdetail&product_id=" + productId + "&success=true");}
+}catch(Exception ex){
+    response.sendRedirect("404.jsp");
+}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
