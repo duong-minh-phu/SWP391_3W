@@ -74,14 +74,14 @@ public class AddToCart extends HttpServlet {
             System.out.println(a);
             session.setAttribute("size", cart.size());
             session.setAttribute("cart", cart);
-
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+            rd.forward(request, response);
         } catch (Exception e){
             e.printStackTrace();
         } 
-        finally {
-            RequestDispatcher rd = request.getRequestDispatcher(URL);
-            rd.forward(request, response);
-        }
+//        finally {
+//            
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

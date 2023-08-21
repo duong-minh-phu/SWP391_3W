@@ -6,6 +6,7 @@ import Entity.Product;
 import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,8 @@ public class InsertReview extends HttpServlet {
         }
         int userId = Integer.parseInt(request.getParameter("user_id"));
         int rate = Integer.parseInt(request.getParameter("rating"));
-        String reviewText = request.getParameter("review");
+        String reviewText=new String(request.getParameter("review").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+//        String reviewText = request.getParameter("review");
         String dateString = request.getParameter("review_date");
         int billId = Integer.parseInt(request.getParameter("bill_id"));
 

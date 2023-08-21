@@ -148,7 +148,7 @@
                                             </div>
                                         </c:forEach>
                                     </div>
-                                    <div class="product_price">
+<!--                                    <div class="product_price">
                                         <span class="current_price">${MealPackageData.price} VNĐ</span>
                                     </div>
                                     <div class="product_desc">
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="product_desc">
                                         <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
-                                    </div>
+                                    </div>-->
                                     <div class="product_desc">
                                         <p style="color: red; align-content: center;">
                                             ${requestScope.detail}
