@@ -207,17 +207,17 @@
                                     <label class="control-label">Tên Package</label>
                                     <input class="form-control" name="update_name" type="text" value="${PackageData.name}">
                                 </div>
-                                <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
-                                    <c:forEach items="${ProductData}" var="prod">
-                                        <option  value="${prod.product_id}">${prod.product_name} </option>
-                                    </c:forEach>
-                                </select>
                                 <!--                                <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
                                 <c:forEach items="${ProductData}" var="prod">
-                                    <c:set var="isSelected" value="${selectedProducts.contains(prod.product_id)}" />
-                                    <option value="${prod.product_id}" ${isSelected ? 'selected' : ''}>${prod.product_name}</option>
+                                    <option  value="${prod.product_id}">${prod.product_name} </option>
                                 </c:forEach>
                             </select>-->
+                                <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
+                                    <c:forEach items="${ProductData}" var="prod">
+                                        <c:set var="isSelected" value="${selectedProducts.contains(prod.product_id)}" />
+                                        <option value="${prod.product_id}" ${isSelected ? 'selected' : ''}>${prod.product_name}</option>
+                                    </c:forEach>
+                                </select>
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Giá bán</label>
                                     <input class="form-control" name="update_price" type="number" value="${PackageData.price}">
@@ -226,10 +226,10 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="update_quantity" type="number" value="${PackageData.quantity}">
                                 </div>
-<!--                                <div class="form-group col-md-3">
-                                    <label class="control-label">khối lượng</label>
-                                    <input class="form-control" name="size" type="text"required="" value="${PackageData.size}">
-                                </div>                               -->
+                                <!--                                <div class="form-group col-md-3">
+                                                                    <label class="control-label">khối lượng</label>
+                                                                    <input class="form-control" name="size" type="text"required="" value="${PackageData.size}">
+                                                                </div>                               -->
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Khuyến mãi</label>
                                     <input class="form-control" name="size" type="text"required="" value="${PackageData.promotion}">

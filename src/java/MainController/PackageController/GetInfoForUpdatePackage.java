@@ -11,6 +11,7 @@ import Entity.Product;
 import dto.MealsByPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,14 @@ public class GetInfoForUpdatePackage extends HttpServlet {
             request.setAttribute("PackageData", packages);
             List<MealsByPackage> productInPackageList = packageDao.getMealByPackage(request.getParameter("package_id"));
             request.setAttribute("MealsByPackageData", productInPackageList);
+
+            List<String> selectedProducts = new ArrayList<>();
+            for (MealsByPackage a : productInPackageList) {
+                selectedProducts.add(a.getId());
+            }
+// ...Thêm các product_id khác vào danh sách
+
+            request.setAttribute("selectedProducts", selectedProducts);
             productDAO productDao = new productDAO();
             List<Product> product = productDao.getProduct();
             request.setAttribute("ProductData", product);
