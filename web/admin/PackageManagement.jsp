@@ -360,7 +360,7 @@
                     var package_id = $(this).data("package-id");
 
                     // Redirect the user to the edit product page
-                    window.location = "MainController?action=getPackageForUpdate&packacge_id=" + package_id;
+                    window.location = "MainController?action=getPackageForUpdate&package_id=" + package_id;
                 });
             });
         </script>

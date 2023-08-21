@@ -25,7 +25,7 @@ import javax.servlet.http.Part;
 @WebServlet(name = "UpdatePackage", urlPatterns = {"/UpdatePackage"})
 public class UpdatePackage extends HttpServlet {
 
-    String INSERT_PACKAGE = "admin/packageInsert.jsp";
+    String UPDATE_PACKAGE = "admin/updatePackage.jsp";
 
     String MEAL_ID_ERROR_STATUS = "mealIdError";
     String SUCCESS_STATUS = "success";

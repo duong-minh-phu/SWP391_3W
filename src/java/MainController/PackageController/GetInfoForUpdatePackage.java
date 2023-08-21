@@ -8,6 +8,7 @@ import DAO.PackageDao;
 import DAO.productDAO;
 import Entity.MealPackage;
 import Entity.Product;
+import dto.MealsByPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "GetInfoForUpdatePackage", urlPatterns = {"/GetInfoForUpdatePackage"})
 public class GetInfoForUpdatePackage extends HttpServlet {
 
-    String INSERT_PACKAGE = "admin/updatePackage.jsp";
+    String UPDATE_PACKAGE = "admin/updatePackage.jsp";
 
     String MEAL_ID_ERROR_STATUS = "mealIdError";
     String SUCCESS_STATUS = "success";
@@ -43,8 +44,10 @@ public class GetInfoForUpdatePackage extends HttpServlet {
             throws ServletException, IOException {
         try {
             PackageDao packageDao = new PackageDao();
-            MealPackage packages = packageDao.getMealPackageByID(request.getParameter("packacge_id"));
+            MealPackage packages = packageDao.getMealPackageByID(request.getParameter("package_id"));
             request.setAttribute("PackageData", packages);
+            List<MealsByPackage> productInPackageList = packageDao.getMealByPackage(request.getParameter("package_id"));
+            request.setAttribute("MealsByPackageData", productInPackageList);
             productDAO productDao = new productDAO();
             List<Product> product = productDao.getProduct();
             request.setAttribute("ProductData", product);
@@ -63,7 +66,7 @@ public class GetInfoForUpdatePackage extends HttpServlet {
                     request.setAttribute("successMessage", message);
                 }
             }
-            request.getRequestDispatcher(INSERT_PACKAGE).forward(request, response);
+            request.getRequestDispatcher(UPDATE_PACKAGE).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/404.jsp");
