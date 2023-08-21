@@ -38,49 +38,48 @@ public class AddToCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String URL = "MainController?action=productdetail&product_id=";
-        try{
+        try {
             String id = request.getParameter("product_id");
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             URL += id;
-            
+
             Product product = new productDAO().getProductByID(id);
-//            if (product==null){
-//                product=productDAO().
-//            }
+            if (product == null) {
+                URL = "MainController?action=packagedetail&package_id=" + id;
+                product = new productDAO().getpackageByID(id);
+            }
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
-            User user = (User) session.getAttribute("user");            
-            String a=(String) session.getAttribute("deletecart");
-            if(a!=null){
+            User user = (User) session.getAttribute("user");
+            String a = (String) session.getAttribute("deletecart");
+            if (a != null) {
                 cart = new Cart();
                 user.setCart(cart);
                 session.removeAttribute("deletecart");
             }
-            if (user != null) {                
+            if (user != null) {
                 cart = user.getCart();
                 if (cart == null) {
                     cart = new Cart();
                 }
                 cart.addItem(product, quantity);
-                
+
                 user.setCart(cart);
                 session.setAttribute("user", user);
-            }else{
+            } else {
                 request.setAttribute("error", "Vui lòng Login trước khi mua hàng!!!!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-                 
+
             }
-                      
-//            if (cart == null){
-//                
-//                cart = new Cart();
-//            }
-//            cart.addItem(product, quantity);
+
             System.out.println(a);
             session.setAttribute("size", cart.size());
             session.setAttribute("cart", cart);
-            
-        }finally{
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } 
+        finally {
             RequestDispatcher rd = request.getRequestDispatcher(URL);
             rd.forward(request, response);
         }

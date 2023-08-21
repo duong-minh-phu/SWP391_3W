@@ -415,6 +415,22 @@ public class productDAO {
         }
         return null;
     }
+    public Product getpackageByID(String product_id) {
+       String sql = "select package_id,name,price,quantity,img from Package where package_id=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, product_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+               
+                return (new Product(rs.getString(1), rs.getString(2),rs.getFloat(3),rs.getInt(4), rs.getString(5)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     
 //    public Package getPackageID(String package_id){
 //        List<Package> list = new ArrayList<>();
