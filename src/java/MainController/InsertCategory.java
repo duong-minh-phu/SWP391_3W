@@ -34,7 +34,7 @@ public class InsertCategory extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String name = request.getParameter("name");
             productDAO dao = new productDAO();
-            Entity.Category existingCategory = dao.getCategoryByName1(name);
+            Entity.Category existingCategory = dao.getCategoryByName(name);
 
             if (existingCategory != null) {
                 request.setAttribute("error", name + " đã tồn tại.Vui lòng nhập tên khác!");
