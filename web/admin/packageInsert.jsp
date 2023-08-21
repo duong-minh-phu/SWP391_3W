@@ -222,7 +222,11 @@
                                                     </div>-->
 
                         <form class="row" action="MainController?action=insertPackage" method="Post" enctype="multipart/form-data">
-                            <!--                            <input type="hidden" id="product-id" name="product_id">-->
+                            <!--                            <input type="hidden" id="product-id" name="product_id">-->                            
+                            <div class="form-group col-md-3">
+                                <label class="control-label">Tên Package</label>
+                                <input class="form-control" name="package_name" type="text" required="">
+                            </div>
                             <div class="form-group col-md-3">
                                 <label for="exampleSelect1" class="control-label">Meal</label>
                                 <!--<select name="category_id" class="form-control" id="exampleSelect1" >-->
@@ -237,22 +241,18 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label">Tên Package</label>
-                                <input class="form-control" name="package_name" type="text" required="">
-                            </div>
                             <div class="form-group  col-md-3">
                                 <label class="control-label">Số lượng</label>
                                 <input class="form-control" name="quantity" type="number"required="">
                             </div>
-                            <div class="form-group  col-md-3">
+<!--                            <div class="form-group  col-md-3">
                                 <label class="control-label">Số ngày giao</label>
                                 <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
-                            </div>
-                            <div class="form-group  col-md-3">
+                            </div>-->
+<!--                            <div class="form-group  col-md-3">
                                 <label class="control-label">Khối lượng</label>
                                 <input class="form-control" name="weight"required="">
-                            </div>
+                            </div>-->
                                 <div class="form-group  col-md-3">
                                 <label class="control-label">Khuyến mãi</label>
                                 <input class="form-control" name="promotion"required="">

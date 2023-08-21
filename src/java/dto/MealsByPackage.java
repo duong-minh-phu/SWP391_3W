@@ -17,11 +17,13 @@ public class MealsByPackage {
     private String categoryName;
     private String productName;
     private int promotion;
+    private String quantity;
 
     public MealsByPackage() {
     }
 
-    public MealsByPackage(String id, String describe, float productPrice, float price, String img, String categoryName, String productName, int promotion) {
+
+    public MealsByPackage(String id, String describe, float productPrice, float price, String img, String categoryName, String productName, int promotion, String quantity) {
         this.id = id;
         this.describe = describe;
         this.productPrice = productPrice;
@@ -30,10 +32,8 @@ public class MealsByPackage {
         this.categoryName = categoryName;
         this.productName = productName;
         this.promotion = promotion;
+        this.quantity = quantity;
     }
-
-    
-
     
 
     public String getId() {
@@ -63,11 +63,11 @@ public class MealsByPackage {
     public float getPrice() {
         return price;
     }
-
+    
     public void setPrice(float price) {
         this.price = price;
     }
-
+    
     public String getImg() {
         return img;
     }
@@ -98,6 +98,14 @@ public class MealsByPackage {
 
     public void setPromotion(int promotion) {
         this.promotion = promotion;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
     
     

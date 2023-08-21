@@ -127,7 +127,7 @@
                                 <div class="product_desc">
                                     <h4>Loại hàng trong combo</h4>
                                     <div class="row">
-                                        <c:forEach items="${MealsByPackage}" var="m">
+                                        <c:forEach items="${MealsByPackage}" var="m" varStatus="loop">
                                             <div class="col-lg-4 col-md-4 col-6"> <!-- Sử dụng col-6 để hiển thị 2 sản phẩm trên mỗi hàng -->
                                                 <div class="single_product">
                                                     <div class="product_thumb">
@@ -143,20 +143,21 @@
                                                     <div class="product_content grid_content">
                                                         <h1>${m.productName}: ${m.categoryName}</h1>
                                                         <span class="current_price">${m.productPrice} VNĐ</span>
+                                                        - <c:out value="${quantity[loop.index - 0]}" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </c:forEach>
                                     </div>
-<!--                                    <div class="product_price">
-                                        <span class="current_price">${MealPackageData.price} VNĐ</span>
-                                    </div>
-                                    <div class="product_desc">
-                                        <p>${MealPackageData.description}</p>
-                                    </div>
-                                    <div class="product_desc">
-                                        <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
-                                    </div>-->
+                                    <!--                                    <div class="product_price">
+                                                                            <span class="current_price">${quantity} VNĐ</span>
+                                                                        </div>
+                                                                        <div class="product_desc">
+                                                                            <p>${MealPackageData.description}</p>
+                                                                        </div>
+                                                                        <div class="product_desc">
+                                                                            <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
+                                                                        </div>-->
                                     <div class="product_desc">
                                         <p style="color: red; align-content: center;">
                                             ${requestScope.detail}

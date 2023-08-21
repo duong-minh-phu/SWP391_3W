@@ -311,8 +311,8 @@ public class PackageDao {
 
     public List<MealsByPackage> getMealByPackage(String package_id) {
         List<MealsByPackage> list = new ArrayList<>();
-        String sql = "select b.product_id,b.product_describe,b.product_price,b.price,b.img,c.category_name,b.product_name,b.promotion "
-                + "from (select hp.product_id,t.product_describe,t.product_price,hp.price,t.img,t.category_id,t.product_name,hp.promotion \n"
+        String sql = "select b.product_id,b.product_describe,b.product_price,b.price,b.img,c.category_name,b.product_name,b.promotion,b.size\n"
+                + "from (select hp.product_id,t.product_describe,t.product_price,hp.price,t.img,t.category_id,t.product_name,hp.promotion,t.size\n"
                 + "from (select product_id,p.price,p.promotion from Package p inner join ProductInPackage o on p.package_id = o.package_id \n"
                 + "Where p.package_id = ?) as hp inner join Product t\n"
                 + "on hp.product_id=t.product_id) as b inner join category c on b.category_id=c.category_id";
@@ -331,6 +331,7 @@ public class PackageDao {
                 pk.setCategoryName(rs.getString(6));
                 pk.setProductName(rs.getString(7));
                 pk.setPromotion(rs.getInt(8));
+                pk.setQuantity(rs.getString(9));
                 list.add(pk);
             }
         } catch (Exception e) {

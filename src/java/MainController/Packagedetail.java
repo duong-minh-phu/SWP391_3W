@@ -12,6 +12,7 @@ import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
 import dto.MealsByPackage;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -76,6 +77,11 @@ public class Packagedetail extends HttpServlet {
                 price += el.getProductPrice();
                 promotion = el.getPromotion();
             }
+            List<String> list= new ArrayList<>();
+            for (MealsByPackage a : mealsByPackage) {                
+                list.add(a.getQuantity());
+            }
+            request.setAttribute("quantity", list);
             request.setAttribute("promotion", promotion);
             request.setAttribute("PriceAllMeals", price);
 

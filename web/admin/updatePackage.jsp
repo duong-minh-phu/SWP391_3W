@@ -20,6 +20,19 @@
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
 
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
         <script>
 
             function readURL(input, thumbimage) {
@@ -188,7 +201,6 @@
                     <div class="tile">
                         <h3 class="tile-title">Thông tin Package</h3>
                         <div class="tile-body">
-
                             <form class="row" action="MainController?action=updateproduct" method="Post" enctype="multipart/form-data">
                                 <input type="hidden" id="package-id" name="package_id" value="${PackageData.id}">
                                 <div class="form-group col-md-3">
@@ -197,9 +209,15 @@
                                 </div>
                                 <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
                                     <c:forEach items="${ProductData}" var="prod">
-                                        <option value="${prod.product_id}" ${prod.selected ? 'selected' : ''}>${prod.product_name}</option>
+                                        <option  value="${prod.product_id}">${prod.product_name} </option>
                                     </c:forEach>
                                 </select>
+                                <!--                                <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
+                                <c:forEach items="${ProductData}" var="prod">
+                                    <c:set var="isSelected" value="${selectedProducts.contains(prod.product_id)}" />
+                                    <option value="${prod.product_id}" ${isSelected ? 'selected' : ''}>${prod.product_name}</option>
+                                </c:forEach>
+                            </select>-->
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Giá bán</label>
                                     <input class="form-control" name="update_price" type="number" value="${PackageData.price}">
@@ -208,10 +226,10 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="update_quantity" type="number" value="${PackageData.quantity}">
                                 </div>
-                                <div class="form-group col-md-3">
+<!--                                <div class="form-group col-md-3">
                                     <label class="control-label">khối lượng</label>
                                     <input class="form-control" name="size" type="text"required="" value="${PackageData.size}">
-                                </div>                               
+                                </div>                               -->
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Khuyến mãi</label>
                                     <input class="form-control" name="size" type="text"required="" value="${PackageData.promotion}">
@@ -236,9 +254,9 @@
                                     <label class="control-label">Mô tả sản phẩm</label>
                                     <textarea class="form-control" name="update_describe" id="describe" >${PackageData.description}</textarea>
                                 </div>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
+                                <button class="btn btn-success" type="submit">Lưu lại</button>
                                 &nbsp;
-                                <a class="btn btn-cancel" href="Productmanager">Hủy bỏ</a>
+                                <a class="btn btn-danger" href="Productmanager">Hủy bỏ</a>
                             </form>
                         </div>
 
@@ -246,37 +264,78 @@
                 </div>
             </div>
         </main>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var popup = document.getElementById("popup");
+                var closeButton = document.querySelector(".close-button");
+
+// Hiển thị popup
+                popup.style.display = "block";
+
+// Xử lý sự kiện khi nhấp vào nút đóng
+                closeButton.addEventListener("click", function () {
+                    popup.style.display = "none";
+                });
+            });
+            $('#multiple-select-field').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false
+            });
+            $(document).ready(function () {
+                $("#validateButton").click(function () {
+                    var inputNumber = parseInt($("#inputNumber").val());
+                    var resultAlert = $("#resultAlert");
+
+                    if (inputNumber >= 1 && inputNumber <= 7) {
+                        resultAlert.html(`
+<div class="alert alert-success fs-6" role="alert">
+    Số hợp lệ.
+</div>`);
+                    } else {
+                        resultAlert.html(`
+<div class="alert alert-danger fs-6" role="alert">
+    Số không hợp lệ.
+</div>`);
+                    }
+
+                    resultAlert.css("display", "block");
+                });
+            });
+        </script>
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
         <script src="admin/js/bootstrap.min.js"></script>
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
         <script>
-                                            const inpFile = document.getElementById("inpFile");
-                                            const loadFile = document.getElementById("loadFile");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewImage = previewContainer.querySelector(".image-preview__image");
-                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                            const object = new ActiveXObject("Scripting.FileSystemObject");
-                                            inpFile.addEventListener("change", function () {
-                                                const file = this.files[0];
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    previewDefaultText.style.display = "none";
-                                                    previewImage.style.display = "block";
-                                                    reader.addEventListener("load", function () {
-                                                        previewImage.setAttribute("src", this.result);
-                                                    });
-                                                    reader.readAsDataURL(file);
-                                                }
-                                            });
+            const inpFile = document.getElementById("inpFile");
+            const loadFile = document.getElementById("loadFile");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewImage = previewContainer.querySelector(".image-preview__image");
+            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+            const object = new ActiveXObject("Scripting.FileSystemObject");
+            inpFile.addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    previewDefaultText.style.display = "none";
+                    previewImage.style.display = "block";
+                    reader.addEventListener("load", function () {
+                        previewImage.setAttribute("src", this.result);
+                    });
+                    reader.readAsDataURL(file);
+                }
+            });
 
 
         </script>
         <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
         <script>
-                                            CKEDITOR.replace('update_describe');
+            CKEDITOR.replace('update_describe');
         </script>
     </body>
 
