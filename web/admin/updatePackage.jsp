@@ -58,8 +58,8 @@
                     $(".filename").text("");
                 });
             })
-            
-            
+
+
         </script>
     </head>
 
@@ -197,7 +197,7 @@
                                 </div>
                                 <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
                                     <c:forEach items="${ProductData}" var="prod">
-                                        <option  value="${prod.product_id}">${prod.product_name} </option>
+                                        <option value="${prod.product_id}" ${prod.selected ? 'selected' : ''}>${prod.product_name}</option>
                                     </c:forEach>
                                 </select>
                                 <div class="form-group  col-md-3">
@@ -216,7 +216,7 @@
                                     <label class="control-label">Khuyến mãi</label>
                                     <input class="form-control" name="size" type="text"required="" value="${PackageData.promotion}">
                                 </div>
-                                
+
                                 <td><img src="${PackageData.img}" alt="" width="100px;"></td>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
@@ -276,8 +276,8 @@
         </script>
         <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
         <script>
-                        CKEDITOR.replace( 'update_describe' );
-                </script>
+                                            CKEDITOR.replace('update_describe');
+        </script>
     </body>
 
 </html>
