@@ -278,12 +278,12 @@ public class productDAO {
         return null;
     }
 
-    public Entity.Category getCategoryByName1(String category_name) {
-        String sql = "SELECT * FROM category WHERE category_name = ?";
+    public Entity.Category getCategoryById(String category_id) {
+        String sql = "SELECT * FROM category WHERE category_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, category_name);
+            ps.setString(1, category_id);
             rs = ps.executeQuery();
 
             if (rs.next()) {

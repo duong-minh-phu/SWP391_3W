@@ -99,10 +99,10 @@
                                     <a class="btn btn-add btn-sm" href="MainController?action=categorydelete" >Danh mục đã xóa</a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="MainController?action=categorydelete" >Package đã xóa</a>
+                                    <a class="btn btn-add btn-sm" href="MainController?action=getDeletePackage" >Package đã xóa</a>
                                 </div>
                             </div>
-                            <form action="MainController?action=updateproduct" method="POST" enctype="multipart/form-data">
+                            <form action="MainController?action=updatePackage" method="POST" enctype="multipart/form-data">
                                 <table class="table table-hover table-bordered" id="sampleTable">
                                     <thead>
                                         <tr>
@@ -130,6 +130,10 @@
                                                 <td>
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.id}"><i
                                                             class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
+                                                            data-package-id="${p.id}">
+                                                        <i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -348,6 +352,19 @@
                     win.print();
                 }
             }
+        </script>
+
+
+        <script>
+            $(document).ready(function () {
+                $(".edit").click(function () {
+                    // Get the product ID from the data-product-id attribute
+                    var package_id = $(this).data("package-id");
+
+                    // Redirect the user to the edit product page
+                    window.location = "MainController?action=getPackageForUpdate&package_id=" + package_id;
+                });
+            });
         </script>
         <!--        <script>
                     // Trigger the click event of the button after the page loads

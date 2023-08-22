@@ -313,6 +313,12 @@ public class MainController extends HttpServlet {
             if (action.equals("sortaPackage")) {
                 url = "SortaPackage";
             }
+            if (action.equals("updatePackage")) {
+                url = "UpdatePackage";
+            }
+            if (action.equals("getPackageForUpdate")) {
+                url = "GetInfoForUpdatePackage";
+            }
             
 
         } catch (Exception ex) {

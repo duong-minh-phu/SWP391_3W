@@ -12,12 +12,12 @@ import Entity.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
 import dto.MealsByPackage;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 /**
  *
@@ -40,10 +40,11 @@ public class Packagedetail extends HttpServlet {
         try {
             String package_id = request.getParameter("package_id");
             PackageDao dao = new PackageDao();
-//            List<Rating> rating = rate.getRatingsByProductID(product_id);
-//            double rating_ave = rate.calculateAverageRating(product_id);
-//            int rating_count = rate.countRatingsByProductId(product_id);
-//            Entity.Product product = c.getProductByID(product_id);
+            ratingDAO rate = new ratingDAO();
+            List<Rating> rating = rate.getRatingsByPackageID(package_id);
+            double rating_ave = rate.calculateAverageRatingPackage(package_id);
+            int rating_count = rate.countRatingsByPackageId(package_id);
+//            Entity.Product product = c.getProductByID(package_id);
 //            if(product==null){
 //                response.sendRedirect("404.jsp");
 //            }
@@ -52,13 +53,12 @@ public class Packagedetail extends HttpServlet {
 //                 request.setAttribute("detail", "Mặt hàng này đã hết xin chọn loại khác!!!");
 //            }
 //            List<Entity.Product> productByCategory = c.getProductByCategory(category_id);
-//            request.setAttribute("RatingAV", rating_ave);
-//            request.setAttribute("RatingCount", rating_count);
-//            request.setAttribute("ReviewData", rating);
+            request.setAttribute("RatingAV", rating_ave);
+            request.setAttribute("RatingCount", rating_count);
+            request.setAttribute("ReviewData", rating);
 //            request.setAttribute("ProductData", product);
 //            request.setAttribute("ProductByCategory", productByCategory);
 //            request.getRequestDispatcher("product-details.jsp").forward(request, response);
-                
             List<Entity.MealPackage> packageByList = dao.getPackageByList(package_id);
             List<MealsByPackage> mealsByPackage = dao.getMealByPackage(package_id);
             Entity.MealPackage mealPackages = dao.getMealPackageByID(package_id);
@@ -71,18 +71,22 @@ public class Packagedetail extends HttpServlet {
             request.setAttribute("MealPackageData", mealPackages);
 
             request.setAttribute("PackageByList", packageByList);
-            float price=0;
-            int promotion=0;
+            float price = 0;
+            int promotion = 0;
             for (MealsByPackage el : mealsByPackage) {
-                price+=el.getProductPrice();
-                promotion=el.getPromotion();
+                price += el.getProductPrice();
+                promotion = el.getPromotion();
             }
+            List<String> list= new ArrayList<>();
+            for (MealsByPackage a : mealsByPackage) {                
+                list.add(a.getQuantity());
+            }
+            request.setAttribute("quantity", list);
             request.setAttribute("promotion", promotion);
             request.setAttribute("PriceAllMeals", price);
-            
+
             request.setAttribute("MealsByPackage", mealsByPackage);
-            
-            
+
             request.getRequestDispatcher("package_detail.jsp").forward(request, response);
 
         } catch (Exception ex) {

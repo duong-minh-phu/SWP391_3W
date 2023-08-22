@@ -91,10 +91,24 @@
                             <form action="MainController?action=addToCart&&product_id=${MealPackageData.id}" method="POST">
                                 <h1>${MealPackageData.name}</h1>
                                 <div class="product_price">
-                                    
-                                    <del class="old_price"> <fmt:formatNumber value="${PriceAllMeals}" type = "currency" currencySymbol="VNĐ"/> </del>
-                                    
-                                    <span class="current_price"><fmt:formatNumber value="${MealPackageData.price}" type = "currency" currencySymbol="VNĐ" /></span><span class="badge badge-danger discount-badge">${promotion}%</span>
+                                    <label>Chất lượng : </label>
+                                    <% double rating = (double) request.getAttribute("RatingAV"); %>
+                                    <% int integerPart = (int) rating; %>
+                                    <% double decimalPart = rating - integerPart; %>
+                                    <% int roundedDecimalPart = (int) Math.round(decimalPart * 10); %>
+                                    <% for (int i = 0; i < integerPart; i++) { %>
+                                    <i class="fa fa-star"></i>
+                                    <% } %>
+                                    <% if (roundedDecimalPart > 0) {%>
+                                    <i class="fa fa-star-half-o"></i>
+                                    <span class="rating_number">( <%= String.format("%.1f", rating)%>)/ ${RatingCount} đánh giá </span>
+                                    <% } else {%>
+                                    <span class="rating_number">( <%= integerPart%>)/ ${RatingCount} đánh giá </span>
+                                    <% } %>
+                                </div>
+                                <div class="product_price">
+                                    <del class="old_price">${PriceAllMeals} VNĐ</del>
+                                    <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
                                 </div> 
                                 <div class="product_desc">
                                     <p>${MealPackageData.description}</p>
@@ -114,7 +128,7 @@
                                 <div class="product_desc">
                                     <h4>Loại hàng trong combo</h4>
                                     <div class="row">
-                                        <c:forEach items="${MealsByPackage}" var="m">
+                                        <c:forEach items="${MealsByPackage}" var="m" varStatus="loop">
                                             <div class="col-lg-4 col-md-4 col-6"> <!-- Sử dụng col-6 để hiển thị 2 sản phẩm trên mỗi hàng -->
                                                 <div class="single_product">
                                                     <div class="product_thumb">
@@ -129,7 +143,8 @@
                                                     </div>
                                                     <div class="product_content grid_content">
                                                         <h1>${m.productName}: ${m.categoryName}</h1>
-                                                        <span class="current_price"><fmt:formatNumber value="${m.productPrice}" type = "currency" currencySymbol="VNĐ"/></span>
+                                                        <span class="current_price">${m.productPrice} VNĐ</span>
+                                                        - <c:out value="${quantity[loop.index - 0]}" />
                                                     </div>
                                                 </div>
                                             </div>
