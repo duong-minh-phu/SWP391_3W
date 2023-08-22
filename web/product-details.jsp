@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -35,7 +35,6 @@
         <!--Offcanvas menu area start-->
         <div class="off_canvars_overlay"></div>
         <jsp:include page="layout/menu.jsp"/>
-
         <!--breadcrumbs area start-->
         <div class="breadcrumbs_area product_bread">
             <div class="container">   
@@ -94,19 +93,20 @@
                                     <p> Người đăng : ${ProductData.company}</p>
                                 </div>-->
                                 <div class="product_price">
-                                    <span class="current_price">${ProductData.product_price} VNĐ</span>
+                                    <fmt:setLocale value ="vi_VN"/>
+                                    <span class="current_price"><fmt:formatNumber value="${ProductData.product_price}" type = "currency" currencySymbol="VNĐ"/></span>
                                 </div>
                                 <div class="product_desc">
                                     <p>${ProductData.product_describe}</p>
                                 </div>
                                 <div class="product_desc">
-                                    <p>nhà cung cấp :${ProductData.company}</p>  
-                                    <p>khối lượng: ${ProductData.size}</p> 
-                                    <p>thời gian sử dụng: ${ProductData.expiry}</p> 
-                                    <p>thuộc dạng sản phẩm: ${ProductData.cate.category_name}</p> 
+                                    <p>Nhà cung cấp: ${ProductData.company}</p>  
+                                    <p>Định lượng: ${ProductData.size}</p> 
+                                    <p>Thời gian sử dụng: ${ProductData.expiry}</p> 
+                                    <p>Thuộc dạng sản phẩm: ${ProductData.cate.category_name}</p> 
                                 </div>                                
                                 <div class="product_desc">
-                                    <p> số lượng hàng còn lại:${ProductData.quantity}</p>
+                                    <p> Số lượng hàng còn lại: ${ProductData.quantity}</p>
                                 </div>
                                 <div class="product_desc">
                                     <p style="color: red; align-content: center;">
@@ -115,9 +115,9 @@
                                 </div>
                                 <c:if test="${(ProductData.quantity) != 0}">                                                                        
                                     <div class="product_variant quantity">
-                                        <label>quantity</label>
+                                        <label>Số lượng</label>
                                         <input min="1" max="${ProductData.quantity}" name="quantity" type="number" value="1">
-                                        <button class="button" type="submit">Thêm vào giở hàng</button>  
+                                        <button class="button" type="submit">Thêm vào giỏ hàng</button>  
                                     </div>
                                 </c:if>
                             </form>
@@ -148,7 +148,7 @@
                                         </div>
                                         <div class="product_content">
                                             <h3><a href="MainController?action=productdetail&product_id=${pc.product_id}">${pc.product_name}</a></h3>
-                                            <span class="current_price">${pc.product_price}</span>
+                                            <span class="current_price"><fmt:formatNumber value="${pc.product_price}" type = "currency" currencySymbol="VNĐ"/></span>
                                         </div>
                                     </div>
                                 </div>

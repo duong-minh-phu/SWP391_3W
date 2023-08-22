@@ -28,6 +28,7 @@
     <body>
 
         <div class="off_canvars_overlay"></div>
+        <fmt:setLocale value ="vi_VN"/>
         <jsp:include page="layout/menu.jsp"/>
         <!--breadcrumbs area start-->
         <div class="breadcrumbs_area other_bread">
@@ -53,6 +54,7 @@
                             <div class="table_desc">
                                 <div class="cart_page table-responsive">
                                     <table>
+                                        
                                         <thead>
                                             <tr>
                                                 <th>Ảnh</th>
@@ -68,7 +70,7 @@
                                                     <td><img src="${d.img}" alt="" width="100px;"></td>
                                                     <td>${d.product_name}</td>                                            
                                                     <td>${d.quantity}</td>
-                                                    <td>${d.price}</td>
+                                                    <td><fmt:formatNumber value="${d.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
                                                 </tr>
                                             </c:forEach>
@@ -77,16 +79,16 @@
                                                     <td><img src="${p.img}" alt="" width="100px;"></td>
                                                     <td>${p.product_name}</td>                                            
                                                     <td>${p.quantity}</td>
-                                                    <td>${p.price}</td>
+                                                    <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
                                                 </tr>
                                             </c:forEach>
                                                 <tr>
                                         <th></th>
                                         <th></th>
-                                        <th>Phí ship</th>
+                                        <th>Phí vận chuyển</th>
                                         <th></th>
-                                        <td><strong>30000</strong></td>
+                                        <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                     </tr>
                                         </tbody>
                                     </table>   

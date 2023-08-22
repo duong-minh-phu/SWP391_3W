@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +27,7 @@
 
     <body onload="time()" class="app sidebar-mini rtl">
         <!-- Navbar-->
+        <fmt:setLocale value ="vi_VN"/>
         <header class="app-header">
             <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
                                             aria-label="Hide Sidebar"></a>
@@ -104,7 +106,7 @@
                                 <table class="table table-hover table-bordered" id="sampleTable">
                                     <thead>
                                         <tr>
-                                            <th>ID Package</th>
+<!--                                            <th>ID Package</th>-->
                                             <th>Tên Package</th>
                                             <th class="quantity-column">Số lượng package</th>
                                             <th class="quantity-column">Giá </th>
@@ -117,10 +119,10 @@
                                     <tbody>
                                         <c:forEach items="${PackageData}" var="p">
                                             <tr>
-                                                <td>${p.id}</td>
+<!--                                                <td></td>-->
                                                 <td>${p.name}</td>
                                                 <td>${p.quantity}</td>
-                                                <td>${p.price}</td>
+                                                <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
                                                 <td>${p.delivery_date}</td>
@@ -137,7 +139,7 @@
                                                 <td>${p.id}</td>
                                                 <td>${p.name}</td>
                                                 <td>${p.quantity}</td>
-                                                <td>${p.price}</td>
+                                                <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
                                                 <td>${p.delivery_date}</td>

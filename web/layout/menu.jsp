@@ -160,7 +160,7 @@
                         <div class="logo" style="display: flex; align-items: center">
                             <a href="home"><img 
                                     style ="border-radius: 50%; border: 10px solid dark; margin-right: 10px "
-                                    class="imglogo" src="https://top10tphcm.com/wp-content/uploads/2023/02/ga-dep-nhat-17.jpg" alt="logo"></a>
+                                    class="imglogo" src="https://i.imgur.com/QDlFrYB.png" alt="logo"></a>
                                     <h3 href="home" style="font-weight: bold">Fhicken Shop</h3>
                         </div>
                     </div>

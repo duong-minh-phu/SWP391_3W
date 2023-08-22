@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -79,6 +79,7 @@
                                 </div>
                             </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
+                                <fmt:setLocale value ="vi_VN"/>
                                 <thead>
                                     <tr>
                                         <th>Ảnh</th>
@@ -96,7 +97,7 @@
 <!--                                            <td>${d.product_id}</td>-->
                                             <td>${d.product_name}</td>                                            
                                             <td>${d.quantity}</td>
-                                            <td>${d.price}</td>                                          
+                                            <td><fmt:formatNumber value="${d.price}" type = "currency" currencySymbol="VNĐ"/></td>                                          
                                         </tr>
                                     </c:forEach>
                                         <c:forEach items="${Detail_package}" var="p">
@@ -105,7 +106,7 @@
 <!--                                            <td>${p.product_id}</td>-->
                                             <td>${p.product_name}</td>                                            
                                             <td>${p.quantity}</td>
-                                            <td>${p.price}</td>                                          
+                                            <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>                                          
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -113,7 +114,7 @@
                                         <th></th>
                                         <th>Phí ship</th>
                                         <th></th>
-                                        <td><strong>30000</strong></td>
+                                        <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                     </tr>
                             </table>
                         </div>

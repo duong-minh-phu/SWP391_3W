@@ -5,7 +5,7 @@
 --%>
 
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -99,8 +99,9 @@
                                             </div>
 
                                             <div class="product_content grid_content">
-                                                <h3><a href="MainController?action=packagedetail&package_id=${p.id}">${p.name}</a></h3>
-                                                <span class="current_price">${p.price} VNĐ</span>
+                                              <fmt:setLocale value ="vi_VN"/>
+                                                <h3><a href="MainController?action=packagedetail&package_id=${p.id}">${p.name}</a></h3>                                             
+                                                <span class="current_price"><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></span>
                                             </div>
                                         </div>
                                     </div>

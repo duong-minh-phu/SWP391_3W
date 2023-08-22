@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,18 +105,18 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Thông tin</th>
-                                            <th>Số lượng</th>                                            
-                                            
+                                            <th>Số lượng</th>                                                                                       
                                             <th>Ảnh</th>
                                             <th>Chức năng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${ProductData}" var="p">
-                                            <tr>
+                                            <tr >
+                                                <fmt:setLocale value ="vi_VN"/>
                                                 <td>${p.cate.category_name}</td>
                                                 <td>${p.product_name}</td>
-                                                <td>${p.product_price}</td>
+                                                <td style="width: 100px"><fmt:formatNumber value="${p.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.product_describe}</td>
                                                 <td>${p.quantity}</td>                                                
                                                 
@@ -207,7 +208,7 @@
                                         <tr>
                                             <td>${p.cate.category_name}</td>
                                             <td>${p.product_name}</td>
-                                            <td>${p.product_price}</td>
+                                            <td><fmt:formatNumber value="${p.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                                             <td>${p.product_describe}</td>
                                             <td>${p.quantity}</td>
                                             

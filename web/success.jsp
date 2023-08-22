@@ -61,6 +61,7 @@
     </style>
 
     <div class="container">
+        <fmt:setLocale value ="vi_VN"/>
         <div class="mainsucess" >
         <h1 style="text-align: center;" >Đặt hàng thành công!</h1>
 
@@ -83,15 +84,15 @@
             </tr>
             <tr>
                 <th>Tổng giá trị đơn hàng:</th>
-                <td>${total_payment} VND</td>
+                <td><fmt:formatNumber value="${total_payment}" type = "currency" currencySymbol="VNĐ"/> </td>
             </tr>
             <tr>
                 <th>Phí ship:</th>
-                <td>30000 VND</td>
+                <td><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></td>
             </tr>
             <tr>
                 <th>Tổng đơn hàng:</th>
-                <td>${total_payment + 30000} VND</td>
+                <td><fmt:formatNumber value="${total_payment + 30000}" type = "currency" currencySymbol="VNĐ"/></td>
             </tr>
         </table>
 

@@ -3,6 +3,7 @@
 <%@page import="DAO.billDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -28,7 +29,7 @@
     </head>
 
     <body>
-
+        <fmt:setLocale value ="vi_VN"/>
         <!-- Main Wrapper Start -->
         <!--Offcanvas menu area start-->
         <div class="off_canvars_overlay">
@@ -100,7 +101,7 @@
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
@@ -111,7 +112,7 @@
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
@@ -122,7 +123,7 @@
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
@@ -133,7 +134,7 @@
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
                                             
@@ -143,8 +144,8 @@
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()}</td>
-                                                <td>da huy</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td>Đã hủy</td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
@@ -156,7 +157,7 @@
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
 
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
