@@ -104,7 +104,7 @@
                                 <table class="table table-hover table-bordered" id="sampleTable">
                                     <thead>
                                         <tr>
-                                            <th>ID Package</th>
+                                            <!--<th>ID Package</th>-->
                                             <th>Tên Package</th>
                                             <th class="quantity-column">Số lượng package</th>
                                             <th class="quantity-column">Giá </th>
@@ -117,7 +117,7 @@
                                     <tbody>
                                         <c:forEach items="${PackageData}" var="p">
                                             <tr>
-                                                <td>${p.id}</td>
+                                                <!--<td>${p.id}</td>-->
                                                 <td>${p.name}</td>
                                                 <td>${p.quantity}</td>
                                                 <td>${p.price}</td>
@@ -136,12 +136,12 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-                                        <c:forEach items="${DeletePackageData}" var="p">
+                                        <c:forEach items="${PackageDelete}" var="p">
                                             <tr>
-                                                <td>${p.id}</td>
+                                                <!--<td>${p.id}</td>--> 
                                                 <td>${p.name}</td>
                                                 <td>${p.quantity}</td>
-                                                <td>${p.price}</td>
+                                                <td>${p.price}</td> 
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
                                                 <td>${p.delivery_date}</td>
@@ -331,7 +331,6 @@
                     })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    này
                                     window.location = "MainController?action=recoveryPackage&package_id=" + $(this).attr("value");
                                     swal("Đã Phục hồi thành công !", {
                                     });

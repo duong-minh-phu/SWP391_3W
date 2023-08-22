@@ -104,8 +104,7 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Thông tin</th>
-                                            <th>Số lượng</th>                                            
-                                            
+                                            <th>Số lượng</th>                                                                                        
                                             <th>Ảnh</th>
                                             <th>Chức năng</th>
                                         </tr>
