@@ -138,9 +138,9 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-                                        <c:forEach items="${DeletePackageData}" var="p">
+                                        <c:forEach items="${PackageDelete}" var="p">
                                             <tr>
-                                                <td>${p.id}</td>
+                                                <!--<td>${p.id}</td>--> 
                                                 <td>${p.name}</td>
                                                 <td>${p.quantity}</td>
                                                 <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
@@ -223,7 +223,7 @@
                 background-color: #f8d7da;
                 border-color: #f5c6cb;
             }
-        </style>
+        </style>     
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 var popup = document.getElementById("popup");
@@ -333,7 +333,6 @@
                     })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    này
                                     window.location = "MainController?action=recoveryPackage&package_id=" + $(this).attr("value");
                                     swal("Đã Phục hồi thành công !", {
                                     });

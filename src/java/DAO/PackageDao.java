@@ -82,10 +82,11 @@ public class PackageDao {
 
                 }
             } else {
-                throw new SQLException("Creating user failed, no ID obtained.");
+                throw new SQLException("Creating package failed, no ID obtained.");
             }
 
         } catch (Exception ex) {
+            conn.rollback();
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "InsertPackage sql Fail", ex);
             throw new SQLException("InsertPackage sql fail:" + ex.getMessage());
         }
@@ -105,6 +106,39 @@ public class PackageDao {
         List<MealPackage> listPackage = new ArrayList<MealPackage>();
         try {
             String sql = "SELECT * FROM dbo.Package WHERE Status = 1";
+
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+//            ArrayList<MealPackage> pkList = new ArrayList();
+            while (rs.next()) {
+                MealPackage pk = new MealPackage();
+
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                listPackage.add(pk);
+            }
+            return listPackage;
+        } catch (Exception ex) {
+            Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
+            throw new SQLException("get package sql Fail" + ex.getMessage());
+        }
+//        return null;
+    }
+    public List<MealPackage> getPackagesFalse() throws SQLException {
+        List<MealPackage> listPackage = new ArrayList<MealPackage>();
+        try {
+            String sql = "SELECT * FROM dbo.Package WHERE Status = 0";
 
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -183,12 +217,12 @@ public class PackageDao {
 
     }
 
-    public void RecoveryPackage(int package_id) throws Exception {
-        String sq = "update package set status=1 where product_id = ?";
+    public void RecoveryPackage(String package_id) throws Exception {
+        String sq = "update package set status=1 where package_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sq);
-            ps.setInt(1, package_id);
+            ps.setString(1, package_id);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
@@ -308,13 +342,14 @@ public class PackageDao {
         }
         return list;
     }
-    
+
     public List<Product> getProductInPackage(String package_id) {
         List<Product> listProduct = new ArrayList<>();
         String getProductSql = "SELECT  p.* from dbo.ProductInPackage pip inner join product p on pip.product_id = p.product_id where package_id = ?; ";
         productDAO prodDao = new productDAO();
-        
+
         try {
+
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(getProductSql);
             ps.setString(1, package_id);
@@ -328,10 +363,12 @@ public class PackageDao {
                 product.setProduct_describe(rs.getString(5));
                 product.setQuantity(rs.getInt(6));
                 product.setImg(rs.getString(7));
+
+                listProduct.add(product);
             }
         } catch (Exception e) {
         }
-        return null;
+        return listProduct;
     }
 
     public List<MealsByPackage> getMealByPackage(String package_id) {
@@ -364,8 +401,125 @@ public class PackageDao {
         }
         return list;
     }
-    
-    public void updatePackage(MealPackage updatePackage) {
-        String updateSqlString = "update package set name = ?, price = ?, quantity = ?. img";   
+
+//    String package_name = request.getParameter("package_name");
+//        int quantity = Integer.parseInt(request.getParameter("quantity"));
+////        String describe = request.getParameter("describe");
+//        String describe = new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+//        int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
+//        String[] productIds = request.getParameterValues("product_id_list");
+//        float size = Float.parseFloat(request.getParameter("weight"));
+//        int promotion = Integer.parseInt(request.getParameter("promotion"));
+//        String insertStatus = "";
+    public void updatePackage(MealPackage updatePackage, String[] updateProductIds) throws SQLException {
+
+        PackageDao packageDao = new PackageDao();
+        productDAO proDAO = new productDAO();
+
+        List<Product> oldProductsInPackage = getProductInPackage(updatePackage.getId());
+        List<Product> currentProductsInPackage = new ArrayList<>();
+        List<Product> deleteProducts = new ArrayList<>();
+
+        try {
+            conn = new DBContext().getConnection();
+            for (String productId : updateProductIds) {
+                currentProductsInPackage.add(proDAO.getProductByID(productId));
+            }
+
+            MealPackage oldPackage = packageDao.getMealPackageByID(updatePackage.getId());
+
+            for (Product product : oldProductsInPackage) {
+                if (!currentProductsInPackage.contains(product)) {
+                    deleteProducts.add(product);
+                }
+            }
+            int updateQuantity = updatePackage.getQuantity() - oldPackage.getQuantity();
+
+            for (Product currentProduct : currentProductsInPackage) {
+                if (oldProductsInPackage.contains(currentProduct)) {
+                    if (updateQuantity < 0) {
+                        String updateQuantitySqlString = "UPDATE product SET quantity = quantity + ? WHERE product_id = ?";
+                        conn = new DBContext().getConnection();
+                        ps = conn.prepareStatement(updateQuantitySqlString);
+                        ps.setInt(1, Math.abs(updateQuantity));
+                        ps.setString(2, currentProduct.getProduct_id());
+                        ps.executeUpdate();
+                    } else if (updateQuantity > 0) {
+                        String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
+                        conn = new DBContext().getConnection();
+                        ps = conn.prepareStatement(updateQuantitySqlString);
+                        ps.setInt(1, updateQuantity);
+                        ps.setString(2, currentProduct.getProduct_id());
+                        ps.executeUpdate();
+                    }
+                } else {
+                    String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
+                    ps = conn.prepareStatement(insertProductToPackageSql);
+                    ps.setString(1, currentProduct.getProduct_id());
+                    ps.setString(2, updatePackage.getId());
+
+                    int Result = ps.executeUpdate();
+
+                    if (Result > 0) {
+                        String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
+                        conn = new DBContext().getConnection();
+                        ps = conn.prepareStatement(updateQuantitySqlString);
+                        ps.setInt(1, updatePackage.getQuantity());
+                        ps.setString(2, currentProduct.getProduct_id());
+                        ps.executeUpdate();
+                    } else {
+                        throw new SQLException("insert product to package sql Fail in update");
+                    }
+                }
+            }
+
+            if (!deleteProducts.isEmpty()) {
+                for (Product product : deleteProducts) {
+                    String insertProductToPackageSql = "DELETE FROM dbo.ProductInPackage where product_id = ?";
+                    ps = conn.prepareStatement(insertProductToPackageSql);
+                    ps.setString(1, product.getProduct_id());
+
+                    int Result = ps.executeUpdate();
+
+                    if (Result > 0) {
+                        String updateQuantitySqlString = "UPDATE product SET quantity = quantity + ? WHERE product_id = ?";
+                        conn = new DBContext().getConnection();
+                        ps = conn.prepareStatement(updateQuantitySqlString);
+                        ps.setInt(1, updatePackage.getQuantity());
+                        ps.setString(2, product.getProduct_id());
+                        ps.executeUpdate();
+                    } else {
+                        throw new SQLException("delete product to package sql Fail in update");
+                    }
+                }
+            }
+
+            float price = 0;
+            for (String productId : updateProductIds) {
+                Product addProduct = proDAO.getProductByID(productId);
+                price = price + addProduct.getProduct_price();
+            }
+            float pricePromotion = (price * (100 - updatePackage.getPromotion())) / 100;
+            String updateSqlString = "update package set name = ?, price = ?, quantity = ?, img = ?, size = ?, promotion = ?, description = ? where package_id=? and status=1";
+
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(updateSqlString);
+            ps.setString(1, updatePackage.getName());
+            ps.setFloat(2, pricePromotion);
+            ps.setInt(3, updatePackage.getQuantity());
+            ps.setString(4, updatePackage.getImg());
+            ps.setFloat(5, updatePackage.getSize());
+            ps.setInt(6, updatePackage.getPromotion());
+            ps.setString(7, updatePackage.getDescription());
+            ps.setString(8, updatePackage.getId());
+            ps.executeUpdate();
+
+//            conn.commit();
+        } catch (Exception e) {
+//            conn.rollback();
+            throw new SQLException("Update Package sql fail:" + e.getMessage());
+        } finally {
+//            conn.close();
+        }
     }
 }

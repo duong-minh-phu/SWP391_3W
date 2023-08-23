@@ -200,6 +200,10 @@
         <servlet-name>SortaPackage</servlet-name>
         <servlet-class>MainController.SortaPackage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PackageDelete</servlet-name>
+        <servlet-class>MainController.PackageDelete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -407,6 +411,10 @@
     <servlet-mapping>
         <servlet-name>SortaPackage</servlet-name>
         <url-pattern>/SortaPackage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PackageDelete</servlet-name>
+        <url-pattern>/PackageDelete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

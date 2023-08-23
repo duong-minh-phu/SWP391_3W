@@ -301,9 +301,9 @@ public class MainController extends HttpServlet {
             if (action.equals("recoveryPackage")) {
                 url = "RecoveryPackage";
             }
-            if (action.equals("getDeletePackage")) {
-                url = "RecoveryPackage";
-            }
+//            if (action.equals("getDeletePackage")) {
+//                url = "RecoveryPackage";
+//            }
             if (action.equals("sortlowPackage")) {
                 url = "SortlowPackage";
             }
@@ -319,6 +319,10 @@ public class MainController extends HttpServlet {
             if (action.equals("getPackageForUpdate")) {
                 url = "GetInfoForUpdatePackage";
             }
+            if(action.equals("getDeletePackage")){
+                url="GetDeletePackage";
+            }
+            
             
 
         } catch (Exception ex) {

@@ -52,9 +52,9 @@ public class InsertPackage extends HttpServlet {
 //    private String company;
 //    private String size;
 //    private  String expiry;
-        String package_name = request.getParameter("package_name");
+//        String package_name = request.getParameter("package_name");
+        String package_name=new String(request.getParameter("package_name").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        String describe = request.getParameter("describe");
         String describe=new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
         int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
         String[] productIds = request.getParameterValues("product_id_list");

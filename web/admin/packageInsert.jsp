@@ -245,14 +245,14 @@
                                 <label class="control-label">Số lượng</label>
                                 <input class="form-control" name="quantity" type="number"required="">
                             </div>
-<!--                            <div class="form-group  col-md-3">
+                            <div class="form-group  col-md-3">
                                 <label class="control-label">Số ngày giao</label>
                                 <input class="form-control" name="delivery_date" type="number" min="1" max="7" id="inputNumber">
-                            </div>-->
-<!--                            <div class="form-group  col-md-3">
+                            </div>
+                            <div class="form-group  col-md-3">
                                 <label class="control-label">Khối lượng</label>
                                 <input class="form-control" name="weight"required="">
-                            </div>-->
+                            </div>
                                 <div class="form-group  col-md-3">
                                 <label class="control-label">Khuyến mãi</label>
                                 <input class="form-control" name="promotion"required="">

@@ -3,6 +3,35 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
+        <!--        <title>Thêm sản phẩm | Quản trị Admin</title>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                 Main CSS
+                <link rel="stylesheet" type="text/css" href="admin/css/main.css">
+                 Font-icon css
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+                 or 
+                <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+                <link rel="stylesheet" type="text/css"
+                      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+        
+        
+                 Styles 
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+                 Or for RTL support 
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+        
+                 Scripts 
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>-->
         <title>Thêm sản phẩm | Quản trị Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +50,8 @@
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
 
 
+
+
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
@@ -32,7 +63,6 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
-
         <script>
 
             function readURL(input, thumbimage) {
@@ -201,17 +231,12 @@
                     <div class="tile">
                         <h3 class="tile-title">Thông tin Package</h3>
                         <div class="tile-body">
-                            <form class="row" action="MainController?action=updateproduct" method="Post" enctype="multipart/form-data">
+                            <form class="row" action="MainController?action=updatePackage" method="Post" enctype="multipart/form-data">
                                 <input type="hidden" id="package-id" name="package_id" value="${PackageData.id}">
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Tên Package</label>
-                                    <input class="form-control" name="update_name" type="text" value="${PackageData.name}">
+                                    <input class="form-control" name="package_name" type="text" value="${PackageData.name}">
                                 </div>
-                                <!--                                <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
-                                <c:forEach items="${ProductData}" var="prod">
-                                    <option  value="${prod.product_id}">${prod.product_name} </option>
-                                </c:forEach>
-                            </select>-->
                                 <select name="product_id_list" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
                                     <c:forEach items="${ProductData}" var="prod">
                                         <c:set var="isSelected" value="${selectedProducts.contains(prod.product_id)}" />
@@ -219,12 +244,16 @@
                                     </c:forEach>
                                 </select>
                                 <div class="form-group  col-md-3">
-                                    <label class="control-label">Giá bán</label>
-                                    <input class="form-control" name="update_price" type="number" value="${PackageData.price}">
+                                    <label class="control-label">Số lượng</label>
+                                    <input class="form-control" name="quantity" type="number" value="${PackageData.quantity}">
                                 </div>
                                 <div class="form-group  col-md-3">
-                                    <label class="control-label">Số lượng</label>
-                                    <input class="form-control" name="update_quantity" type="number" value="${PackageData.quantity}">
+                                    <label class="control-label">Số ngày giao</label>
+                                    <input class="form-control" name="delivery_date" type="number" value="${PackageData.delivery_date}">
+                                </div>
+                                <div class="form-group  col-md-3">
+                                    <label class="control-label">Khối lượng</label>
+                                    <input class="form-control" name="weight" type="number" value="${PackageData.delivery_date}">
                                 </div>
                                 <!--                                <div class="form-group col-md-3">
                                                                     <label class="control-label">khối lượng</label>
@@ -232,14 +261,14 @@
                                                                 </div>                               -->
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Khuyến mãi</label>
-                                    <input class="form-control" name="size" type="text"required="" value="${PackageData.promotion}">
+                                    <input class="form-control" name="promotion" type="text"required="" value="${PackageData.promotion}">
                                 </div>
 
-                                <td><img src="${PackageData.img}" alt="" width="100px;"></td>
+                                <td><img src="${PackageData.img}" alt="" width="100px" max-height="100px"></td>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="updatess_img" onchange="readURL(this);" />
+                                        <input type="file" id="uploadfile" name="package_img" value="${PackageData.img}" onchange="readURL(this);" />
                                     </div>
                                     <div id="thumbbox">
                                         <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
@@ -252,7 +281,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="update_describe" id="describe" >${PackageData.description}</textarea>
+                                    <textarea class="form-control" name="describe" id="describe" >${PackageData.description}</textarea>
                                 </div>
                                 <button class="btn btn-success" type="submit">Lưu lại</button>
                                 &nbsp;
@@ -264,6 +293,85 @@
                 </div>
             </div>
         </main>
+
+        <% if (request.getAttribute("successMessage") != null) { %>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <div class="alert alert-success">
+                    <% out.println(request.getAttribute("successMessage")); %>
+                </div>
+            </div>
+        </div>
+        <% request.removeAttribute("successMessage"); %>
+        <% } else if (request.getAttribute("failMessage") != null) { %>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <div class="alert alert-danger">
+                    <% out.println(request.getAttribute("failMessage")); %>
+                </div>
+            </div>
+        </div>
+        <% request.removeAttribute("failMessage"); %>
+        <%}%>
+
+        <style>
+            .popup {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+            }
+
+            .popup-content {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                width: 70%;
+                max-width: 500px;
+                background-color: #fefefe;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .close-button {
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+                background-color: red;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+            }
+
+            .alert {
+                padding: 15px;
+                margin-bottom: 1px;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+
+            .alert-success {
+                color: #155724;
+                background-color: #d4edda;
+                border-color: #c3e6cb;
+            }
+        </style>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -335,7 +443,7 @@
         </script>
         <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
         <script>
-            CKEDITOR.replace('update_describe');
+            CKEDITOR.replace('describe');
         </script>
     </body>
 
