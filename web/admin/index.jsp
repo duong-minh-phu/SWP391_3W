@@ -1,5 +1,6 @@
 
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -25,6 +26,7 @@
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
+        <fmt:setLocale value ="vi_VN"/>
         <!-- Navbar-->
         <header class="app-header">
             <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
@@ -161,7 +163,7 @@
                                                     <td>${b.phone}</td>
                                                     <td>${b.address}</td>
                                                     <td>${b.date}</td>
-                                                    <td>${b.total +30000}</td>
+                                                    <td><fmt:formatNumber value="${b.total +30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                     <td><span class="badge bg-success">${b.payment}</span></td>                                  
                                                     <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="MainController?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
                                                 </tr>

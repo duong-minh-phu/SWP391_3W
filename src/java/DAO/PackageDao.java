@@ -422,7 +422,6 @@ public class PackageDao {
 
         try {
             conn = new DBContext().getConnection();
-//            conn.setAutoCommit(false);
             for (String productId : updateProductIds) {
                 currentProductsInPackage.add(proDAO.getProductByID(productId));
             }
@@ -442,7 +441,7 @@ public class PackageDao {
                         String updateQuantitySqlString = "UPDATE product SET quantity = quantity + ? WHERE product_id = ?";
                         conn = new DBContext().getConnection();
                         ps = conn.prepareStatement(updateQuantitySqlString);
-                        ps.setInt(1, updateQuantity);
+                        ps.setInt(1, Math.abs(updateQuantity));
                         ps.setString(2, currentProduct.getProduct_id());
                         ps.executeUpdate();
                     } else if (updateQuantity > 0) {

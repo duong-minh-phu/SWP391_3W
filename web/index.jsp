@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,9 +33,9 @@
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="slider_content content_one">
-                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 50px;
                                     margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
-                                    ">Welcome to Fhicken Shop</h2>
+                                    ">Chào Mừng Bạn Đến Với Fhicken Shop</h2>
                                 <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
@@ -48,9 +48,9 @@
                         <div class="col-12">
                             <div class="slider_content content_two">
 
-                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 50px;
                                     margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
-                                    ">Welcome to Fhicken Shop</h2>
+                                    ">Chào Mừng Bạn Đến Với Fhicken Shop</h2>
                                 <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
@@ -63,9 +63,9 @@
                         <div class="col-12">
                             <div class="slider_content content_three">
 
-                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 60px;
+                                <h2 style="color: #FAA31B; font-weight: bold; font-size: 50px;
                                     margin-bottom: 50px; text-shadow: 2px 2px 5px #FFFFE0
-                                    ">Welcome to Fhicken Shop</h2>
+                                    ">Chào Mừng Bạn Đến Với Fhicken Shop</h2>
                                 <a href="MainController?action=productall">Discover Now</a>
                             </div>    
                         </div>
@@ -100,7 +100,8 @@
                                         </div>
                                         <div class="product_content">
                                             <h3><a href="MainController?action=productdetail&product_id=${top10.product_id}">${top10.product_name}</a></h3>
-                                            <span class="current_price">${top10.product_price} VNĐ</span>
+                                            <fmt:setLocale value ="vi_VN"/>
+                                            <span class="current_price"><fmt:formatNumber value="${top10.product_price}" type = "currency" currencySymbol="VNĐ"/></span>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +139,7 @@
                                         </div>
                                         <div class="product_content">
                                             <h3><a href="MainController?action=productdetail&product_id=${td.product_id}">${td.product_name}</a></h3>
-                                            <span class="current_price">${td.product_price} VNĐ</span>
+                                            <span class="current_price"><fmt:formatNumber value="${td.product_price}" type = "currency" currencySymbol="VNĐ"/></span>
                                         </div>
                                     </div>
                                 </div>

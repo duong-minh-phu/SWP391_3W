@@ -59,7 +59,7 @@
                 <li><a class="app-menu__item" href="MainController?action=customermanager1"><i class='app-menu__icon bx bx-user-voice'></i><span
                             class="app-menu__label">Quản lý khách hàng đã xóa</span></a></li>
                             <li><a class="app-menu__item" href="MainController?action=money"><i class='app-menu__icon bx bx-dollar'></i><span
-                            class="app-menu__label">thống kê</span></a></li>
+                            class="app-menu__label">Thống kê</span></a></li>
             </ul>
         </aside>
          <main class="app-content">
@@ -166,7 +166,7 @@
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June','July','August','Sep','Oc','Nov','Dec'],
+      labels: ['Thng 1', 'Thg 2', 'Thg 3', 'Thg 4', 'Thg 5', 'Thg 6','Thg 7','Thg 8','Thg 9','THg 10','Thg 11','Thg 12'],
       datasets: [{
         label: '# of Votes',
         data: [${requestScope.monney1}, ${requestScope.monney2}, ${requestScope.monney3}, ${requestScope.monney4}, ${requestScope.monney5}, ${requestScope.monney6},${requestScope.monney7},${requestScope.monney8},${requestScope.monney9},${requestScope.monney10},${requestScope.monney11},${requestScope.monney12}],

@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
                 <li><a class="app-menu__item" href="MainController?action=customermanager1"><i class='app-menu__icon bx bx-user-voice'></i><span
                             class="app-menu__label">Quản lý khách hàng đã xóa</span></a></li>
                             <li><a class="app-menu__item" href="MainController?action=money"><i class='app-menu__icon bx bx-dollar'></i><span
-                            class="app-menu__label">thống kê</span></a></li>
+                            class="app-menu__label">Thống kê</span></a></li>
 <!--                <li><a class="app-menu__item" href="Productmanager"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 <li><a class="app-menu__item" href="MainController?action=blogmanagement"><i
@@ -134,7 +134,7 @@
               <div class="info">
                 <h4>đơn bị hủy</h4>
                 <p><b>${requestScope.bill11} đơn</b></p>
-                <p class="info-tong">số đơn bị hủy</p>
+                <p class="info-tong">Số đơn bị hủy</p>
               </div>
             </div>
           </div>
@@ -143,7 +143,8 @@
                 <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
                     <div class="info">
                         <h4>Tổng thu nhập</h4>
-                        <p><b>${requestScope.moneymonth} đ</b></p>
+                        <fmt:setLocale value ="vi_VN"/>
+                        <p><b><fmt:formatNumber value="${requestScope.moneymonth}" type = "currency" currencySymbol="VNĐ"/></b></p>
                     </div>
                 </div>
             </div>
@@ -151,9 +152,10 @@
            
            <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">sản phẩm mới</h3>
+                <h3 class="tile-title">Sản phẩm mới</h3>
               <div>
                 <table class="table table-bordered">
+                    <fmt:setLocale value ="vi_VN"/>
                   <thead>
                     <tr>
                       <th>ID sản phẩm </th>
@@ -167,7 +169,7 @@
                     <tr>
                       <td>${top.product_id}</td>
                         <td>${top.product_name}</td>
-                        <td>${top.product_price}đ</td>
+                        <td><fmt:formatNumber value="${top.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                     </tr>
                     </c:forEach>
                   </tbody>
@@ -196,7 +198,7 @@
                       <tr>
                         <td>${top10.product_id}</td>
                         <td>${top10.product_name}</td>
-                        <td>${top10.product_price}đ</td>
+                        <td><fmt:formatNumber value="${top10.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                         
                       </tr>
                       </c:forEach>
@@ -240,7 +242,7 @@
       <p><b>Copyright
           <script type="text/javascript">
             document.write(new Date().getFullYear());
-          </script> Phần mềm quản lý bán hàng 
+          </script>
         </b></p>
     </div>
   </main>

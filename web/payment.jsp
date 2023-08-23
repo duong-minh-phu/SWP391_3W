@@ -28,6 +28,7 @@
     <!--Offcanvas menu area start-->
     <div class="off_canvars_overlay"></div>
     <jsp:include page="layout/menu.jsp" />
+    <fmt:setLocale value ="vi_VN"/>
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area other_bread">
         <div class="container">
@@ -110,10 +111,10 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>ảnh</th>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>Ảnh</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng cộng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,19 +125,21 @@
                                                 <td>${i.key.product_name}</td>
                                                 <td>${i.value}</td>
 <!--                                                <td>${i.key.product_price * i.value}</td>-->
-                                                <td id ="demo3${i.key.product_id}" class="product_total"> <fmt:formatNumber pattern="##########" value="${i.key.product_price * i.value }"/></td>
+                                                
+                                                <td id ="demo3${i.key.product_id}" class="product_total"> <fmt:formatNumber value="${i.key.product_price * i.value }" type = "currency" currencySymbol="VNĐ"/></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                     <c:if test="${sessionScope.cart != null}">
                                         <tfoot>
                                             <tr>
-                                                <th>Phí ship</th>
-                                                <td><strong>30000</strong></td>
+                                                <th>Phí vận chuyển</th>
+                                                <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                             </tr>
                                             <tr class="order_total">
                                                 <th>Tổng đơn</th>
-                                                <td><strong>${sessionScope.cart.getTotalMoney() + 30000}</strong></td>
+                                                
+                                                <td><strong><fmt:formatNumber value="${sessionScope.cart.getTotalMoney() + 30000}" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                             </tr>
                                         </tfoot>
                                     </c:if>

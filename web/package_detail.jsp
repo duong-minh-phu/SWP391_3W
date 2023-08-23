@@ -4,6 +4,7 @@
     Author     : HoangPhatNguyen
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -40,7 +41,7 @@
         <!--Offcanvas menu area start-->
         <div class="off_canvars_overlay"></div>
         <jsp:include page="layout/menu.jsp"/>
-
+        <fmt:setLocale value ="vi_VN"/>
         <!--breadcrumbs area start-->
         <div class="breadcrumbs_area product_bread">
             <div class="container">   
@@ -106,8 +107,8 @@
                                     <% } %>
                                 </div>
                                 <div class="product_price">
-                                    <del class="old_price">${PriceAllMeals} VNĐ</del>
-                                    <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
+                                    <del class="old_price"><fmt:formatNumber value="${PriceAllMeals}" type = "currency" currencySymbol="VNĐ"/></del>
+                                    <span class="current_price"><fmt:formatNumber value="${MealPackageData.price}" type = "currency" currencySymbol="VNĐ"/></span><span class="badge badge-danger discount-badge">${promotion}%</span>
                                 </div> 
                                 <div class="product_desc">
                                     <p>${MealPackageData.description}</p>
@@ -133,7 +134,7 @@
                                                     <div class="product_thumb">
                                                         <a class="primary_img" href="MainController?action=productdetail&product_id=${m.id}">
                                                             <div class="img-wrapper">
-                                                                <img src="${m.img}" alt="${m.productName}" class="img-fluid img-thumbnail">
+                                                                <img style="width: 100px; height: 100px; align-items: center; justify-content: space-between" src="${m.img}" alt="${m.productName}" class="img-fluid img-thumbnail">
                                                             </div>
                                                         </a>
                                                         <div class="quick_button">
@@ -142,22 +143,22 @@
                                                     </div>
                                                     <div class="product_content grid_content">
                                                         <h1>${m.productName}: ${m.categoryName}</h1>
-                                                        <span class="current_price">${m.productPrice} VNĐ</span>
+                                                        <span class="current_price"><fmt:formatNumber value="${m.productPrice}" type = "currency" currencySymbol="VNĐ"/></span>
                                                         - <c:out value="${quantity[loop.index - 0]}" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </c:forEach>
                                     </div>
-                                    <!--                                    <div class="product_price">
-                                                                            <span class="current_price">${quantity} VNĐ</span>
-                                                                        </div>
-                                                                        <div class="product_desc">
-                                                                            <p>${MealPackageData.description}</p>
-                                                                        </div>
-                                                                        <div class="product_desc">
-                                                                            <p> Số lượng hàng còn lại:${MealPackageData.quantity}</p>
-                                                                        </div>-->
+                                    <div class="product_price">
+                                        <span class="current_price"><fmt:formatNumber value="${MealPackageData.price}" type = "currency" currencySymbol="VNĐ"/></span>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p>${MealPackageData.description}</p>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p> Số lượng hàng còn lại: ${MealPackageData.quantity}</p>
+                                    </div>
                                     <div class="product_desc">
                                         <p style="color: red; align-content: center;">
                                             ${requestScope.detail}
@@ -200,7 +201,7 @@
                                     </div>
                                     <div class="product_content">
                                         <h3><a href="MainController?action=packagedetail&package_id=${pc.id}">${pc.name}</a></h3>
-                                        <span class="current_price">${pc.price}</span>
+                                        <span class="current_price"><fmt:formatNumber value="${pc.price}" type = "currency" currencySymbol="VNĐ"/></span>
                                     </div>
                                 </div>
                             </div>

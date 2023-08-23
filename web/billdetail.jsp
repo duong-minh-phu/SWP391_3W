@@ -28,6 +28,7 @@
     <body>
         <fmt:setLocale value ="vi_VN"/>
         <div class="off_canvars_overlay"></div>
+        <fmt:setLocale value ="vi_VN"/>
         <jsp:include page="layout/menu.jsp"/>
         <!--breadcrumbs area start-->
         <div class="breadcrumbs_area other_bread">
@@ -54,6 +55,7 @@
                             <div class="table_desc">
                                 <div class="cart_page table-responsive">
                                     <table>
+
                                         <thead>
                                             <tr>
                                                 <th>Ảnh</th>
@@ -85,9 +87,9 @@
                                             <tr>
                                                 <th></th>
                                                 <th></th>
-                                                <th>Phí ship</th>
+                                                <th>Phí vận chuyển</th>
                                                 <th></th>
-                                                <td><strong>30000</strong></td>
+                                                <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                             </tr>
                                         </tbody>
                                     </table>   

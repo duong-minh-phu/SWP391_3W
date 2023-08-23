@@ -85,8 +85,8 @@
                                         <tr>
                                             <th>Người dùng</th>
                                             <th>Tên sản phẩm</th>
-                                            <th>Rate</th>
-                                            <th>Comment</th>
+                                            <th>Đánh giá</th>
+                                            <th>Bình luận</th>
                                             <th>Ngày</th>
                                         </tr>
                                     </thead>
