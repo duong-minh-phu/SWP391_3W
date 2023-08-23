@@ -45,37 +45,37 @@ public class UpdatePackage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         productDAO productDAO = new productDAO();
+        PackageDao packageDao = new PackageDao();
 
-//    private String company;
-//    private String size;
-//    private  String expiry;
-        String package_name = request.getParameter("package_name");
+        String package_name = new String(request.getParameter("package_name").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        String describe = request.getParameter("describe");
         String describe = new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
         String[] productIds = request.getParameterValues("product_id_list");
         float size = Float.parseFloat(request.getParameter("weight"));
         int promotion = Integer.parseInt(request.getParameter("promotion"));
-        String insertStatus = "";
+        String id = request.getParameter("package_id");
 
+        
+
+        String updateStatus = "";
         try {
+            MealPackage oldPackage = packageDao.getMealPackageByID(id);
+            
             for (String productId : productIds) {
                 Product checkProduct = productDAO.getProductByID(productId);
                 if (checkProduct == null) {
-                    insertStatus = MEAL_ID_ERROR_STATUS;
-                    response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
-                    return;
-                } else if (checkProduct.getQuantity() - quantity < 0) {
-                    insertStatus = QUANTITY_ERROR_STATUS;
-                    response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
-                    return;
+                    updateStatus = MEAL_ID_ERROR_STATUS;
+                    response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
                 }
+//                } else if (oldPackage.getQuantity() < quantity) {
+//                    if (checkProduct.getQuantity() - quantity < 0) {
+//                        updateStatus = QUANTITY_ERROR_STATUS;
+//                        response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
+//                    }
+//                }
             }
 
-//            String product_name=new String(product_name1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-//            String product_describe=new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-            // Chuyển đổi java.util.Date thành java.sql.Date
             Part filePart = request.getPart("package_img");
             System.out.println(filePart);
             String realPath = request.getServletContext().getRealPath("/images/");
@@ -83,7 +83,24 @@ public class UpdatePackage extends HttpServlet {
             String fileName = filePart.getSubmittedFileName(); // Lấy tên tệp ảnh gốc
             System.out.println(fileName);
 
-            if (fileName != null) {
+            if (fileName.equals("")) {
+                MealPackage newPackage = new MealPackage();
+
+                newPackage.setId(id);
+                newPackage.setName(package_name);
+                newPackage.setPromotion(promotion);
+                newPackage.setQuantity(quantity);
+                newPackage.setSize(size);
+                newPackage.setStatus(1);
+                newPackage.setDescription(describe);
+                newPackage.setImg(realPath);
+
+                packageDao.updatePackage(newPackage, productIds);
+
+                updateStatus = SUCCESS_STATUS;
+                response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
+                return;
+            } else {
                 String destinationPath = realPath + fileName;
                 System.out.println(destinationPath);
 
@@ -92,20 +109,28 @@ public class UpdatePackage extends HttpServlet {
                 String imagePath = "images/" + fileName;
                 System.out.println(imagePath);
 
-                PackageDao packageDao = new PackageDao();
-                MealPackage newPackage = new MealPackage(describe, package_name, quantity, imagePath, 1, delivery_date, size, promotion);
+                MealPackage newPackage = new MealPackage();
 
-                packageDao.insertPackage(newPackage, productIds);
+                newPackage.setId(id);
+                newPackage.setId(id);
+                newPackage.setName(package_name);
+                newPackage.setPromotion(promotion);
+                newPackage.setQuantity(quantity);
+                newPackage.setSize(size);
+                newPackage.setStatus(1);
+                newPackage.setDescription(describe);
+                newPackage.setImg(imagePath);
 
-//                request.getSession().setAttribute("successMessage", "Đã thêm package thành công");
-                insertStatus = SUCCESS_STATUS;
-                response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
+                packageDao.updatePackage(newPackage, productIds);
 
-//                request.getRequestDispatcher("MainController?action=packageManage").forward(request, response);
+                updateStatus = SUCCESS_STATUS;
+                response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
+
             }
-            if (fileName == null) {
-                response.sendRedirect("404.jsp");
-            }
+
+//            if (fileName == null) {
+//                response.sendRedirect("404.jsp");
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();
