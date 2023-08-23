@@ -40,6 +40,9 @@ public class DeleteFromCart extends HttpServlet {
         try{
             String id = request.getParameter("product_id");
             Product product = new productDAO().getProductByID(id);
+            if(product==null){
+                product=new productDAO().getpackageByID(id);
+            }
             HttpSession session = request.getSession(false);
             Cart cart = (Cart) session.getAttribute("cart");
             cart.deleteFromCart(product);

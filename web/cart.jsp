@@ -90,8 +90,6 @@
 
                                                 <td class="product_remove"> <a href="#" onclick="confirmDelete('${i.key.product_id}')"> <i class="fa fa-trash-o"></i> </a> </t
                                             </tr>
-
-
                                         </c:forEach>
 
 

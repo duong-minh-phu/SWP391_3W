@@ -94,64 +94,69 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%--<c:forEach items="${requestScope.billstatus1}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus1}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
-                                                <td>${b.getTotal()+30000}</td>
+                                                <td><fmt:formatNumber value="${b.getTotal()+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus2}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus2}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
-                                                <td>${b.getTotal()+30000}</td>
+                                                <td><fmt:formatNumber value="${b.getTotal()+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus3}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus3}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
-                                                <td>${b.getTotal()+30000}</td>
+                                                <td><fmt:formatNumber value="${b.getTotal()+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus4}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus4}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
-                                                <td>${b.getTotal()+30000}</td>
+                                                <td><fmt:formatNumber value="${b.getTotal()+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${b.getBill_status()}</td>
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
+                                            </tr>
+                                        </c:forEach>
                                             
-                                        <%--<c:forEach items="${requestScope.billstatus5}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus5}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
-                                                <td>${b.getTotal()}</td>
+                                                <td><fmt:formatNumber value="${b.getTotal()}" type = "currency" currencySymbol="VNĐ"/></td>
+                                                <td>Đã Hủy</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
-
                                         <c:forEach items="${bill}" var="b">
                                             <tr>
                                                 <td>${b.date}</td>
                                                 <td><span class="success">${b.payment}</span></td>
                                                 <td>${b.address}</td>
-                                                <td>${b.total+30000}</td>
+                                                <td><fmt:formatNumber value="${b.total+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${b.getBill_status()}</td>
+                                                <!--<td>Đã hủy</td>-->
+                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -162,16 +167,16 @@
                 </div>  
             </div>        	
         </section>			
-        <!-- my account end   --> 
-        <!--footer area start-->
+        <!-- my account end    
+        <!--footer area start
         <jsp:include page="layout/footer.jsp"/>
-        <!--footer area end-->
+        <!--footer area end
 
         <!-- JS
-        ============================================ -->
+        ============================================ 
 
-        <!-- Plugins JS -->
-        <script src="assets/js/plugins.js"></script>
+-->        
+        <script src="assets/js/plugins.js"></script><!--<!--
 
         <!-- Main JS -->
         <script src="assets/js/main.js"></script>
@@ -179,7 +184,4 @@
     </body>
 
 </html>
-                                                <td>Đã hủy</td>
-                                                <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">Xem chi tiết</a></td>
-                                            </tr>
-                                        </c:forEach>
+                                                

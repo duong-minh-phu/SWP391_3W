@@ -112,7 +112,7 @@
                                 </tbody>
                                 <tr>                                        
                                         <th></th>
-                                        <th>Phí ship</th>
+                                        <th>Phí vận chuyển</th>
                                         <th></th>
                                         <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                     </tr>

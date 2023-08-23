@@ -26,7 +26,7 @@ public class InsertReview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 try{
         String productId = request.getParameter("product_review_id");
-        Product product = new productDAO().getProductByID(productId);
+//        Product product = new productDAO().getProductByID(productId);
 
         if (productId == null || productId.isEmpty()) {
             // handle the error condition here

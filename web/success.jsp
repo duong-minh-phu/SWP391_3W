@@ -87,7 +87,7 @@
                 <td><fmt:formatNumber value="${total_payment}" type = "currency" currencySymbol="VNĐ"/> </td>
             </tr>
             <tr>
-                <th>Phí ship:</th>
+                <th>Phí vận chuyển:</th>
                 <td><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></td>
             </tr>
             <tr>

@@ -107,8 +107,8 @@
                                     <% } %>
                                 </div>
                                 <div class="product_price">
-                                    <del class="old_price">${PriceAllMeals} VNĐ</del>
-                                    <span class="current_price">${MealPackageData.price} VNĐ</span><span class="badge badge-danger discount-badge">${promotion}%</span>
+                                    <del class="old_price"><fmt:formatNumber value="${PriceAllMeals}" type = "currency" currencySymbol="VNĐ"/></del>
+                                    <span class="current_price"><fmt:formatNumber value="${MealPackageData.price}" type = "currency" currencySymbol="VNĐ"/></span><span class="badge badge-danger discount-badge">${promotion}%</span>
                                 </div> 
                                 <div class="product_desc">
                                     <p>${MealPackageData.description}</p>
@@ -143,7 +143,7 @@
                                                     </div>
                                                     <div class="product_content grid_content">
                                                         <h1>${m.productName}: ${m.categoryName}</h1>
-                                                        <span class="current_price">${m.productPrice} VNĐ</span>
+                                                        <span class="current_price"><fmt:formatNumber value="${m.productPrice}" type = "currency" currencySymbol="VNĐ"/></span>
                                                         - <c:out value="${quantity[loop.index - 0]}" />
                                                     </div>
                                                 </div>
