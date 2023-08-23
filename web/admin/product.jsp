@@ -30,11 +30,8 @@
                                             aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
-
-
                 <!-- User Menu-->
                 <li><a class="app-nav__item" href="MainController?action=dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
                 </li>
             </ul>
         </header>
@@ -104,8 +101,7 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Thông tin</th>
-                                            <th>Số lượng</th>                                            
-                                            
+                                            <th>Số lượng</th>                                                                                        
                                             <th>Ảnh</th>
                                             <th>Chức năng</th>
                                         </tr>

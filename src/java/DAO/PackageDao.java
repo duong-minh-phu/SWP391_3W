@@ -135,6 +135,39 @@ public class PackageDao {
         }
 //        return null;
     }
+    public List<MealPackage> getPackagesFalse() throws SQLException {
+        List<MealPackage> listPackage = new ArrayList<MealPackage>();
+        try {
+            String sql = "SELECT * FROM dbo.Package WHERE Status = 0";
+
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+//            ArrayList<MealPackage> pkList = new ArrayList();
+            while (rs.next()) {
+                MealPackage pk = new MealPackage();
+
+                pk.setId(rs.getString(1));
+                pk.setDescription(rs.getString(2));
+                pk.setName(rs.getString(3));
+                pk.setPrice(rs.getInt(4));
+                pk.setQuantity(rs.getInt(5));
+                pk.setImg(rs.getString(6));
+                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(8));
+                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(10));
+                listPackage.add(pk);
+            }
+            return listPackage;
+        } catch (Exception ex) {
+            Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);
+            throw new SQLException("get package sql Fail" + ex.getMessage());
+        }
+//        return null;
+    }
 
     public MealPackage getMealPackageByID(String package_id) throws SQLException {
 //        List<Product> list = new ArrayList<>();
@@ -184,12 +217,12 @@ public class PackageDao {
 
     }
 
-    public void RecoveryPackage(int package_id) throws Exception {
-        String sq = "update package set status=1 where product_id = ?";
+    public void RecoveryPackage(String package_id) throws Exception {
+        String sq = "update package set status=1 where package_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sq);
-            ps.setInt(1, package_id);
+            ps.setString(1, package_id);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "get package sql Fail", ex);

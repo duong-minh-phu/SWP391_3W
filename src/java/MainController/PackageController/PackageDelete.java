@@ -4,10 +4,13 @@
  */
 package MainController.PackageController;
 
+import DAO.PackageDao;
 import DAO.productDAO;
 import Entity.Category;
+import Entity.MealPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,12 +38,13 @@ public class PackageDelete extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            productDAO pro = new productDAO();
-            List<Category> categorysss = pro.getCategory2();
-            request.setAttribute("CategoryDelete", categorysss);
-            List<Category> category = pro.getCategory();
-            request.setAttribute("CategoryData", category);
-            request.getRequestDispatcher("admin/CategoryManager.jsp").forward(request, response);
+            
+            PackageDao dao =new PackageDao();
+            List<MealPackage> list= dao.getPackagesFalse();
+            request.setAttribute("PackageDelete", list);
+            request.getRequestDispatcher("admin/PackageManagement.jsp").forward(request, response);
+        }catch(SQLException ex){
+            
         }
     }
 

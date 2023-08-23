@@ -93,60 +93,60 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%--<c:forEach items="${requestScope.billstatus1}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus1}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
-                                            </tr>-->
-                                        <%--</c:forEach>--%>
+                                            </tr>
+                                        </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus2}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus2}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
-                                            </tr>-->
-                                        <%--</c:forEach>--%>
+                                            </tr>
+                                        </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus3}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus3}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
-                                            </tr>-->
-                                        <%--</c:forEach>--%>
+                                            </tr>
+                                        </c:forEach>
 
-                                        <%--<c:forEach items="${requestScope.billstatus4}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus4}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()+30000}</td>
                                                 <td>${b.getBill_status()}</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
-                                            </tr>-->
-                                        <%--</c:forEach>--%>
+                                            </tr>
+                                        </c:forEach>
                                             
-                                        <%--<c:forEach items="${requestScope.billstatus5}" var="b">--%>
-<!--                                            <tr>
+                                        <c:forEach items="${requestScope.billstatus5}" var="b">
+                                            <tr>
                                                 <td>${b.getDate()}</td>
                                                 <td><span class="success">${b.getPayment()}</span></td>
                                                 <td>${b.getAddress()}</td>
                                                 <td>${b.getTotal()}</td>
                                                 <td>da huy</td>
                                                 <td><a href="MainController?action=showdetailcus&bill_id=${b.getBill_id()}" class="view">view</a></td>
-                                            </tr>-->
-                                        <%--</c:forEach>--%>
+                                            </tr>
+                                        </c:forEach>
 
                                         <c:forEach items="${bill}" var="b">
                                             <tr>

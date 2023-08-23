@@ -39,7 +39,7 @@ public class DeletePackage extends HttpServlet {
             String package_id =request.getParameter("package_id");
             PackageDao dao = new PackageDao();
             dao.deletePackage(package_id);
-            request.getRequestDispatcher("Productmanager").forward(request, response);
+            request.getRequestDispatcher("PackageManagement").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(DeletePackage.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,8 +5,10 @@
 package MainController.PackageController;
 
 import DAO.PackageDao;
+import Entity.MealPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -35,12 +37,15 @@ public class RecoveryPackage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int product_id = Integer.parseInt(request.getParameter("product_id"));
+            String package_id = request.getParameter("package_id");
             PackageDao dao = new PackageDao();
-            dao.RecoveryPackage(product_id);
-            request.getRequestDispatcher("MainController?action=productdelete").forward(request, response);
+            dao.RecoveryPackage(package_id);            
+//            PackageDao dao =new PackageDao();
+//            List<MealPackage> list = dao.getPackagesFalse();
+//            request.setAttribute("list", list);
+            request.getRequestDispatcher("PackageManagement").forward(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(RecoveryPackage.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(RecoveryPackage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
