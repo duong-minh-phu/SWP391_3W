@@ -45,6 +45,20 @@
                 </div>
             </div>         
         </div>
+        <% String status = (String) request.getAttribute("BillNew");%>
+        <% Date date3 = (Date) request.getAttribute("Date3");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
+        %>
+        <% Date date2 = (Date) request.getAttribute("Date2");
+            String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
+        %>
+        <% Date date1 = (Date) request.getAttribute("Date1");
+            String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
+        %>
+        <% Date date4 = (Date) request.getAttribute("Date4");
+            String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
+        %>
         <div class="shopping_cart_area">
             <div class="container">  
                 <form> 
@@ -69,25 +83,29 @@
                                                     <td>${d.product_name}</td>                                            
                                                     <td>${d.quantity}</td>
                                                     <td>${d.price}</td>
+                                                    <% if (formattedDate4 != null) {%>
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
+                                                    <% }  %>
                                                 </tr>
                                             </c:forEach>
-                                                <c:forEach items="${Detail_package}" var="p">
+                                            <c:forEach items="${Detail_package}" var="p">
                                                 <tr>
                                                     <td><img src="${p.img}" alt="" width="100px;"></td>
                                                     <td>${p.product_name}</td>                                            
                                                     <td>${p.quantity}</td>
                                                     <td>${p.price}</td>
-                                                    <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
+                                                    <% if (formattedDate4 != null) {%>
+                                                    <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
+                                                    <% }  %>
                                                 </tr>
                                             </c:forEach>
-                                                <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th>Phí ship</th>
-                                        <th></th>
-                                        <td><strong>30000</strong></td>
-                                    </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Phí ship</th>
+                                                <th></th>
+                                                <td><strong>30000</strong></td>
+                                            </tr>
                                         </tbody>
                                     </table>   
                                 </div> 
@@ -101,21 +119,7 @@
             <h2 style="font-weight: bold; margin-top: 14px;">Quá trình đơn hàng</h2>
             <div class="row">
                 <div class="hh-grayBox pt45">
-                    <div class="row justify-content-between">
-                        <% String status = (String) request.getAttribute("BillNew");%>
-                        <% Date date3 = (Date) request.getAttribute("Date3");
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                            String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
-                        %>
-                        <% Date date2 = (Date) request.getAttribute("Date2");
-                            String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
-                        %>
-                        <% Date date1 = (Date) request.getAttribute("Date1");
-                            String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
-                        %>
-                        <% Date date4 = (Date) request.getAttribute("Date4");
-                            String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
-                        %>
+                    <div class="row justify-content-between">                        
                         <div class="order-tracking" id="confirm">
                             <span class="is-complete"></span>
                             <% if (formattedDate1 != null) {%>
@@ -150,7 +154,7 @@
                             <p>Hoàn Thành</p>
                             <% }%>
                         </div>
-
+                        
                         <script>
                             var status = '<%= status%>';
                             if (status === 'hoan thanh') {
@@ -295,13 +299,15 @@
                 pointer-events: none; /* disable click events */
                 /* rest of the styles */
             }
-             .hh-grayBox {
+            .hh-grayBox {
                 background-color: #F8F8F8;
                 margin-bottom: 20px;
                 padding: 35px;
                 margin-top: 20px;
             }
-            .pt45{padding-top:45px;}
+            .pt45{
+                padding-top:45px;
+            }
             .order-tracking{
                 text-align: center;
                 width: 25%;
@@ -355,8 +361,12 @@
                 margin-bottom: 0;
                 line-height: 20px;
             }
-            .order-tracking p span{font-size: 14px;}
-            .order-tracking.completed p{color: #000;}
+            .order-tracking p span{
+                font-size: 14px;
+            }
+            .order-tracking.completed p{
+                color: #000;
+            }
             .order-tracking::before {
                 content: '';
                 display: block;
@@ -368,8 +378,12 @@
                 left: calc(-50% + 20px);
                 z-index: 0;
             }
-            .order-tracking:first-child:before{display: none;}
-            .order-tracking.completed:before{background-color: #27aa80;}
+            .order-tracking:first-child:before{
+                display: none;
+            }
+            .order-tracking.completed:before{
+                background-color: #27aa80;
+            }
             h2 {
                 font-weight: bold;
                 margin-top: 30px;
