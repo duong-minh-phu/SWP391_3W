@@ -61,17 +61,17 @@ public class GetInfoForUpdatePackage extends HttpServlet {
             List<Product> product = productDao.getProduct();
             request.setAttribute("ProductData", product);
 
-            String insertStatus = request.getParameter("insertStatus");
+            String updateStatus = request.getParameter("updateStatus");
 
-            if (insertStatus != null) {
-                if (insertStatus.equals(MEAL_ID_ERROR_STATUS)) {
+            if (updateStatus != null) {
+                if (updateStatus.equals(MEAL_ID_ERROR_STATUS)) {
                     String message = "Meal không hợp lệ";
                     request.setAttribute("failMessage", message);
-                } else if (insertStatus.equals(QUANTITY_ERROR_STATUS)) {
+                } else if (updateStatus.equals(QUANTITY_ERROR_STATUS)) {
                     String message = "Số lượng meal không đủ để tạo package";
                     request.setAttribute("failMessage", message);
-                } else if (insertStatus.equals(SUCCESS_STATUS)) {
-                    String message = "Đã thêm package thành công";
+                } else if (updateStatus.equals(SUCCESS_STATUS)) {
+                    String message = "Đã cập nhật package thành công";
                     request.setAttribute("successMessage", message);
                 }
             }

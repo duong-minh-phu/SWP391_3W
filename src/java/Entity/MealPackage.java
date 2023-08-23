@@ -94,6 +94,17 @@ public class MealPackage {
         this.promotion = promotion;
     }
     
+    public MealPackage(String description, String name, int quantity, int status, int delivery_date, float size, int promotion) {
+        this.description = description;
+        this.name = name;
+        this.quantity = quantity;
+        this.img = img;
+        this.status = status;
+        this.delivery_date = delivery_date;
+        this.size = size;
+        this.promotion = promotion;
+    }
+    
     
     
 

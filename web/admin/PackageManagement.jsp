@@ -221,7 +221,7 @@
                 background-color: #f8d7da;
                 border-color: #f5c6cb;
             }
-        </style>
+        </style>     
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 var popup = document.getElementById("popup");
