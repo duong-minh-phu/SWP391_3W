@@ -490,7 +490,7 @@ public class PackageDao {
                 price = price + addProduct.getProduct_price();
             }
             float pricePromotion = (price * (100 - updatePackage.getPromotion())) / 100;
-            String updateSqlString = "update package set name = ?, price = ?, quantity = ?, img = ?, size = ?, promotion = ?, description = ? where package_id=? and status=1";
+            String updateSqlString = "update package set name = ?, price = ?, quantity = ?, img = ?, promotion = ?, description = ? where package_id=? and status=1";
 
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(updateSqlString);
@@ -498,10 +498,9 @@ public class PackageDao {
             ps.setFloat(2, pricePromotion);
             ps.setInt(3, updatePackage.getQuantity());
             ps.setString(4, updatePackage.getImg());
-            ps.setFloat(5, updatePackage.getSize());
-            ps.setInt(6, updatePackage.getPromotion());
-            ps.setString(7, updatePackage.getDescription());
-            ps.setString(8, updatePackage.getId());
+            ps.setInt(5, updatePackage.getPromotion());
+            ps.setString(6, updatePackage.getDescription());
+            ps.setString(7, updatePackage.getId());
             ps.executeUpdate();
 
 //            conn.commit();
