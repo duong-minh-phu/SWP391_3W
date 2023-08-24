@@ -392,7 +392,13 @@
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-            $('#sampleTable').DataTable();
+             $('#sampleTable').DataTable({
+                aLengthMenu: [
+                    [10, 25, 50, 100, 200, -1],
+                    [10, 25, 50, 100, 200, "All"]
+                ],
+                iDisplayLength: -1
+            });
             //Thời Gian
             function time() {
                 var today = new Date();
