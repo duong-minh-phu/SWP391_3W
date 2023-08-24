@@ -217,8 +217,8 @@
                     </select>
                 </div>
                 <div class="btncancelOrder">
-                    <button type="submit" class="btn btn-primary">Gửi</button>
-                    <button type="button" class="btn btn-secondary" id="cancelBtn">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Hủy Đơn Hàng</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Không Phải Bây Giờ</button>
                 </div>
             </form>
         </div>       

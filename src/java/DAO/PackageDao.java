@@ -122,10 +122,10 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+//                pk.setDelivery_date(rs.getInt(7));
+                pk.setStatus(rs.getInt(7));
+//                pk.setSize(rs.getFloat(9));
+                pk.setPromotion(rs.getInt(8));
                 listPackage.add(pk);
             }
             return listPackage;
