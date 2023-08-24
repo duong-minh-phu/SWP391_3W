@@ -24,7 +24,20 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
               rel="stylesheet">
     </head>
-
+    <% String status = (String) request.getAttribute("BillNew");%>
+    <% Date date3 = (Date) request.getAttribute("Date3");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
+    %>
+    <% Date date2 = (Date) request.getAttribute("Date2");
+        String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
+    %>
+    <% Date date1 = (Date) request.getAttribute("Date1");
+        String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
+    %>
+    <% Date date4 = (Date) request.getAttribute("Date4");
+        String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
+    %>
     <body>
         <fmt:setLocale value ="vi_VN"/>
         <div class="off_canvars_overlay"></div>
@@ -72,7 +85,12 @@
                                                     <td>${d.product_name}</td>                                            
                                                     <td>${d.quantity}</td>
                                                     <td><fmt:formatNumber value="${d.price}" type = "currency" currencySymbol="VNĐ"/></td>
+                                                    <% if (formattedDate4 != null) {%>
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
+                                                    <% } else { %>
+                                                    <td>Đơn hàng hoàn thành bạn có thể đánh giá.</td>
+                                                    <% } %>
+
                                                 </tr>
                                             </c:forEach>
                                             <c:forEach items="${Detail_package}" var="p">
@@ -81,7 +99,11 @@
                                                     <td>${p.product_name}</td>                                            
                                                     <td>${p.quantity}</td>
                                                     <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
-                                                    <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
+                                                    <% if (formattedDate4 != null) {%>
+                                                    <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
+                                                    <% } else { %>
+                                                    <td>Đơn hàng hoàn thành bạn có thể đánh giá.</td>
+                                                    <% } %>
                                                 </tr>
                                             </c:forEach>
                                             <tr>
@@ -102,20 +124,7 @@
         </div>
         <div class="container">
             <h2 style="font-weight: bold; margin-top: 14px;">Quá trình đơn hàng</h2>
-            <% String status = (String) request.getAttribute("BillNew");%>
-            <% Date date3 = (Date) request.getAttribute("Date3");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
-            %>
-            <% Date date2 = (Date) request.getAttribute("Date2");
-                String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
-            %>
-            <% Date date1 = (Date) request.getAttribute("Date1");
-                String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
-            %>
-            <% Date date4 = (Date) request.getAttribute("Date4");
-                String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
-            %>
+
             <div class="row">
                 <div class="hh-grayBox pt45">
                     <div class="row justify-content-between">                        
@@ -129,8 +138,8 @@
                         </div>
 
                         <div class="order-tracking" id="pick">
-                            <span class="is-complete"></span>
                             <% if (formattedDate2 != null) {%>
+                            <span class="is-complete"></span>
                             <p>Đã lấy hàng<br><%= formattedDate2%></p>
                                 <% } else { %>
                             <p>Đã lấy hàng</p>
@@ -153,27 +162,22 @@
                             <p>Hoàn Thành</p>
                             <% }%>
                         </div>
-
                         <script>
                             var status = '<%= status%>';
-                            if (status === 'hoan thanh') {
+                            if (status === 'xac nhan don') {
+                                document.getElementById('confirm').classList.add('completed');
+                            } else if (status === 'hoan thanh') {
                                 document.getElementById('complete').classList.add('completed');
                                 document.getElementById('deliver').classList.add('completed');
                                 document.getElementById('pick').classList.add('completed');
                                 document.getElementById('confirm').classList.add('completed');
-                            }
-                            if (status === 'dang giao') {
+                            } else if (status === 'dang giao') {
                                 document.getElementById('deliver').classList.add('completed');
                                 document.getElementById('pick').classList.add('completed');
                                 document.getElementById('confirm').classList.add('completed');
-                            }
-                            if (status === 'cho lay hang') {
+                            } else if (status === 'cho lay hang') {
                                 document.getElementById('pick').classList.add('completed');
                                 document.getElementById('confirm').classList.add('completed');
-                            }
-                            if (status === 'xac nhan don') {
-                                document.getElementById('confirm').classList.add('completed');
-                            } else {
                             }
                         </script>
                     </div>
