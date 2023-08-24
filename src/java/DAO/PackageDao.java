@@ -130,6 +130,7 @@ public class PackageDao {
         }
 //        return null;
     }
+
     public List<MealPackage> getPackagesFalse() throws SQLException {
         List<MealPackage> listPackage = new ArrayList<MealPackage>();
         try {
@@ -435,6 +436,9 @@ public class PackageDao {
                         ps.setString(2, currentProduct.getProduct_id());
                         ps.executeUpdate();
                     } else if (updateQuantity > 0) {
+                        if (updateQuantity > currentProduct.getQuantity()) {
+                            throw new Exception("Không đủ số lượng");
+                        }
                         String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
                         conn = new DBContext().getConnection();
                         ps = conn.prepareStatement(updateQuantitySqlString);
@@ -443,6 +447,9 @@ public class PackageDao {
                         ps.executeUpdate();
                     }
                 } else {
+                    if (updatePackage.getQuantity() > currentProduct.getQuantity()) {
+                        throw new Exception("Không đủ số lượng");
+                    }
                     String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
                     ps = conn.prepareStatement(insertProductToPackageSql);
                     ps.setString(1, currentProduct.getProduct_id());
@@ -503,12 +510,8 @@ public class PackageDao {
             ps.setString(7, updatePackage.getId());
             ps.executeUpdate();
 
-//            conn.commit();
         } catch (Exception e) {
-//            conn.rollback();
             throw new SQLException("Update Package sql fail:" + e.getMessage());
-        } finally {
-//            conn.close();
         }
     }
 }

@@ -54,24 +54,16 @@ public class UpdatePackage extends HttpServlet {
         int promotion = Integer.parseInt(request.getParameter("promotion"));
         String id = request.getParameter("package_id");
 
-        
-
         String updateStatus = "";
         try {
             MealPackage oldPackage = packageDao.getMealPackageByID(id);
-            
+
             for (String productId : productIds) {
                 Product checkProduct = productDAO.getProductByID(productId);
                 if (checkProduct == null) {
                     updateStatus = MEAL_ID_ERROR_STATUS;
                     response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
                 }
-//                } else if (oldPackage.getQuantity() < quantity) {
-//                    if (checkProduct.getQuantity() - quantity < 0) {
-//                        updateStatus = QUANTITY_ERROR_STATUS;
-//                        response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
-//                    }
-//                }
             }
 
             Part filePart = request.getPart("package_img");
@@ -96,7 +88,6 @@ public class UpdatePackage extends HttpServlet {
 
                 updateStatus = SUCCESS_STATUS;
                 response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
-                return;
             } else {
                 String destinationPath = realPath + fileName;
                 System.out.println(destinationPath);
@@ -127,10 +118,14 @@ public class UpdatePackage extends HttpServlet {
 //            if (fileName == null) {
 //                response.sendRedirect("404.jsp");
 //            }
-
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/404.jsp");
+            if (e.getMessage().contains("Không đủ số lượng")) {
+                updateStatus = QUANTITY_ERROR_STATUS;
+                response.sendRedirect("MainController?action=getPackageForUpdate&package_id=" + id + "&updateStatus=" + updateStatus);
+            } else {
+                e.printStackTrace();
+                response.sendRedirect(request.getContextPath() + "/404.jsp");
+            }
         }
     }
 
