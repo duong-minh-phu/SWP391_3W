@@ -41,6 +41,9 @@ public class MainController extends HttpServlet {
             if (action.equals("logout")) {
                 url = "logout";
             }
+            if (action.equals("cancelbillbycus")) {
+                url = "Cancelbillbycus";
+            }
             if (action.equals("blogcomment")) {
                 url = "Blogcomment";
             }

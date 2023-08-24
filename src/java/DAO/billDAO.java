@@ -425,7 +425,7 @@ public class billDAO {
             String sql = "SELECT bill_id, date, payment, address, total_money, bill_status\n"
                     + "FROM bill\n"
                     + "WHERE bill_status = 'xac nhan don'\n"
-                    + "AND user_id = ?\n"
+                    + "AND user_id = ? and delivery_status=0\n"
                     + "ORDER BY date DESC";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
