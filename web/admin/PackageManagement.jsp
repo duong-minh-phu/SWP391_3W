@@ -112,7 +112,6 @@
                                             <th class="quantity-column">Giá </th>
                                             <th class="function-column">Mô tả</th>
                                             <th class="function-column">Hình ảnh</th>
-                                            <th class="function-column">Số ngày giao liên tục</th>
                                             <th class="function-column">Chức Năng</th>
                                         </tr>
                                     </thead>Package
@@ -125,7 +124,6 @@
                                                 <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
-                                                <td>${p.delivery_date}</td>
 
                                                 <td>
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.id}"><i
@@ -146,8 +144,6 @@
                                                 <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.description}</td>
                                                 <td><img src="${p.img}" alt="" width="100px;"></td>
-                                                <td>${p.delivery_date}</td>
-
                                                 <td>
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Phục hồi" value="${p.id}"><i class="fa-solid fa-recycle"></i>
                                                     </button> 

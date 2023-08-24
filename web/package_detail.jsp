@@ -150,7 +150,6 @@
                                             </div>
                                         </c:forEach>
                                     </div>
-                                    
                                     <c:if test="${(MealPackageData.quantity) != 0}">                                                                        
                                         <div class="product_variant quantity">
                                             <label>Số lượng</label>

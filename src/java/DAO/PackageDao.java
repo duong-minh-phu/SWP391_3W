@@ -35,7 +35,7 @@ public class PackageDao {
 
     public Boolean insertPackage(MealPackage insertPackage, String[] productIds) throws SQLException {
         try {
-            String sql = "INSERT INTO dbo.Package(package_id,description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO dbo.Package(package_id,description, name, price, quantity, img, status,promotion) values (?,?,?,?,?,?,?,?)";
 
             float price = 0;
 
@@ -55,9 +55,7 @@ public class PackageDao {
             ps.setInt(5, insertPackage.getQuantity());
             ps.setString(6, insertPackage.getImg());
             ps.setInt(7, insertPackage.getStatus());
-            ps.setInt(8, insertPackage.getDelivery_date());
-            ps.setFloat(9, insertPackage.getSize());
-            ps.setInt(10, insertPackage.getPromotion());
+            ps.setInt(8, insertPackage.getPromotion());
 
             int affectedRows = ps.executeUpdate();
 
@@ -86,7 +84,6 @@ public class PackageDao {
             }
 
         } catch (Exception ex) {
-            conn.rollback();
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "InsertPackage sql Fail", ex);
             throw new SQLException("InsertPackage sql fail:" + ex.getMessage());
         }
@@ -122,10 +119,8 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
                 listPackage.add(pk);
             }
             return listPackage;
@@ -135,6 +130,7 @@ public class PackageDao {
         }
 //        return null;
     }
+
     public List<MealPackage> getPackagesFalse() throws SQLException {
         List<MealPackage> listPackage = new ArrayList<MealPackage>();
         try {
@@ -155,10 +151,8 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
                 listPackage.add(pk);
             }
             return listPackage;
@@ -169,7 +163,7 @@ public class PackageDao {
 //        return null;
     }
 
-    public MealPackage getMealPackageByID(String package_id) throws SQLException {
+    public MealPackage getMealPackageByID(String package_id) throws SQLException, Exception {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
@@ -185,16 +179,13 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
             }
             return pk;
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            throw new SQLException("getMealPackageByID sql fail:" + e.getMessage());
         }
-        return null;
     }
 
     public void deletePackage(String packageId) throws Exception {
@@ -445,6 +436,9 @@ public class PackageDao {
                         ps.setString(2, currentProduct.getProduct_id());
                         ps.executeUpdate();
                     } else if (updateQuantity > 0) {
+                        if (updateQuantity > currentProduct.getQuantity()) {
+                            throw new Exception("Không đủ số lượng");
+                        }
                         String updateQuantitySqlString = "UPDATE product SET quantity = quantity - ? WHERE product_id = ?";
                         conn = new DBContext().getConnection();
                         ps = conn.prepareStatement(updateQuantitySqlString);
@@ -453,6 +447,9 @@ public class PackageDao {
                         ps.executeUpdate();
                     }
                 } else {
+                    if (updatePackage.getQuantity() > currentProduct.getQuantity()) {
+                        throw new Exception("Không đủ số lượng");
+                    }
                     String insertProductToPackageSql = "INSERT INTO dbo.ProductInPackage(product_id, package_id) values (?,?)";
                     ps = conn.prepareStatement(insertProductToPackageSql);
                     ps.setString(1, currentProduct.getProduct_id());
@@ -500,7 +497,7 @@ public class PackageDao {
                 price = price + addProduct.getProduct_price();
             }
             float pricePromotion = (price * (100 - updatePackage.getPromotion())) / 100;
-            String updateSqlString = "update package set name = ?, price = ?, quantity = ?, img = ?, size = ?, promotion = ?, description = ? where package_id=? and status=1";
+            String updateSqlString = "update package set name = ?, price = ?, quantity = ?, img = ?, promotion = ?, description = ? where package_id=? and status=1";
 
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(updateSqlString);
@@ -508,18 +505,13 @@ public class PackageDao {
             ps.setFloat(2, pricePromotion);
             ps.setInt(3, updatePackage.getQuantity());
             ps.setString(4, updatePackage.getImg());
-            ps.setFloat(5, updatePackage.getSize());
-            ps.setInt(6, updatePackage.getPromotion());
-            ps.setString(7, updatePackage.getDescription());
-            ps.setString(8, updatePackage.getId());
+            ps.setInt(5, updatePackage.getPromotion());
+            ps.setString(6, updatePackage.getDescription());
+            ps.setString(7, updatePackage.getId());
             ps.executeUpdate();
 
-//            conn.commit();
         } catch (Exception e) {
-//            conn.rollback();
             throw new SQLException("Update Package sql fail:" + e.getMessage());
-        } finally {
-//            conn.close();
         }
     }
 }

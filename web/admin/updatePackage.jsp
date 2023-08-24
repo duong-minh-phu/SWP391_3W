@@ -247,14 +247,6 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="quantity" type="number" value="${PackageData.quantity}">
                                 </div>
-                                <div class="form-group  col-md-3">
-                                    <label class="control-label">Số ngày giao</label>
-                                    <input class="form-control" name="delivery_date" type="number" value="${PackageData.delivery_date}">
-                                </div>
-                                <div class="form-group  col-md-3">
-                                    <label class="control-label">Khối lượng</label>
-                                    <input class="form-control" name="weight" type="number" value="${PackageData.delivery_date}">
-                                </div>
                                 <!--                                <div class="form-group col-md-3">
                                                                     <label class="control-label">khối lượng</label>
                                                                     <input class="form-control" name="size" type="text"required="" value="${PackageData.size}">
