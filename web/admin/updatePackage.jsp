@@ -256,7 +256,7 @@
                                     <input class="form-control" name="promotion" type="text"required="" value="${PackageData.promotion}">
                                 </div>
 
-                                <td><img src="${PackageData.img}" alt="" width="100px" max-height="100px"></td>
+                                <td><img src="${PackageData.img}" alt="" width="100" height="100"></td>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
