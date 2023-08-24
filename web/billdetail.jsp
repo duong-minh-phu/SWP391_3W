@@ -26,7 +26,7 @@
     </head>
 
     <body>
-
+        <fmt:setLocale value ="vi_VN"/>
         <div class="off_canvars_overlay"></div>
         <fmt:setLocale value ="vi_VN"/>
         <jsp:include page="layout/menu.jsp"/>
@@ -46,6 +46,7 @@
                 </div>
             </div>         
         </div>
+
         <div class="shopping_cart_area">
             <div class="container">  
                 <form> 
@@ -54,14 +55,14 @@
                             <div class="table_desc">
                                 <div class="cart_page table-responsive">
                                     <table>
-                                        
+
                                         <thead>
                                             <tr>
                                                 <th>Ảnh</th>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Số lượng</th>
                                                 <th>Đơn giá</th>
-                                                <th>Trạng thái</th>
+                                                <th>Đánh giá</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -74,7 +75,7 @@
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
                                                 </tr>
                                             </c:forEach>
-                                                <c:forEach items="${Detail_package}" var="p">
+                                            <c:forEach items="${Detail_package}" var="p">
                                                 <tr>
                                                     <td><img src="${p.img}" alt="" width="100px;"></td>
                                                     <td>${p.product_name}</td>                                            
@@ -83,13 +84,13 @@
                                                     <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
                                                 </tr>
                                             </c:forEach>
-                                                <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th>Phí vận chuyển</th>
-                                        <th></th>
-                                        <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
-                                    </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Phí vận chuyển</th>
+                                                <th></th>
+                                                <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
+                                            </tr>
                                         </tbody>
                                     </table>   
                                 </div> 
@@ -101,23 +102,23 @@
         </div>
         <div class="container">
             <h2 style="font-weight: bold; margin-top: 14px;">Quá trình đơn hàng</h2>
+            <% String status = (String) request.getAttribute("BillNew");%>
+            <% Date date3 = (Date) request.getAttribute("Date3");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
+            %>
+            <% Date date2 = (Date) request.getAttribute("Date2");
+                String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
+            %>
+            <% Date date1 = (Date) request.getAttribute("Date1");
+                String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
+            %>
+            <% Date date4 = (Date) request.getAttribute("Date4");
+                String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
+            %>
             <div class="row">
                 <div class="hh-grayBox pt45">
-                    <div class="row justify-content-between">
-                        <% String status = (String) request.getAttribute("BillNew");%>
-                        <% Date date3 = (Date) request.getAttribute("Date3");
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                            String formattedDate3 = (date3 != null) ? sdf.format(date3) : null;
-                        %>
-                        <% Date date2 = (Date) request.getAttribute("Date2");
-                            String formattedDate2 = (date2 != null) ? sdf.format(date2) : null;
-                        %>
-                        <% Date date1 = (Date) request.getAttribute("Date1");
-                            String formattedDate1 = (date1 != null) ? sdf.format(date1) : null;
-                        %>
-                        <% Date date4 = (Date) request.getAttribute("Date4");
-                            String formattedDate4 = (date4 != null) ? sdf.format(date4) : null;
-                        %>
+                    <div class="row justify-content-between">                        
                         <div class="order-tracking" id="confirm">
                             <span class="is-complete"></span>
                             <% if (formattedDate1 != null) {%>
@@ -297,13 +298,15 @@
                 pointer-events: none; /* disable click events */
                 /* rest of the styles */
             }
-             .hh-grayBox {
+            .hh-grayBox {
                 background-color: #F8F8F8;
                 margin-bottom: 20px;
                 padding: 35px;
                 margin-top: 20px;
             }
-            .pt45{padding-top:45px;}
+            .pt45{
+                padding-top:45px;
+            }
             .order-tracking{
                 text-align: center;
                 width: 25%;
@@ -357,8 +360,12 @@
                 margin-bottom: 0;
                 line-height: 20px;
             }
-            .order-tracking p span{font-size: 14px;}
-            .order-tracking.completed p{color: #000;}
+            .order-tracking p span{
+                font-size: 14px;
+            }
+            .order-tracking.completed p{
+                color: #000;
+            }
             .order-tracking::before {
                 content: '';
                 display: block;
@@ -370,8 +377,12 @@
                 left: calc(-50% + 20px);
                 z-index: 0;
             }
-            .order-tracking:first-child:before{display: none;}
-            .order-tracking.completed:before{background-color: #27aa80;}
+            .order-tracking:first-child:before{
+                display: none;
+            }
+            .order-tracking.completed:before{
+                background-color: #27aa80;
+            }
             h2 {
                 font-weight: bold;
                 margin-top: 30px;
