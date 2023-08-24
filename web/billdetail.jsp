@@ -90,7 +90,6 @@
                                                     <% } else { %>
                                                     <td>Đơn hàng hoàn thành bạn có thể đánh giá.</td>
                                                     <% } %>
-
                                                 </tr>
                                             </c:forEach>
                                             <c:forEach items="${Detail_package}" var="p">
@@ -124,7 +123,6 @@
         </div>
         <div class="container">
             <h2 style="font-weight: bold; margin-top: 14px;">Quá trình đơn hàng</h2>
-
             <div class="row">
                 <div class="hh-grayBox pt45">
                     <div class="row justify-content-between">                        

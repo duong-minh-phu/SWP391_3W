@@ -151,7 +151,7 @@ public class billDAO {
     public List<BillDetail> getDetailpackage(int bill_id) {
         List<BillDetail> list = new ArrayList<>();
         String sql = "SELECT d.bill_detail_id, d.product_id, p.name, p.img, d.quantity, d.product_total,d.bill_id \n" +
-"                FROM bill_detail d INNER JOIN Package p ON d.product_id = p.package_id WHERE d.bill_id = ?";
+        "FROM bill_detail d INNER JOIN Package p ON d.product_id = p.package_id WHERE d.bill_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
