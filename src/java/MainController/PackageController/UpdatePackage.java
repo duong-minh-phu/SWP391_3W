@@ -50,9 +50,7 @@ public class UpdatePackage extends HttpServlet {
         String package_name = new String(request.getParameter("package_name").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String describe = new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
         String[] productIds = request.getParameterValues("product_id_list");
-        float size = Float.parseFloat(request.getParameter("weight"));
         int promotion = Integer.parseInt(request.getParameter("promotion"));
         String id = request.getParameter("package_id");
 
@@ -90,7 +88,6 @@ public class UpdatePackage extends HttpServlet {
                 newPackage.setName(package_name);
                 newPackage.setPromotion(promotion);
                 newPackage.setQuantity(quantity);
-                newPackage.setSize(size);
                 newPackage.setStatus(1);
                 newPackage.setDescription(describe);
                 newPackage.setImg(realPath);
@@ -116,7 +113,6 @@ public class UpdatePackage extends HttpServlet {
                 newPackage.setName(package_name);
                 newPackage.setPromotion(promotion);
                 newPackage.setQuantity(quantity);
-                newPackage.setSize(size);
                 newPackage.setStatus(1);
                 newPackage.setDescription(describe);
                 newPackage.setImg(imagePath);
