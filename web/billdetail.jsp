@@ -128,38 +128,38 @@
             <div class="row">
                 <div class="hh-grayBox pt45">
                     <div class="row justify-content-between">                        
-                        <div class="order-tracking" id="confirm">
-                            <span class="is-complete"></span>
+                        <div class="order-tracking" >
+                            <!--<span class="is-complete"></span>-->
                             <% if (formattedDate1 != null) {%>
-                            <p>Chờ xác nhận<br><%= formattedDate1%></p>
-                                <% } else { %>
-                            <p>Chờ xác nhận</p>
+                            <h4>Chờ xác nhận</h4><p style="color: #2dc258; font-size: 20px"><%= formattedDate1%></p>
+                            <% } else { %>
+                            <h4>Chờ xác nhận</h4>
                             <% } %>
                         </div>
 
-                        <div class="order-tracking" id="pick">
+                        <div class="order-tracking" >
                             <% if (formattedDate2 != null) {%>
-                            <span class="is-complete"></span>
-                            <p>Đã lấy hàng<br><%= formattedDate2%></p>
-                                <% } else { %>
-                            <p>Đã lấy hàng</p>
+                            <!--<span class="is-complete"></span>-->
+                            <h4>Đã lấy hàng</h4><p style="color: #2dc258; font-size: 20px"><%= formattedDate2%></p>
+                            <% } else { %>
+                            <h4>Đã lấy hàng</h4>
                             <% } %>
                         </div>
 
-                        <div class="order-tracking" id="deliver">
-                            <span class="is-complete"></span>
+                        <div class="order-tracking" >
+                            <!--<span class="is-complete"></span>-->
                             <% if (formattedDate3 != null) {%>
-                            <p>Đang giao<br><%= formattedDate3%></p>
-                                <% } else { %>
-                            <p>Đang giao</p>
+                            <h4>Đang giao</h4><p style="color: #2dc258; font-size: 20px"><%= formattedDate3%></p>
+                            <% } else { %>
+                            <h4>Đang giao</h4>
                             <% }%>
                         </div>
-                        <div class="order-tracking" id="complete">
-                            <span class="is-complete"></span>
+                        <div class="order-tracking">
+                            <!--<span class="is-complete"></span>-->
                             <% if (formattedDate4 != null) {%>
-                            <p>Hoàn Thành<br><%= formattedDate4%></p>
-                                <% } else { %>
-                            <p>Hoàn Thành</p>
+                            <h4>Hoàn Thành</h4><p style="color: #2dc258; font-size: 20px"><%= formattedDate4%></p>
+                            <% } else { %>
+                            <h4>Hoàn Thành</h4>
                             <% }%>
                         </div>
                         <script>
@@ -317,76 +317,7 @@
                 position: relative;
                 display: block;
             }
-            .order-tracking .is-complete{
-                display: block;
-                position: relative;
-                border-radius: 50%;
-                height: 30px;
-                width: 30px;
-                border: 0px solid #AFAFAF;
-                background-color: #f7be16;
-                margin: 0 auto;
-                transition: background 0.25s linear;
-                -webkit-transition: background 0.25s linear;
-                z-index: 2;
-            }
-            .order-tracking .is-complete:after {
-                display: block;
-                position: absolute;
-                content: '';
-                height: 14px;
-                width: 7px;
-                top: -2px;
-                bottom: 0;
-                left: 5px;
-                margin: auto 0;
-                border: 0px solid #AFAFAF;
-                border-width: 0px 2px 2px 0;
-                transform: rotate(45deg);
-                opacity: 0;
-            }
-            .order-tracking.completed .is-complete{
-                border-color: #27aa80;
-                border-width: 0px;
-                background-color: #27aa80;
-            }
-            .order-tracking.completed .is-complete:after {
-                border-color: #fff;
-                border-width: 0px 3px 3px 0;
-                width: 7px;
-                left: 11px;
-                opacity: 1;
-            }
-            .order-tracking p {
-                color: #A4A4A4;
-                font-size: 16px;
-                margin-top: 8px;
-                margin-bottom: 0;
-                line-height: 20px;
-            }
-            .order-tracking p span{
-                font-size: 14px;
-            }
-            .order-tracking.completed p{
-                color: #000;
-            }
-            .order-tracking::before {
-                content: '';
-                display: block;
-                height: 3px;
-                width: calc(100% - 40px);
-                background-color: #f7be16;
-                top: 13px;
-                position: absolute;
-                left: calc(-50% + 20px);
-                z-index: 0;
-            }
-            .order-tracking:first-child:before{
-                display: none;
-            }
-            .order-tracking.completed:before{
-                background-color: #27aa80;
-            }
+
             h2 {
                 font-weight: bold;
                 margin-top: 30px;
