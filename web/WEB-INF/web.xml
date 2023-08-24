@@ -178,15 +178,15 @@
     </servlet>
     <servlet>
         <servlet-name>PackageAll</servlet-name>
-        <servlet-class>MainController.PackageAll</servlet-class>
+        <servlet-class>MainController.PackageController.PackageAll</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PagePackage</servlet-name>
-        <servlet-class>MainController.PagePackage</servlet-class>
+        <servlet-class>MainController.PackageController.PagePackage</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Packagedetail</servlet-name>
-        <servlet-class>MainController.Packagedetail</servlet-class>
+        <servlet-class>MainController.PackageController.Packagedetail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SortlowPackage</servlet-name>

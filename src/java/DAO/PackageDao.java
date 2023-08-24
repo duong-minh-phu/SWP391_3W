@@ -162,7 +162,7 @@ public class PackageDao {
 //        return null;
     }
 
-    public MealPackage getMealPackageByID(String package_id) throws SQLException {
+    public MealPackage getMealPackageByID(String package_id) throws SQLException, Exception {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
@@ -178,16 +178,13 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
             }
             return pk;
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            throw new SQLException("getMealPackageByID sql fail:" + e.getMessage());
         }
-        return null;
     }
 
     public void deletePackage(String packageId) throws Exception {

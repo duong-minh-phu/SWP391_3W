@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MainController;
+package MainController.PackageController;
 
 import DAO.PackageDao;
 import DAO.productDAO;
