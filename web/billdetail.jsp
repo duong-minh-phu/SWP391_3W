@@ -205,10 +205,10 @@
                     <label for="review">Nhận xét của bạn:</label>
                     <textarea class="form-control" rows="5" id="review" name="review"></textarea>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
-                <button type="button" class="btn btn-secondary" id="cancelBtn">Hủy</button>
-
+                <div style="margin-top: 10px">
+                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Hủy</button>
+                </div>
             </form>
         </div>
         <jsp:include page="layout/footer.jsp"/>

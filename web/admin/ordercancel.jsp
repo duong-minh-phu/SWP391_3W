@@ -97,7 +97,6 @@
                                         <th>Thanh Toán</th>
                                         <th>Chi tiết</th>
                                         <th>Lý do hủy</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,18 +107,14 @@
                                             <td>${b.phone}</td>
                                             <td>${b.address}</td>
                                             <td>${b.date}</td>
-                                            <td><fmt:formatNumber value="${b.total}" type = "currency" currencySymbol="VNĐ"/></td>
+                                            <td><fmt:formatNumber value="${b.total + 30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                             <td><span class="badge bg-success">${b.payment}</span></td>                                  
                                             <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="MainController?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết đơn hàng</a>
-                                            
                                             </td>
                                             <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="MainController?action=detailcancel&bill_id=${b.bill_id}"><i class="fa"></i>chi tiết</a>
-                                            
                                             </td>
 <!--                                            <td><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                                         data-target="#ModalUP${b.bill_id}"><i class="fas fa-edit"></i></button></td>-->
-
-                                            
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -182,7 +177,7 @@
                                 <div class="row">
                                     <div class="form-group  col-md-12">
                                         <span class="thong-tin-thanh-toan">
-                                            <h5>hủy bỏ đơn hàng</h5>
+                                            <h5>Hủy bỏ đơn hàng</h5>
                                         </span>
                                     </div>
                                 </div>
