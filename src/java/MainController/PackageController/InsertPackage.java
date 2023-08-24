@@ -13,7 +13,9 @@ import Entity.MealPackage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,17 +51,11 @@ public class InsertPackage extends HttpServlet {
 
         productDAO productDAO = new productDAO();
 
-//    private String company;
-//    private String size;
-//    private  String expiry;
-//        String package_name = request.getParameter("package_name");
         String package_name=new String(request.getParameter("package_name").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String describe=new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-        int delivery_date = Integer.parseInt(request.getParameter("delivery_date"));
+        int package_quantity = Integer.parseInt(request.getParameter("quantity"));
+        String package_description=new String(request.getParameter("describe").getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
         String[] productIds = request.getParameterValues("product_id_list");
-        float size = Float.parseFloat(request.getParameter("weight"));
-        int promotion = Integer.parseInt(request.getParameter("promotion"));
+        int package_promotion = Integer.parseInt(request.getParameter("promotion"));
         String insertStatus = "";
 
         try {
@@ -69,16 +65,13 @@ public class InsertPackage extends HttpServlet {
                     insertStatus = MEAL_ID_ERROR_STATUS;
                     response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
                     return;
-                } else if (checkProduct.getQuantity() - quantity < 0) {
+                } else if (checkProduct.getQuantity() - package_quantity < 0) {
                         insertStatus = QUANTITY_ERROR_STATUS;
                         response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
                         return;
                 }
             }
 
-//            String product_name=new String(product_name1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-//            String product_describe=new String(product_describe1.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
-            // Chuyển đổi java.util.Date thành java.sql.Date
             Part filePart = request.getPart("package_img");
             System.out.println(filePart);
             String realPath = request.getServletContext().getRealPath("/images/");
@@ -95,23 +88,29 @@ public class InsertPackage extends HttpServlet {
                 String imagePath = "images/" + fileName;
                 System.out.println(imagePath);
 
+                
+                
+                MealPackage newPackage = new MealPackage(); 
+                newPackage.setName(package_name);
+                newPackage.setDescription(package_description);
+                newPackage.setQuantity(package_quantity);
+                newPackage.setPromotion(package_promotion);
+                newPackage.setStatus(1); 
+                newPackage.setImg(imagePath);
+                
                 PackageDao packageDao = new PackageDao();
-                MealPackage newPackage = new MealPackage(describe, package_name, quantity, imagePath, 1, delivery_date, size, promotion);
-
                 packageDao.insertPackage(newPackage, productIds);
 
-//                request.getSession().setAttribute("successMessage", "Đã thêm package thành công");
                 insertStatus = SUCCESS_STATUS;
                 response.sendRedirect("MainController?action=packageManage&insertStatus=" + insertStatus);
 
-//                request.getRequestDispatcher("MainController?action=packageManage").forward(request, response);
 
             }
             if (fileName == null) {
                 response.sendRedirect("404.jsp");
             }
 
-        } catch (Exception e) {
+        } catch (IOException | SQLException | ServletException e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/404.jsp");
         }
