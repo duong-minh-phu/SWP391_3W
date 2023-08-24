@@ -35,7 +35,7 @@ public class PackageDao {
 
     public Boolean insertPackage(MealPackage insertPackage, String[] productIds) throws SQLException {
         try {
-            String sql = "INSERT INTO dbo.Package(package_id,description, name, price, quantity, img, status, delivery_date, size, promotion) values (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO dbo.Package(package_id,description, name, price, quantity, img, status,promotion) values (?,?,?,?,?,?,?,?)";
 
             float price = 0;
 
@@ -55,9 +55,7 @@ public class PackageDao {
             ps.setInt(5, insertPackage.getQuantity());
             ps.setString(6, insertPackage.getImg());
             ps.setInt(7, insertPackage.getStatus());
-            ps.setInt(8, insertPackage.getDelivery_date());
-            ps.setFloat(9, insertPackage.getSize());
-            ps.setInt(10, insertPackage.getPromotion());
+            ps.setInt(8, insertPackage.getPromotion());
 
             int affectedRows = ps.executeUpdate();
 
@@ -86,7 +84,6 @@ public class PackageDao {
             }
 
         } catch (Exception ex) {
-            conn.rollback();
             Logger.getLogger(PackageDao.class.getName()).log(Level.SEVERE, "InsertPackage sql Fail", ex);
             throw new SQLException("InsertPackage sql fail:" + ex.getMessage());
         }
@@ -122,9 +119,7 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-//                pk.setDelivery_date(rs.getInt(7));
                 pk.setStatus(rs.getInt(7));
-//                pk.setSize(rs.getFloat(9));
                 pk.setPromotion(rs.getInt(8));
                 listPackage.add(pk);
             }
@@ -155,10 +150,8 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
                 listPackage.add(pk);
             }
             return listPackage;
@@ -169,7 +162,7 @@ public class PackageDao {
 //        return null;
     }
 
-    public MealPackage getMealPackageByID(String package_id) throws SQLException {
+    public MealPackage getMealPackageByID(String package_id) throws SQLException, Exception {
 //        List<Product> list = new ArrayList<>();
         String sql = "select *from Package Where package_id=? ";
         try {
@@ -185,16 +178,13 @@ public class PackageDao {
                 pk.setPrice(rs.getInt(4));
                 pk.setQuantity(rs.getInt(5));
                 pk.setImg(rs.getString(6));
-                pk.setDelivery_date(rs.getInt(7));
-                pk.setStatus(rs.getInt(8));
-                pk.setSize(rs.getFloat(9));
-                pk.setPromotion(rs.getInt(10));
+                pk.setStatus(rs.getInt(7));
+                pk.setPromotion(rs.getInt(8));
             }
             return pk;
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            throw new SQLException("getMealPackageByID sql fail:" + e.getMessage());
         }
-        return null;
     }
 
     public void deletePackage(String packageId) throws Exception {
