@@ -247,16 +247,13 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" name="quantity" type="number" value="${PackageData.quantity}">
                                 </div>
-                                <!--                                <div class="form-group col-md-3">
-                                                                    <label class="control-label">khối lượng</label>
-                                                                    <input class="form-control" name="size" type="text"required="" value="${PackageData.size}">
-                                                                </div>                               -->
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Khuyến mãi</label>
                                     <input class="form-control" name="promotion" type="text"required="" value="${PackageData.promotion}">
                                 </div>
-
-                                <td><img src="${PackageData.img}" alt="" width="100" height="100"></td>
+                                <div class="form-group col-md-8">
+                                    <img src="${PackageData.img}" alt="" width="400px" height="400px" style="object-fit: contain">
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">

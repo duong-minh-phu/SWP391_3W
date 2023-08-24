@@ -108,9 +108,9 @@
                                         <tr>
 <!--                                            <th>ID Package</th>-->
                                             <th>Tên Package</th>
-                                            <th class="quantity-column">Số lượng package</th>
-                                            <th class="quantity-column">Giá </th>
-                                            <th class="function-column">Mô tả</th>
+                                            <th class="function-column">Số lượng</th>
+                                            <th class="function-column">Giá </th>
+                                            <th class="quantity-column">Mô tả</th>
                                             <th class="function-column">Hình ảnh</th>
                                             <th class="function-column">Chức Năng</th>
                                         </tr>
