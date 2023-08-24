@@ -100,7 +100,7 @@
                                                     <td>${p.quantity}</td>
                                                     <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                     <% if (formattedDate4 != null) {%>
-                                                    <td> <a href="#" class="reviewBtn" data-product-id="${d.product_id}" data-bill-id="${d.bill_id}">Viết đánh giá</a></td>
+                                                    <td> <a href="#" class="reviewBtn" data-product-id="${p.product_id}" data-bill-id="${p.bill_id}">Viết đánh giá</a></td>
                                                     <% } else { %>
                                                     <td>Đơn hàng hoàn thành bạn có thể đánh giá.</td>
                                                     <% } %>
