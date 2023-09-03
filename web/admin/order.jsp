@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li><a class="app-nav__item" href="MainController?action=dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
                 </li>
             </ul>
@@ -85,6 +85,7 @@
                                 </div>
                             </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
+                                <fmt:setLocale value ="vi_VN"/>
                                 <thead>
                                     <tr>
                                         <th>ID đơn hàng</th>
@@ -94,9 +95,9 @@
                                         <th>Ngày mua</th>
                                         <th>Tổng tiền</th>
                                         <th>Thanh Toán</th>
-                                        <th>Chi tiet</th>
-                                        <th>cập nhật trạng thái đơn</th>
-                                        <th>tinh nang</th>
+                                        <th>Chi tiết</th>
+                                        <th>Cập nhật trạng thái đơn</th>
+                                        <th>Tính năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -107,7 +108,7 @@
                                             <td>${b.phone}</td>
                                             <td>${b.address}</td>
                                             <td>${b.date}</td>
-                                            <td>${b.total+30000}</td>
+                                            <td><fmt:formatNumber value="${b.total+30000}" type = "currency" currencySymbol="VNĐ"/></td>
                                             <td><span class="badge bg-success">${b.payment}</span></td>                                  
                                             <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="MainController?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết đơn hàng</a>
                                             
@@ -141,7 +142,7 @@
                                 <div class="row">
                                     <div class="form-group  col-md-12">
                                         <span class="thong-tin-thanh-toan">
-                                            <h5>cập nhật trạng thái đơn</h5>
+                                            <h5>Cập nhật trạng thái đơn</h5>
                                         </span>
                                     </div>
                                 </div>
@@ -184,7 +185,7 @@
                                 <div class="row">
                                     <div class="form-group  col-md-12">
                                         <span class="thong-tin-thanh-toan">
-                                            <h5>hủy bỏ đơn hàng</h5>
+                                            <h5>Hủy bỏ đơn hàng</h5>
                                         </span>
                                     </div>
                                 </div>

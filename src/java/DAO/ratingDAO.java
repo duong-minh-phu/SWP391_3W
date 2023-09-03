@@ -47,7 +47,6 @@ public class ratingDAO {
                 int rate = rs.getInt("rate");
                 String comment = rs.getString("comment");
                 Date date = rs.getDate("date");
-
                 Rating rating = new Rating(userName, productName, rate, comment, date);
                 list.add(rating);
 
@@ -75,6 +74,42 @@ public class ratingDAO {
             while (rs.next()) {
                 String userName = rs.getString("user_name");
                 String productName = rs.getString("product_name");
+                int rate = rs.getInt("rate");
+                String comment = rs.getString("comment");
+                Timestamp timestamp = rs.getTimestamp("date");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(timestamp.getTime());
+                calendar.add(Calendar.DATE, 2);
+                Date date = new Date(calendar.getTimeInMillis());
+
+                Rating rating = new Rating(userName, productName, rate, comment, date);
+                list.add(rating);
+                System.out.println(list);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Rating> getRatingsByPackageID(String package_id) {
+        List<Rating> list = new ArrayList<>();
+        String sql = "SELECT u.user_name, p.name ,r.rate, r.comment, r.date \n"
+                + "FROM Rating r\n"
+                + "INNER JOIN Package p ON r.product_id = p.package_id\n"
+                + "INNER JOIN users u ON r.user_id = u.user_id\n"
+                + "WHERE r.product_id = ?\n"
+                + "ORDER BY r.date DESC";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, package_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String userName = rs.getString("user_name");
+                String productName = rs.getString("name");
                 int rate = rs.getInt("rate");
                 String comment = rs.getString("comment");
                 Timestamp timestamp = rs.getTimestamp("date");
@@ -123,6 +158,35 @@ public class ratingDAO {
 
         return 0; // Trả về 0 nếu không tìm thấy đánh giá hoặc xảy ra lỗi
     }
+    
+    public double calculateAverageRatingPackage(String package_id) {
+        String sql = "SELECT rate FROM dbo.rating WHERE product_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, package_id);
+            rs = ps.executeQuery();
+
+            int count = 0;
+            double totalRate = 0;
+
+            while (rs.next()) {
+                double rate = rs.getDouble("rate");
+                totalRate += rate;
+                count++;
+            }
+
+            if (count > 0) {
+                return totalRate / count;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close connections and resources
+        }
+
+        return 0; // Trả về 0 nếu không tìm thấy đánh giá hoặc xảy ra lỗi
+    }
 
     public int countRatingsByProductId(String product_id) {
         String sql = "SELECT COUNT(*) AS count FROM dbo.rating WHERE product_id = ?";
@@ -132,6 +196,26 @@ public class ratingDAO {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, product_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(ratingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    public int countRatingsByPackageId(String package_id) {
+        String sql = "SELECT COUNT(*) AS count FROM dbo.rating WHERE product_id = ?";
+        int count = 0;
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, package_id);
             rs = ps.executeQuery();
 
             if (rs.next()) {

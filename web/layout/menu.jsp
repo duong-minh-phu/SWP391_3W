@@ -120,16 +120,16 @@
                                 <ul class="dropdown_links">
                                     <c:if test="${sessionScope.user != null}">
                                         <li><a href="MainController?action=myaccount">Tài khoản của tôi</a></li>
-<!--                                        <form action="MainController">
-                                            <input type="submit" name="action" value="myaccount"></input>
-                                        </form>-->
-                                        
-                                        </c:if>
+                                        <!--                                        <form action="MainController">
+                                                                                    <input type="submit" name="action" value="myaccount"></input>
+                                                                                </form>-->
+
+                                    </c:if>
 
                                     <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'ADMIN'}">
                                         <li><a href="MainController?action=dashboard">Quản lý ADMIN</a></li>
                                         </c:if>
-                                    <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'STAFF'}">
+                                        <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'STAFF'}">
                                         <li><a href="MainController?action=dashboard">Quản lý STAFF</a></li>
                                         </c:if>
 
@@ -140,8 +140,6 @@
                                     <c:if test="${sessionScope.user != null}">
                                         <li><a href="MainController?action=logout">Đăng xuất</a></li>
                                         </c:if>
-
-
                                 </ul>
                             </li> 
                         </ul>
@@ -157,11 +155,12 @@
         <div class="container-fluid">
             <div class="middel_inner">
                 <div class="row align-items-center">
+
                     <div class="col-lg-3">
                         <div class="logo" style="display: flex; align-items: center">
                             <a href="home"><img 
-                                    style ="border-radius: 50%; border: 10px solid dark; margin-right: 10px "
-                                    class="imglogo" src="https://top10tphcm.com/wp-content/uploads/2023/02/ga-dep-nhat-17.jpg" alt="logo"></a>
+                                    style ="border-radius: 50%; border: 10px solid dark; margin-right: 10px; width: 60px; height: 60px "
+                                    class="imglogo" src="images/logoo.png" alt="logo"></a>
                                     <h3 href="home" style="font-weight: bold">Fhicken Shop</h3>
                         </div>
                     </div>
@@ -191,6 +190,7 @@
                                 </li>
                                 <li class="mega_items"><a href="shop_category.jsp">Sản phẩm</a>
                                 </li>
+                                <!--<li class="mega_items"><a href="shop_package.jsp">Package</a></li>-->
                             </ul> 
                         </nav> 
                     </div>
@@ -202,7 +202,7 @@
                                 <li><a href="MainController?action=blog">Blog</a></li>
                                 <li><a href="about">Chúng tôi</a></li>
                                 <li><a href="contact">Liên hệ</a></li>
-                                
+
                             </ul> 
                         </nav> 
                     </div>
@@ -223,10 +223,11 @@
                                 <ul>
                                     <li class="active"><a href="home">Trang chủ</a></li>
                                     <li><a href="MainController?action=productall">Sản phẩm</a></li>
+                                    <li><a href="MainController?action=packageall">Package</a></li>
                                     <li><a href="MainController?action=blog">Blog</a></li>
                                     <li><a href="about">Chúng tôi</a></li>
                                     <li><a href="contact">Liên hệ</a></li>
-                                    
+
                                 </ul>   
                             </nav> 
                         </div>

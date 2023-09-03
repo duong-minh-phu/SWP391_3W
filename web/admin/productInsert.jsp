@@ -18,7 +18,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <link rel="stylesheet" type="text/css"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>      
+
+
         <script>
             function generateId() {
                 const productIdInput = document.getElementById('product-id');
@@ -68,6 +70,8 @@
                     $(".filename").text("");
                 });
             })
+
+
         </script>
     </head>
 
@@ -207,7 +211,7 @@
                                 <input type="hidden" id="product-id" name="product_id">
                                 <div class="form-group col-md-3">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category_id" class="form-control" id="exampleSelect1">
+                                    <select name="category_id" class="form-control"  id="exampleSelect1">
                                         <option>-- Chọn danh mục --</option>
                                         <c:forEach items="${CategoryData}" var="cat">
                                             <option value="${cat.category_id}">${cat.category_name} </option>
@@ -393,6 +397,7 @@
                     popup.style.display = "none";
                 });
             });
+
         </script>
 
         <script src="admin/js/jquery-3.2.1.min.js"></script>
@@ -401,25 +406,25 @@
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
         <script>
-                                            const inpFile = document.getElementById("inpFile");
-                                            const loadFile = document.getElementById("loadFile");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewImage = previewContainer.querySelector(".image-preview__image");
-                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                            const object = new ActiveXObject("Scripting.FileSystemObject");
-                                            inpFile.addEventListener("change", function () {
-                                                const file = this.files[0];
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    previewDefaultText.style.display = "none";
-                                                    previewImage.style.display = "block";
-                                                    reader.addEventListener("load", function () {
-                                                        previewImage.setAttribute("src", this.result);
-                                                    });
-                                                    reader.readAsDataURL(file);
-                                                }
-                                            });
+            const inpFile = document.getElementById("inpFile");
+            const loadFile = document.getElementById("loadFile");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewImage = previewContainer.querySelector(".image-preview__image");
+            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+            const object = new ActiveXObject("Scripting.FileSystemObject");
+            inpFile.addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    previewDefaultText.style.display = "none";
+                    previewImage.style.display = "block";
+                    reader.addEventListener("load", function () {
+                        previewImage.setAttribute("src", this.result);
+                    });
+                    reader.readAsDataURL(file);
+                }
+            });
 
 
         </script>

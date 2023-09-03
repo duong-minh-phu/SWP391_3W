@@ -83,7 +83,18 @@ public class billDAO {
                 ps.setInt(1, quantity);
                 ps.setString(2, product.getProduct_id());
                 ps.executeUpdate();
-            }
+            }            
+            
+            String sql4 = "UPDATE Package SET quantity = quantity - ? WHERE package_id = ?";
+            ps = conn.prepareStatement(sql4);
+            
+            for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+                Product product = entry.getKey();
+                int quantity = entry.getValue();
+                ps.setInt(1, quantity);
+                ps.setString(2, product.getProduct_id());
+                ps.executeUpdate();
+            }   
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,6 +136,22 @@ public class billDAO {
         List<BillDetail> list = new ArrayList<>();
         String sql = "SELECT d.bill_detail_id, p.product_id, p.product_name, p.img, d.quantity, d.product_total,d.bill_id \n"
                 + "FROM bill_detail d\n" + "INNER JOIN product p ON d.product_id = p.product_id\n" + "WHERE d.bill_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, bill_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new BillDetail(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getFloat(6), rs.getInt(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    public List<BillDetail> getDetailpackage(int bill_id) {
+        List<BillDetail> list = new ArrayList<>();
+        String sql = "SELECT d.bill_detail_id, d.product_id, p.name, p.img, d.quantity, d.product_total,d.bill_id \n" +
+        "FROM bill_detail d INNER JOIN Package p ON d.product_id = p.package_id WHERE d.bill_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -398,7 +425,7 @@ public class billDAO {
             String sql = "SELECT bill_id, date, payment, address, total_money, bill_status\n"
                     + "FROM bill\n"
                     + "WHERE bill_status = 'xac nhan don'\n"
-                    + "AND user_id = ?\n"
+                    + "AND user_id = ? and delivery_status=0\n"
                     + "ORDER BY date DESC";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);

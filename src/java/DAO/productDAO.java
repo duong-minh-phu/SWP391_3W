@@ -278,12 +278,12 @@ public class productDAO {
         return null;
     }
 
-    public Entity.Category getCategoryByName1(String category_name) {
-        String sql = "SELECT * FROM category WHERE category_name = ?";
+    public Entity.Category getCategoryById(String category_id) {
+        String sql = "SELECT * FROM category WHERE category_id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, category_name);
+            ps.setString(1, category_id);
             rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -397,9 +397,9 @@ public class productDAO {
 
         String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, p.quantity,p.img,p.company,p.expiry,p.size from product p inner join category c on p.category_id = c.category_id WHERE p.product_id=? and p.status='TRUE'";
 
-        String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, "
-                + "p.quantity,p.img from product p inner join category c on p.category_id = c.category_id "
-                + "WHERE p.product_id=? and p.status='TRUE'";
+//        String sql = "select c.category_id, c.category_name , p.product_id , p.product_name, p.product_price, p.product_describe, "
+//                + "p.quantity,p.img from product p inner join category c on p.category_id = c.category_id "
+//                + "WHERE p.product_id=? and p.status='TRUE'";
 
         try {
             conn = new DBContext().getConnection();
@@ -409,6 +409,22 @@ public class productDAO {
             while (rs.next()) {
                 Category c = new Category(rs.getInt(1), rs.getString(2));
                 return (new Product(c, rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6), rs.getInt(7), rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    public Product getpackageByID(String product_id) {
+       String sql = "select package_id,name,price,quantity,img from Package where package_id=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, product_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+               
+                return (new Product(rs.getString(1), rs.getString(2),rs.getFloat(3),rs.getInt(4), rs.getString(5)));
             }
         } catch (Exception e) {
             System.out.println(e);

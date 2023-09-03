@@ -41,6 +41,9 @@ public class MainController extends HttpServlet {
             if (action.equals("logout")) {
                 url = "logout";
             }
+            if (action.equals("cancelbillbycus")) {
+                url = "Cancelbillbycus";
+            }
             if (action.equals("blogcomment")) {
                 url = "Blogcomment";
             }
@@ -277,6 +280,52 @@ public class MainController extends HttpServlet {
             if (action.equals("outdate")){
                 url = "OutDate";
             }
+            if (action.equals("packageManage")){
+                url = "GetDataForInsertPackage";
+            }  
+            if (action.equals("insertPackage")){
+                url = "InsertPackage";
+            }
+            if (action.equals("packageManagment")){
+                url = "PackageManagement";
+            }
+            if (action.equals("packageall")){
+                url = "PackageAll";
+            }
+            if (action.equals("package")) {
+                url = "PagePackage";
+            }
+            if (action.equals("packagedetail")) {
+                url = "Packagedetail";
+            }
+            if (action.equals("deletePackage")) {
+                url = "DeletePackage";
+            }
+            if (action.equals("recoveryPackage")) {
+                url = "RecoveryPackage";
+            }
+//            if (action.equals("getDeletePackage")) {
+//                url = "RecoveryPackage";
+//            }
+            if (action.equals("sortlowPackage")) {
+                url = "SortlowPackage";
+            }
+            if (action.equals("sorthighPackage")) {
+                url = "SorthighPackage";
+            }
+            if (action.equals("sortaPackage")) {
+                url = "SortaPackage";
+            }
+            if (action.equals("updatePackage")) {
+                url = "UpdatePackage";
+            }
+            if (action.equals("getPackageForUpdate")) {
+                url = "GetInfoForUpdatePackage";
+            }
+            if(action.equals("getDeletePackage")){
+                url="GetDeletePackage";
+            }
+            
             
 
         } catch (Exception ex) {

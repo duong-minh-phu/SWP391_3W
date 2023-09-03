@@ -56,11 +56,11 @@
                 <li><a class="app-menu__item" href="MainController?action=dashboard1"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item" href="MainController?action=customermanager"><i class='app-menu__icon bx bx-user-voice'></i><span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                            class="app-menu__label">Quản lý tài khoản</span></a></li>
                 <li><a class="app-menu__item" href="MainController?action=customermanager1"><i class='app-menu__icon bx bx-user-voice'></i><span
-                            class="app-menu__label">Quản lý khách hàng đã xóa</span></a></li>
+                            class="app-menu__label">Tài khoản đã xóa</span></a></li>
                             <li><a class="app-menu__item" href="MainController?action=money"><i class='app-menu__icon bx bx-dollar'></i><span
-                            class="app-menu__label">thống kê</span></a></li>
+                            class="app-menu__label">Thống kê</span></a></li>
                 
                 
             </ul>
@@ -92,8 +92,8 @@
                                         <th>ID khách hàng</th>
                                         <th>Tên khách hàng</th>
                                         <th>Email</th>
-                                        <th>isAdmin</th>
-                                        <th>SĐT</th>
+                                        <th>Vai trò</th>
+                                        <th>Số điện thoại</th>
                                         <c:if test="${fn: toUpperCase(sessionScope.user.isAdmin) == 'ADMIN'}">
                                         
                                         <th width="70">Tính năng</th>

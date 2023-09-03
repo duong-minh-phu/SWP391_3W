@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
         <header class="app-header">
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <ul class="app-nav">
-                <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li><a class="app-nav__item" href="MainController?action=dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
                 </li>
             </ul>
         </header>
@@ -79,10 +79,11 @@
                                 </div>
                             </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
+                                <fmt:setLocale value ="vi_VN"/>
                                 <thead>
                                     <tr>
                                         <th>Ảnh</th>
-                                        <th>Mã sản phẩm</th>
+<!--                                        <th>Mã sản phẩm</th>-->
                                         <th>Tên sản phẩm</th>                                        
                                         <th>Số lượng</th>
                                         <th>Đơn giá</th>
@@ -93,19 +94,27 @@
                                     <c:forEach items="${Detail}" var="d">
                                         <tr>
                                             <td><img src="${d.img}" alt="" width="100px;"></td>
-                                            <td>${d.product_id}</td>
+<!--                                            <td>${d.product_id}</td>-->
                                             <td>${d.product_name}</td>                                            
                                             <td>${d.quantity}</td>
-                                            <td>${d.price}</td>                                          
+                                            <td><fmt:formatNumber value="${d.price}" type = "currency" currencySymbol="VNĐ"/></td>                                          
+                                        </tr>
+                                    </c:forEach>
+                                        <c:forEach items="${Detail_package}" var="p">
+                                        <tr>
+                                            <td><img src="${p.img}" alt="" width="100px;"></td>
+<!--                                            <td>${p.product_id}</td>-->
+                                            <td>${p.product_name}</td>                                            
+                                            <td>${p.quantity}</td>
+                                            <td><fmt:formatNumber value="${p.price}" type = "currency" currencySymbol="VNĐ"/></td>                                          
                                         </tr>
                                     </c:forEach>
                                 </tbody>
-                                <tr>
+                                <tr>                                        
                                         <th></th>
+                                        <th>Phí vận chuyển</th>
                                         <th></th>
-                                        <th>Phí ship</th>
-                                        <th></th>
-                                        <td><strong>30000</strong></td>
+                                        <td><strong><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></strong></td>
                                     </tr>
                             </table>
                         </div>

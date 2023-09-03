@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,11 +31,8 @@
                                             aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
-
-
                 <!-- User Menu-->
                 <li><a class="app-nav__item" href="MainController?action=dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
                 </li>
             </ul>
         </header>
@@ -83,16 +81,17 @@
                                         Tạo mới sản phẩm</a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="MainController?action=productdelete" >Sản phẩm đã xóa</a>
-                                </div>
-                                 <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="MainController?action=productdate" >Sản phẩm sắp đến hạn</a>
+                                    <a class="btn btn-add btn-sm" href="MainController?action=packageManage" title="Thêm"><i class="fas fa-plus"></i>
+                                        Tạo mới package</a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="MainController?action=outdate" >Sản phẩm quá hạn</a>
+                                    <a class="btn btn-add btn-sm" href="MainController?action=productdelete" >Sản phẩm đã xóa</a>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="MainController?action=categorymana">Quản lý danh mục</a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-add btn-sm" href="MainController?action=packageManagment">Quản lý package</a>
                                 </div>
                             </div>
                             <form action="MainController?action=updateproduct" method="POST" enctype="multipart/form-data">
@@ -103,18 +102,18 @@
                                             <th>Tên sản phẩm</th>
                                             <th>Giá</th>
                                             <th>Thông tin</th>
-                                            <th>Số lượng</th>                                            
-                                            
+                                            <th>Số lượng</th>                                                                                       
                                             <th>Ảnh</th>
                                             <th>Chức năng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${ProductData}" var="p">
-                                            <tr>
+                                            <tr >
+                                                <fmt:setLocale value ="vi_VN"/>
                                                 <td>${p.cate.category_name}</td>
                                                 <td>${p.product_name}</td>
-                                                <td>${p.product_price}</td>
+                                                <td style="width: 100px"><fmt:formatNumber value="${p.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                                                 <td>${p.product_describe}</td>
                                                 <td>${p.quantity}</td>                                                
                                                 
@@ -206,7 +205,7 @@
                                         <tr>
                                             <td>${p.cate.category_name}</td>
                                             <td>${p.product_name}</td>
-                                            <td>${p.product_price}</td>
+                                            <td><fmt:formatNumber value="${p.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
                                             <td>${p.product_describe}</td>
                                             <td>${p.quantity}</td>
                                             
@@ -393,7 +392,13 @@
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-            $('#sampleTable').DataTable();
+             $('#sampleTable').DataTable({
+                aLengthMenu: [
+                    [10, 25, 50, 100, 200, -1],
+                    [10, 25, 50, 100, 200, "All"]
+                ],
+                iDisplayLength: -1
+            });
             //Thời Gian
             function time() {
                 var today = new Date();

@@ -22,7 +22,7 @@
     </head>
 
     <body>
-
+        <fmt:setLocale value ="vi_VN"/>
         <!-- Main Wrapper Start -->
         <!--Offcanvas menu area start-->
         <div class="off_canvars_overlay"></div>
@@ -64,12 +64,12 @@
                                     <thead>
                                         <tr>
 
-                                            <th class="product_thumb">Image</th>
-                                            <th class="product_name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product_quantity">Quantity</th>
-                                            <th class="product_total">Total</th>
-                                            <th class="product_remove">Delete</th>
+                                            <th class="product_thumb">Hình ảnh</th>
+                                            <th class="product_name">Sản phẩm</th>
+                                            <th class="product-price">Giá tiền</th>
+                                            <th class="product_quantity">Số lượng</th>
+                                            <th class="product_total">Tổng</th>
+                                            <th class="product_remove">Chức năng</th>
 
 
                                         </tr>
@@ -78,18 +78,18 @@
 
                                         <c:forEach items="${sessionScope.cart.items}" var="i">
                                             <tr>
-                                                <td class="product_thumb"><a href="MainController?action=productdetail&product_id=${i.key.product_id}"><img src="${i.key.img}" alt=""></a></td>
-                                                <td class="product_name"><a href="MainController?action=productdetail&product_id=${i.key.product_id}">${i.key.product_name}</a></td>
-                                                <td class="product-price"><fmt:formatNumber pattern="##########" value="${i.key.product_price}"/></td>
+<!--                                                <a href="MainController?action=productdetail&product_id=${i.key.product_id}">-->
+                                                <td class="product_thumb"><img src="${i.key.img}" alt=""></a></td>
+                                                <td class="product_name">${i.key.product_name}</a></td>
+                                                
+                                                <td class="product-price"><fmt:formatNumber value="${i.key.product_price}" type = "currency" currencySymbol="VNĐ"/></td>
 
-                                                <td class="product_quantity"><input name="quantity" min="1" max="100"  value="${(i.value)}" onchange="handleEvent(event, '${i.key.product_id}')" type="number"></td>
-
-                                                <td id ="demo3${i.key.product_id}" class="product_total"> <fmt:formatNumber pattern="##########" value="${i.key.product_price * i.value }"/></td>
+                                                <td class="product_quantity"><input name="quantity" min="1" max="${i.key.quantity}"  value="${(i.value)}" onchange="handleEvent(event, '${i.key.product_id}')" type="number"></td>
+                                                
+                                                <td id ="demo3${i.key.product_id}" class="product_total"> <fmt:formatNumber value="${i.key.product_price * i.value }" type = "currency" currencySymbol="VNĐ"/></td>
 
                                                 <td class="product_remove"> <a href="#" onclick="confirmDelete('${i.key.product_id}')"> <i class="fa fa-trash-o"></i> </a> </t
                                             </tr>
-
-
                                         </c:forEach>
 
 
@@ -162,16 +162,18 @@
                                 <div class="coupon_inner">
                                     <div class="cart_subtotal">
                                         <p>Tổng đơn hàng</p>
-                                        <p  id="demo"  class="cart_amount"><fmt:formatNumber pattern="##########" value="${sessionScope.cart.getTotalMoney()}"/></p>
+                                        
+                                        <p  id="demo"  class="cart_amount"><fmt:formatNumber value="${sessionScope.cart.getTotalMoney()}" type = "currency" currencySymbol="VNĐ"/></p>
                                     </div>
                                     <div class="cart_subtotal ">
-                                        <p>Phí ship</p>
-                                        <p class="cart_amount">30000</p>
+                                        <p>Phí vận chuyển</p>
+                                        <p class="cart_amount"><fmt:formatNumber value="30000" type = "currency" currencySymbol="VNĐ"/></p>
                                     </div>
 
                                     <div class="cart_subtotal">
-                                        <p>Total</p>
-                                        <p id="demo2" class="cart_amount"><fmt:formatNumber pattern="##########" value="${sessionScope.cart.getTotalMoney() + 30000}"/></p>
+                                        <p>Tổng cộng</p>
+                                        
+                                        <p id="demo2" class="cart_amount"><fmt:formatNumber value="${sessionScope.cart.getTotalMoney() + 30000}" type = "currency" currencySymbol="VNĐ"/></p>
                                     </div>
                                     <div class="checkout_btn">
                                         <a href=MainController?action=Payment>Thanh toán</a>

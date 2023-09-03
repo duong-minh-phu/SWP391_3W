@@ -232,11 +232,11 @@
                                     <input class="form-control" name="update_company" type="text" value="${ProductIDDATA.company}">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">thời gian bảo quản</label>
+                                    <label class="control-label">Thời gian bảo quản</label>
                                     <input class="form-control" name="expiry" type="text"required="" value="${ProductIDDATA.expiry}">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">khối lượng</label>
+                                    <label class="control-label">Khối lượng</label>
                                     <input class="form-control" name="size" type="text"required="" value="${ProductIDDATA.size}">
                                 </div>
                                 

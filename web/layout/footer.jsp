@@ -30,7 +30,7 @@
                             <p>Chất lượng tạo nên thương hiệu !</p>
                             <div class="subscribe_form">
                                 <form id="mc-form" class="mc-form footer-newsletter" method="GET" action="user?action=gmail">
-                                    <input id="mc-email" type="email" name="EmailInfomation" autocomplete="off" placeholder="Enter you email address here..." />
+                                    <input id="mc-email" type="email" name="EmailInfomation" autocomplete="off" placeholder="Enter your email address here..." />
                                     <button type="submit" id="mc-submit">Đăng ký</button>
                                 </form>
                                 <!-- mailchimp-alerts Start -->

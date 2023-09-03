@@ -1,5 +1,5 @@
 
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
@@ -26,7 +26,7 @@
     </head>
 
     <body>
-
+<fmt:setLocale value ="vi_VN"/>
         <!-- Main Wrapper Start -->
         <!--Offcanvas menu area start-->
         <div class="off_canvars_overlay"></div>
@@ -61,10 +61,11 @@
                                 <div class="widget_list widget_categories">
                                     <h2>Danh mục</h2>
                                     <ul>
-                                        <li><a href="MainController?action=productall">TẤT CẢ</a></li>
+                                        <li style="font-size: medium"><a href="MainController?action=productall">TẤT CẢ</a></li>
                                         <c:forEach items="${CategoryData}" var="c">
-                                            <li><a href="MainController?action=listByCategory&category_id=${c.category_id}">${c.category_name}</a></li>
+                                        <li style="font-size: 15px"><a  href="MainController?action=listByCategory&category_id=${c.category_id}">${c.category_name}</a></li>
                                             </c:forEach>
+                                            <!--<li><a href="MainController?action=packageall">Package</a></li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -102,7 +103,7 @@
 
                                             <div class="product_content grid_content">
                                                 <h3><a href="MainController?action=productdetail&product_id=${p.product_id}">${p.product_name}</a></h3>
-                                                <span class="current_price">${p.product_price} VNĐ</span>
+                                                <span class="current_price"><fmt:formatNumber value="${p.product_price}" type = "currency" currencySymbol="VNĐ"/></span>
                                             </div>
                                         </div>
                                     </div>

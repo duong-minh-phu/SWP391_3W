@@ -69,11 +69,11 @@
                                         ${requestScope.error}
                                     </p>
                                     <p>   
-                                        <label>Email <span>*</span></label>
+                                        <label>Email<span>*</span></label>
                                         <input name="user_email" type="text" value="${cookie.email.value}" required="">
                                     </p>
                                     <p>   
-                                        <label>Mật khẩu <span>*</span></label>
+                                        <label>Mật khẩu<span>*</span></label>
                                         <input name="user_pass" type="password" value="${cookie.pass.value}" required="">
                                     </p>   
                                     <div class="login_submit">
